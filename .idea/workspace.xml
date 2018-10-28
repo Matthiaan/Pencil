@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ea5d90a-792e-4fed-ba0d-a751959ab869" name="Default" comment="Initial Commit">
+    <list default="true" id="0ea5d90a-792e-4fed-ba0d-a751959ab869" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/InterfaceEngine.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/InterfaceEngine.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -359,7 +353,7 @@
       <workItem from="1538383578352" duration="6213000" />
       <workItem from="1538909600779" duration="2353000" />
       <workItem from="1540670542598" duration="2699000" />
-      <workItem from="1540719454079" duration="999000" />
+      <workItem from="1540719454079" duration="1209000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1540671502142</created>
@@ -368,11 +362,18 @@
       <option name="project" value="LOCAL" />
       <updated>1540671502142</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commit #1 &#10;&#10;Reworked ItemUtils class&#10;Reworked the Interface Engine (it's now less complex, still need to optimize)!">
+      <created>1540724221854</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1540724221855</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27774000" />
+    <option name="totallyTimeSpent" value="27984000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -415,7 +416,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="Commit #1 &#10;&#10;Reworked ItemUtils class&#10;Reworked the Interface Engine (it's now less complex, still need to optimize)!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #1 &#10;&#10;Reworked ItemUtils class&#10;Reworked the Interface Engine (it's now less complex, still need to optimize)!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
