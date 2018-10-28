@@ -19,11 +19,11 @@ public class MenuCommand extends PencilCommand {
             }
 
             if (!(player.getInventory().firstEmpty() == -1)) {
-                player.getInventory().addItem(ItemUtils.getItem(Material.COMPASS, 0, 1, Pencil.getPrefix() + "Pencil Menu"));
+                player.getInventory().addItem(ItemUtils.getMenuItem());
                 player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.GUI_ADDED_MENU_PENCIL.getMessage(),
                         MessageService.MessageType.INFO, false));
             } else {
-                player.sendMessage(MessageService.formatMessage("Seems like your inventory is full!",
+                player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_INVENTORY_FULL.getMessage(),
                         MessageService.MessageType.ERROR, true));
             }
         } else {
@@ -31,7 +31,7 @@ public class MenuCommand extends PencilCommand {
                     MessageService.MessageType.WARNING, true));
         }
 
-        player.getInventory().addItem(ItemUtils.getItem(Material.COMPASS, 0, 1, Pencil.getPrefix() + ChatColor.GREEN + "Menu"));
+        player.getInventory().addItem(ItemUtils.getMenuItem());
     }
 
     @Override

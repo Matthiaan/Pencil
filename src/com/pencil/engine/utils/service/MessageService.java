@@ -29,7 +29,9 @@ public class MessageService {
         NO_PLAYER("Only players can use Pencil!"),
         NO_ARGUMENTS("This command doesn't take any arguments!"),
 
-        GUI_ADDED_MENU_PENCIL("You have received the Pencil Menu")
+        GUI_ADDED_MENU_PENCIL("You have received the Pencil Menu"),
+
+        UTILS_INVENTORY_FULL("Seems like you inventory is full!"),
         ;
 
         private String message;

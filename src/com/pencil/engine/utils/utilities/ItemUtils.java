@@ -1,5 +1,6 @@
 package com.pencil.engine.utils.utilities;
 
+import com.pencil.engine.Pencil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -36,38 +37,6 @@ public class ItemUtils {
         return item;
     }
 
-    public static boolean matchesMaterial(Material given, Material check) {
-        return (given == check);
-    }
-
-    public static boolean matchesAmount(int given, int check) {
-        return (given == check);
-    }
-
-    public static boolean matchesName(String given, String check) {
-        return given.equalsIgnoreCase(check);
-    }
-
-    public static boolean matchesRoughly(ItemStack given, ItemStack check) {
-        if (!matchesMaterial(given.getType(), check.getType())) {
-            return false;
-        }
-
-        if (!matchesAmount(given.getAmount(), check.getAmount())) {
-            return false;
-        }
-
-        if (!(given.hasItemMeta() || check.hasItemMeta())) {
-            return false;
-        }
-
-        if (!matchesName(given.getItemMeta().getDisplayName(), check.getItemMeta().getDisplayName())) {
-            return false;
-        }
-
-        return true;
-    }
-
     public static ItemStack getExitItem() {
         return getItem(Material.BARRIER, 0, 1, ChatColor.RED + "Exit");
     }
@@ -84,4 +53,23 @@ public class ItemUtils {
         return getSkullItem(1, "MHF_ArrowLeft", ChatColor.GREEN + "Previous Page");
     }
 
+    public static ItemStack getMenuItem() {
+        return getItem(Material.COMPASS, 0, 1, Pencil.getPrefix() + ChatColor.AQUA + "Menu");
+    }
+
+    public static ItemStack getWandItem() {
+        return getItem(Material.DIAMOND_AXE, 0, 1, Pencil.getPrefix() + ChatColor.AQUA + "Pencil Wand");
+    }
+
+    public static boolean matches(ItemStack item, ItemStack comparison) {
+        if (!(item.getType() == comparison.getType())) {
+            return false;
+        }
+
+        if ((!(item.getItemMeta() == comparison.getItemMeta()))) {
+            return false;
+        }
+
+        return true;
+    }
 }
