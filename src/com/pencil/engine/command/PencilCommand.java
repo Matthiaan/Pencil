@@ -1,9 +1,10 @@
 package com.pencil.engine.command;
 
+import com.pencil.engine.utils.action.PencilAction;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 
-public abstract class PencilCommand {
+public abstract class PencilCommand implements PencilAction {
 
     public abstract void onCommand(Player player, String[] args);
 
@@ -15,4 +16,7 @@ public abstract class PencilCommand {
 
     public abstract Permission getPermission();
 
+    public ActionType getActionType() {
+        return ActionType.COMMAND;
+    }
 }

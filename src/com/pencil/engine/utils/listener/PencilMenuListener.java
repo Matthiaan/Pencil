@@ -4,9 +4,10 @@ import com.pencil.engine.Pencil;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-public class PencilMenuListener {
+public class PencilMenuListener implements Listener {
 
     @EventHandler (priority = EventPriority.MONITOR)
     public void onDefaultMenu(InventoryClickEvent event) {

@@ -2,10 +2,9 @@ package com.pencil.engine.utils.service;
 
 import com.pencil.engine.Pencil;
 import com.pencil.engine.utils.events.PencilHotbarEvent;
-import com.pencil.engine.utils.utilities.ItemUtils;
+import com.pencil.engine.utils.listener.PencilHotbarListener;
+import com.pencil.engine.utils.listener.PencilMenuListener;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,7 +19,14 @@ public class EventManager implements Listener {
     }
 
     public EventManager() {
+        init();
+    }
+
+    private void init() {
         Bukkit.getServer().getPluginManager().registerEvents(this, Pencil.getPlugin());
+
+        Bukkit.getServer().getPluginManager().registerEvents(new PencilHotbarListener(), Pencil.getPlugin());
+        Bukkit.getServer().getPluginManager().registerEvents(new PencilMenuListener(), Pencil.getPlugin());
     }
 
     @EventHandler (priority = EventPriority.LOW)

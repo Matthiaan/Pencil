@@ -2,17 +2,20 @@ package com.pencil.engine;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Pencil extends JavaPlugin {
+
+    private Metrics metrics;
 
     /**
      * This method is used to start the plugin, all necessary
      * Services, Engines, etc... should have an instance that
      * is assigned here!
      *
-     * Also here we check for World Edit and we check whether there
+     * Also here we check for World Edit/VoxelSniper and we check whether there
      * could be a problem regarding memory!
      *
      */
@@ -26,6 +29,12 @@ public class Pencil extends JavaPlugin {
 
             onDisable();
         }
+
+        if (Settings.getConfig().<Boolean>get("settings.use-metrics")) {
+            metrics = new Metrics(getPlugin());
+
+            //TODO: Add metrics for which operations, commands, miscellaneous  utilities, etc are used!
+        }
     }
 
     @Override
@@ -37,7 +46,7 @@ public class Pencil extends JavaPlugin {
         return Bukkit.getServer().getPluginManager().getPlugin("Pencil");
     }
 
-    public static boolean hasPlugin(String name) {
+    private static boolean hasPlugin(String name) {
         return Bukkit.getServer().getPluginManager().getPlugin(name) != null;
     }
 

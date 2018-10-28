@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ea5d90a-792e-4fed-ba0d-a751959ab869" name="Default" comment="">
+    <list default="true" id="0ea5d90a-792e-4fed-ba0d-a751959ab869" name="Default" comment="Commit #2&#10;&#10;Added Actions&#10;Added PencilPlayer&#10;Added Metrics&#10;Added Settings">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/Metrics.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/Settings.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilAction.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilCommandAction.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilHistory.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/command/PencilCommand.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/command/PencilCommand.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilMenuListener.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilMenuListener.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventManager.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,51 +25,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="InterfaceEngine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/engines/InterfaceEngine.java">
+      <file leaf-file-name="Pencil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+            <state relative-caret-position="276">
+              <caret line="35" column="103" lean-forward="true" selection-start-line="35" selection-start-column="103" selection-end-line="35" selection-end-column="103" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PencilMenuListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilMenuListener.java">
+      <file leaf-file-name="PencilPlayer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="414">
+              <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PencilHotbarListener.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java">
+      <file leaf-file-name="MenuCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="1265">
+              <caret line="55" column="8" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InterfaceUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java">
+      <file leaf-file-name="PencilCommand.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/PencilCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+            <state relative-caret-position="391">
+              <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java">
+      <file leaf-file-name="PencilCommandAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilCommandAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="56" column="82" lean-forward="false" selection-start-line="56" selection-start-column="82" selection-end-line="56" selection-end-column="82" />
+            <state relative-caret-position="529">
+              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -76,6 +87,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Matthias Kovacic" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
@@ -89,8 +105,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/pencil/engine/routines/Routine.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/command/PencilCommand.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/geometry/vector/Vector.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/geometry/vector/BlockVector.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/geometry/vector/Vector2D.java" />
@@ -104,7 +118,6 @@
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listeners/pencil/PencilHotbarEvent.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/pencil/PencilEvent.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/pencil/PencilHotbarEvent.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventManager.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/gui/inventory/PencilMenuInterface.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/MathUtils.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/exception/InventorySizeException.java" />
@@ -112,13 +125,27 @@
         <option value="$PROJECT_DIR$/src/com/pencil/engine/gui/api/PencilInventory.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/InterfaceManager.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/MiscUtils.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilMenuListener.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/InterfaceEngine.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilMenuListener.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventManager.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/Settings.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/Metrics.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/command/PermissionCommand.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/PermissionService.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/PencilAction.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilAction.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilCommandAction.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/PencilBlock.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilOperationAction.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilHistory.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/command/PencilCommand.java" />
       </list>
     </option>
   </component>
@@ -214,6 +241,22 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="action" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="player" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -236,11 +279,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BFM" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -353,7 +396,7 @@
       <workItem from="1538383578352" duration="6213000" />
       <workItem from="1538909600779" duration="2353000" />
       <workItem from="1540670542598" duration="2699000" />
-      <workItem from="1540719454079" duration="1209000" />
+      <workItem from="1540719454079" duration="7102000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1540671502142</created>
@@ -369,18 +412,26 @@
       <option name="project" value="LOCAL" />
       <updated>1540724221855</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Commit #1 &#10;&#10;Reworked ItemUtils class&#10;Reworked the Interface Engine (it's now less complex, still need to optimize)!">
+      <created>1540724354492</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1540724354492</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27984000" />
+    <option name="totallyTimeSpent" value="33877000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -388,10 +439,10 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.173125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14427084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -417,98 +468,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Commit #1 &#10;&#10;Reworked ItemUtils class&#10;Reworked the Interface Engine (it's now less complex, still need to optimize)!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #1 &#10;&#10;Reworked ItemUtils class&#10;Reworked the Interface Engine (it's now less complex, still need to optimize)!" />
+    <MESSAGE value="Commit #2&#10;&#10;Added Actions&#10;Added PencilPlayer&#10;Added Metrics&#10;Added Settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #2&#10;&#10;Added Actions&#10;Added PencilPlayer&#10;Added Metrics&#10;Added Settings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="26" column="49" lean-forward="true" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilMenuListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="31" lean-forward="false" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="28" column="82" lean-forward="false" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="53" lean-forward="false" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/gui/inventory/PencilMenuInterface.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="33" column="126" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="126" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="28" column="82" lean-forward="false" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/Routine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/engines/ShapeEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -571,13 +542,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/PencilCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="47" lean-forward="false" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listeners/HotbarEventListener.java" />
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listeners/PencilEvent.java" />
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilEvent.java">
@@ -617,14 +581,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="28" column="82" lean-forward="false" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/InterfaceService.java" />
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilHotbarEvent.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -636,18 +592,26 @@
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/InterfaceManager.java" />
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/MiscUtils.java" />
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/gui/api/PencilInventory.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/engines/InterfaceEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+        <state relative-caret-position="391">
+          <caret line="53" column="71" lean-forward="false" selection-start-line="53" selection-start-column="71" selection-end-line="53" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilMenuListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="184">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -660,26 +624,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java">
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="53" column="71" lean-forward="false" selection-start-line="53" selection-start-column="71" selection-end-line="53" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/StringUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1104">
-          <caret line="48" column="34" lean-forward="false" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="25" column="132" lean-forward="false" selection-start-line="25" selection-start-column="132" selection-end-line="25" selection-end-column="132" />
+        <state relative-caret-position="112">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -692,10 +640,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java">
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="572">
+          <caret line="22" column="8" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Metrics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5720">
+          <caret line="709" column="1" lean-forward="false" selection-start-line="709" selection-start-column="1" selection-end-line="709" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/PermissionCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="29" column="15" lean-forward="false" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/PermissionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="68" lean-forward="false" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/StringUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="821">
+          <caret line="48" column="34" lean-forward="false" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/engines/InterfaceEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/PencilBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilOperationAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="67" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilCommandAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="35" column="103" lean-forward="true" selection-start-line="35" selection-start-column="103" selection-end-line="35" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilHistory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="637">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1265">
+          <caret line="55" column="8" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/PencilCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
           <folding />
         </state>
       </provider>

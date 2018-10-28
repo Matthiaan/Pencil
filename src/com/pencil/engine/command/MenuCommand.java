@@ -1,10 +1,7 @@
 package com.pencil.engine.command;
 
-import com.pencil.engine.Pencil;
 import com.pencil.engine.utils.service.MessageService;
 import com.pencil.engine.utils.utilities.ItemUtils;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 
@@ -52,5 +49,10 @@ public class MenuCommand extends PencilCommand {
     @Override
     public Permission getPermission() {
         return null;
+    }
+
+    @Override
+    public boolean isUndoable() {
+        return false;
     }
 }
