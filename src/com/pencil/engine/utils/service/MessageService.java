@@ -30,6 +30,7 @@ public class MessageService {
         NO_ARGUMENTS("This command doesn't take any arguments!"),
 
         GUI_ADDED_MENU_PENCIL("You have received the Pencil Menu"),
+        GUI_ADDED_WAND_PENCIL("You have received the Pencil Wand"),
 
         UTILS_INVENTORY_FULL("Seems like you inventory is full!"),
         ;

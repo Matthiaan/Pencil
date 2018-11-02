@@ -2,7 +2,7 @@ package com.pencil.engine.utils.action;
 
 import com.pencil.engine.command.PencilCommand;
 
-public abstract class PencilCommandAction implements PencilAction {
+public class PencilCommandAction implements PencilAction {
 
     private PencilCommand command;
 
@@ -10,8 +10,9 @@ public abstract class PencilCommandAction implements PencilAction {
         this.command = command;
     }
 
-    public PencilAction.ActionType getActionType() {
-        return PencilAction.ActionType.COMMAND;
+    @Override
+    public ActionType getActionType() {
+        return null;
     }
 
     public PencilCommand getCommand() {

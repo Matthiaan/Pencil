@@ -1,34 +1,33 @@
 package com.pencil.engine.utils.events;
 
+import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.utils.action.PencilAction;
-import com.pencil.engine.utils.action.PencilHotbarAction;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.bukkit.inventory.ItemStack;
 
-public class PencilHotbarEvent extends Event implements PencilEvent {
+public class PencilVectorSelectionEvent extends Event implements PencilEvent {
 
     private static final HandlerList handlers = new HandlerList();
     private Player player;
-    private ItemStack item;
+    private Vector vector;
 
-    public PencilHotbarEvent(Player player, ItemStack item) {
+    public PencilVectorSelectionEvent(Player player, Vector vector) {
         this.player = player;
-        this.item = item;
+        this.vector = vector;
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public ItemStack getItem() {
-        return item;
+    public Vector getVector() {
+        return vector;
     }
 
     @Override
-    public PencilAction getAction() {
-        return new PencilHotbarAction(item);
+    public PencilAction.ActionType getActionType() {
+        return PencilAction.ActionType.SELECTION;
     }
 
     @Override

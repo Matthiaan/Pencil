@@ -11,4 +11,6 @@ public abstract interface PencilAction {
 
     abstract boolean isUndoable();
 
+    abstract ActionType getActionType();
+
 }

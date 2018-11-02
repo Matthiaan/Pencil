@@ -1,10 +1,6 @@
 package com.pencil.engine.utils.service;
 
-import com.pencil.engine.Pencil;
 import com.pencil.engine.command.PencilCommand;
-import com.pencil.engine.utils.utilities.StringUtils;
-import org.apache.logging.log4j.message.Message;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,8 +34,7 @@ public class CommandService implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("help")) {
             for (PencilCommand command : commands) {
-                player.sendMessage(MessageService.formatMessage(
-                        StringUtils.capitalize(command.getName()) + " -> " + command.getDescription(),
+                player.sendMessage(MessageService.formatMessage(command.getName() + " -> " + command.getDescription(),
                         MessageService.MessageType.LIST, false));
             }
         }

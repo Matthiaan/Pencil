@@ -4,6 +4,7 @@ import com.pencil.engine.Pencil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -18,6 +19,21 @@ public class ItemUtils {
 
         meta.setDisplayName(name);
         meta.setLore(Arrays.asList(lore));
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    public static ItemStack getCustomItem(Material material, int id, short damage, int amount, String name, String... lore) {
+        ItemStack item = new ItemStack(material, amount, damage, (byte) id);
+        ItemMeta meta = item.getItemMeta();
+
+        meta.setDisplayName(name);
+        meta.setLore(Arrays.asList(lore));
+        meta.setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
 
         item.setItemMeta(meta);
 

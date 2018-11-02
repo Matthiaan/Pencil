@@ -1,3 +1,9 @@
 package com.pencil.engine.utils.events;
 
-public abstract interface PencilEvent {}
+import com.pencil.engine.utils.action.PencilAction;
+
+public abstract interface PencilEvent {
+
+    PencilAction getAction();
+
+}

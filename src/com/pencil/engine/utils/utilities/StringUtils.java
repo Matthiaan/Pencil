@@ -13,11 +13,10 @@ public class StringUtils {
      * interaction between the plugin and the player.
      */
     public enum ChatInteraction {
-        OOPS("Oops! ", 1),
-        WHOOPSIES("Whoopsies! ", 2),
-        HUH("Huh, ", 3),
-        OH_NO("Oh No! ", 4),
-        WHOOPSIE_A_DAISY("Whoopsie-a-daisy! ", 5);
+        OOPS("Oops! ", 0),
+        WHOOPSIES("Whoopsies! ", 1),
+        HUH("Huh, ", 2),
+        OH_NO("Oh No! ", 3);
 
         private String name;
         private int id;
@@ -47,11 +46,7 @@ public class StringUtils {
     }
 
     public static ChatInteraction getRandomInteraction() {
-        return ChatInteraction.getFromID(new Random().nextInt(5));
-    }
-
-    public static String capitalize(String str) {
-        return WordUtils.capitalize(str);
+        return ChatInteraction.getFromID(new Random().nextInt(4));
     }
 
 }

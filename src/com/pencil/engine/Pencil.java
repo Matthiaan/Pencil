@@ -1,14 +1,15 @@
 package com.pencil.engine;
 
+import com.pencil.engine.utils.service.PlayerService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Pencil extends JavaPlugin {
 
-    private Metrics metrics;
+    private static Metrics metrics;
+    private static PlayerService playerService;
 
     /**
      * This method is used to start the plugin, all necessary
@@ -35,6 +36,9 @@ public class Pencil extends JavaPlugin {
 
             //TODO: Add metrics for which operations, commands, miscellaneous  utilities, etc are used!
         }
+
+        playerService = new PlayerService();
+        playerService.init();
     }
 
     @Override
@@ -52,5 +56,13 @@ public class Pencil extends JavaPlugin {
 
     public static String getPrefix() {
         return ChatColor.DARK_GRAY + "[" + ChatColor.GOLD + "Pencil ✎" + ChatColor.DARK_GRAY + "] >> " + ChatColor.RESET;
+    }
+
+    public static Metrics getMetrics() {
+        return metrics;
+    }
+
+    public static PlayerService getPlayerService() {
+        return playerService;
     }
 }

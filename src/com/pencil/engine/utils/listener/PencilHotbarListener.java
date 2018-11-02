@@ -11,9 +11,12 @@ public class PencilHotbarListener implements Listener {
 
     @EventHandler (priority = EventPriority.MONITOR)
     public void onHotbarEvent(PencilHotbarEvent event) {
-        if (ItemUtils.matches(event.getItem(),
-                ItemUtils.getMenuItem())) {
+        if (ItemUtils.matches(event.getItem(), ItemUtils.getMenuItem())) {
             event.getPlayer().openInventory(InterfaceUtils.createMenuInterface());
+        }
+
+        if (ItemUtils.matches(event.getItem(), ItemUtils.getWandItem())) {
+            event.getPlayer().openInventory(InterfaceUtils.createVectorInterface());
         }
     }
 
