@@ -1,6 +1,7 @@
 package com.pencil.engine.utils.action;
 
 import com.pencil.engine.geometry.vector.Vector;
+import org.bukkit.entity.Player;
 
 public class PencilVectorAction implements PencilAction {
 
@@ -21,5 +22,13 @@ public class PencilVectorAction implements PencilAction {
     @Override
     public boolean isUndoable() {
         return true;
+    }
+
+    @Override
+    public void undo(Player player) { }
+
+    @Override
+    public String toString() {
+        return "[ActionType -> " + getActionType().toString() + ",Undoable -> " + isUndoable() + "] - Vector -> " + vector.toString();
     }
 }

@@ -1,5 +1,6 @@
 package com.pencil.engine.geometry.vector;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 
@@ -792,7 +793,7 @@ public class Vector implements Comparable<Vector>, Cloneable {
 
     @Override
     public String toString() {
-        return "(" + x + ", " + y + ", " + z + ")";
+        return "(" + ChatColor.RED + x + ChatColor.WHITE + ", " + ChatColor.GREEN + y + ChatColor.WHITE + ", " + ChatColor.BLUE + z + ChatColor.WHITE + ")";
     }
 
     /**

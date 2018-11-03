@@ -27,8 +27,6 @@ public class MenuCommand extends PencilCommand {
             player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_PERMISSION.getMessage(),
                     MessageService.MessageType.WARNING, true));
         }
-
-        player.getInventory().addItem(ItemUtils.getMenuItem());
     }
 
     @Override
@@ -49,10 +47,5 @@ public class MenuCommand extends PencilCommand {
     @Override
     public Permission getPermission() {
         return null;
-    }
-
-    @Override
-    public boolean isUndoable() {
-        return false;
     }
 }

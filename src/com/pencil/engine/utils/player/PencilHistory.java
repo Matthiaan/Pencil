@@ -34,4 +34,8 @@ public class PencilHistory {
     public void addAction(PencilAction action) {
         actions.put(actions.size(), action);
     }
+
+    public void clear() {
+        actions.clear();
+    }
 }

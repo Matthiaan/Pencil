@@ -2,6 +2,7 @@ package com.pencil.engine.utils.events;
 
 import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.utils.action.PencilAction;
+import com.pencil.engine.utils.action.PencilVectorAction;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -26,8 +27,8 @@ public class PencilVectorSelectionEvent extends Event implements PencilEvent {
     }
 
     @Override
-    public PencilAction.ActionType getActionType() {
-        return PencilAction.ActionType.SELECTION;
+    public PencilAction getAction() {
+        return new PencilVectorAction(vector);
     }
 
     @Override

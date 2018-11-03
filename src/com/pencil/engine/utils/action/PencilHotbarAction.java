@@ -1,5 +1,6 @@
 package com.pencil.engine.utils.action;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class PencilHotbarAction implements PencilAction {
@@ -22,5 +23,13 @@ public class PencilHotbarAction implements PencilAction {
     @Override
     public boolean isUndoable() {
         return false;
+    }
+
+    @Override
+    public void undo(Player player) {}
+
+    @Override
+    public String toString() {
+        return "[ActionType -> " + getActionType().toString() + ",Undoable -> " + isUndoable() + "] - Item -> " + item.getItemMeta().getDisplayName();
     }
 }

@@ -1,6 +1,7 @@
 package com.pencil.engine.utils.action;
 
 import com.pencil.engine.command.PencilCommand;
+import org.bukkit.entity.Player;
 
 public class PencilCommandAction implements PencilAction {
 
@@ -12,7 +13,7 @@ public class PencilCommandAction implements PencilAction {
 
     @Override
     public ActionType getActionType() {
-        return null;
+        return ActionType.COMMAND;
     }
 
     public PencilCommand getCommand() {
@@ -22,5 +23,15 @@ public class PencilCommandAction implements PencilAction {
     @Override
     public boolean isUndoable() {
         return false;
+    }
+
+    @Override
+    public void undo(Player player) {
+
+    }
+
+    @Override
+    public String toString() {
+        return "[ActionType -> " + getActionType().toString() + ",Undoable -> " + isUndoable() + "] - Command -> " + command.getName();
     }
 }

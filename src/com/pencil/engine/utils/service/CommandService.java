@@ -34,7 +34,7 @@ public class CommandService implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("help")) {
             for (PencilCommand command : commands) {
-                player.sendMessage(MessageService.formatMessage(command.getName() + " -> " + command.getDescription(),
+                player.sendMessage(MessageService.formatMessage(command.getName() +" " + command.getArgs() + " -> " + command.getDescription(),
                         MessageService.MessageType.LIST, false));
             }
         }

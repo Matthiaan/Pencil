@@ -4,7 +4,7 @@ import org.apache.commons.lang.WordUtils;
 
 import java.util.Random;
 
-public class StringUtils {
+public class TypeUtils {
 
     /**
      * Chat Interactions are used to keep players who can't find the right
@@ -15,7 +15,7 @@ public class StringUtils {
     public enum ChatInteraction {
         OOPS("Oops! ", 0),
         WHOOPSIES("Whoopsies! ", 1),
-        HUH("Huh, ", 2),
+        HUH("Huh! ", 2),
         OH_NO("Oh No! ", 3);
 
         private String name;
@@ -47,6 +47,10 @@ public class StringUtils {
 
     public static ChatInteraction getRandomInteraction() {
         return ChatInteraction.getFromID(new Random().nextInt(4));
+    }
+
+    public static long convertToTicks(double minutes) {
+        return (long) minutes * (20);
     }
 
 }

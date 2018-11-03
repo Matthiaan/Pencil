@@ -5,7 +5,6 @@ import com.pencil.engine.utils.events.PencilEvent;
 import com.pencil.engine.utils.events.PencilHotbarEvent;
 import com.pencil.engine.utils.listener.PencilHotbarListener;
 import com.pencil.engine.utils.listener.PencilInterfaceListener;
-import com.pencil.engine.utils.listener.PencilMenuListener;
 import com.pencil.engine.utils.listener.PencilUtilityListener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -31,7 +30,7 @@ public class EventManager implements Listener {
 
         Bukkit.getServer().getPluginManager().registerEvents(new PencilHotbarListener(), Pencil.getPlugin());
         Bukkit.getServer().getPluginManager().registerEvents(new PencilInterfaceListener(), Pencil.getPlugin());
-        Bukkit.getServer().getPluginManager().registerEvents(new PencilMenuListener(), Pencil.getPlugin());
+        Bukkit.getServer().getPluginManager().registerEvents(new PencilInterfaceListener(), Pencil.getPlugin());
         Bukkit.getServer().getPluginManager().registerEvents(new PencilUtilityListener(), Pencil.getPlugin());
     }
 

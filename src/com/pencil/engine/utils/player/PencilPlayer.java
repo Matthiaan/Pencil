@@ -4,12 +4,19 @@ import org.bukkit.entity.Player;
 
 public class PencilPlayer {
 
+    public enum SelectionMode {
+        NA, NORMAL, POLY
+    }
+
     private Player player;
     private PencilHistory history;
 
+    private SelectionMode selectionMode;
+
     public PencilPlayer(Player player) {
         this.player = player;
-        this.history = new PencilHistory(player.getUniqueId());
+
+        history = new PencilHistory(player.getUniqueId());
     }
 
     public Player getPlayer() {
@@ -18,5 +25,13 @@ public class PencilPlayer {
 
     public PencilHistory getHistory() {
         return history;
+    }
+
+    public SelectionMode getSelectionMode() {
+        return selectionMode;
+    }
+
+    public void setSelectionMode(SelectionMode selectionMode) {
+        this.selectionMode = selectionMode;
     }
 }

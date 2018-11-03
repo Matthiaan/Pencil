@@ -14,10 +14,6 @@ public class PencilHotbarListener implements Listener {
         if (ItemUtils.matches(event.getItem(), ItemUtils.getMenuItem())) {
             event.getPlayer().openInventory(InterfaceUtils.createMenuInterface());
         }
-
-        if (ItemUtils.matches(event.getItem(), ItemUtils.getWandItem())) {
-            event.getPlayer().openInventory(InterfaceUtils.createVectorInterface());
-        }
     }
 
 }

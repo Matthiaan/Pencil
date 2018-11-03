@@ -19,4 +19,12 @@ public abstract class PencilCommand implements PencilAction {
     public ActionType getActionType() {
         return ActionType.COMMAND;
     }
+
+    @Override
+    public boolean isUndoable() {
+        return false;
+    }
+
+    @Override
+    public void undo(Player player) {}
 }

@@ -1,6 +1,7 @@
 package com.pencil.engine.utils.listener;
 
 import com.pencil.engine.Pencil;
+import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
 import com.pencil.engine.utils.utilities.InterfaceUtils;
 import com.pencil.engine.utils.utilities.ItemUtils;
@@ -32,12 +33,18 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                 }
             } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Point Selection")) {
+                PencilPlayer pencilPlayer = Pencil.getPlayerService().getPlayer(player);
+
+                //TODO: See wether I can auto-add a pencil inventory closer so I don't always have to call player.closeInventory();
                 if (slot == 10) {
-
+                    pencilPlayer.setSelectionMode(PencilPlayer.SelectionMode.NORMAL);
+                    player.closeInventory();
                 } else if (slot == 11) {
-
-                } else if (slot == 12) {
-
+                    pencilPlayer.setSelectionMode(PencilPlayer.SelectionMode.POLY);
+                    player.closeInventory();
+                } else if (slot == 16) {
+                    pencilPlayer.setSelectionMode(PencilPlayer.SelectionMode.NA);
+                    player.closeInventory();
                 } else if (slot == 21) {
                     player.closeInventory();
                 }

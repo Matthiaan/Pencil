@@ -43,8 +43,8 @@ public class InterfaceUtils {
 
         gui.setItem(21, ItemUtils.getExitItem());
         gui.setItem(10, ItemUtils.getCustomItem(Material.WOODEN_HOE, 0, (short) 1, 1, ChatColor.AQUA + "Singular Point Selection", ""));
-        gui.setItem(11, ItemUtils.getCustomItem(Material.WOODEN_HOE, 0, (short) 2, 1, ChatColor.AQUA + "Two Point Selection", ""));
-        gui.setItem(12, ItemUtils.getCustomItem(Material.WOODEN_HOE, 0, (short) 3, 1, ChatColor.AQUA + "Poly Point Selection", ""));
+        gui.setItem(11, ItemUtils.getCustomItem(Material.WOODEN_HOE, 0, (short) 2, 1, ChatColor.AQUA + "Poly Point Selection", ""));
+        gui.setItem(16, ItemUtils.getItem(Material.FEATHER, 0, 1, ChatColor.AQUA + "Reset Point Selection", ""));
 
         return gui;
     }
