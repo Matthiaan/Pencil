@@ -49,4 +49,17 @@ public class InterfaceUtils {
         return gui;
     }
 
+    public static Inventory createScaleInterface() {
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Point Selection", 5, 9);
+
+        InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
+
+        gui.setItem(30, ItemUtils.getExitItem());
+        gui.setItem(13, ItemUtils.getItem(Material.STONE_BUTTON, 0, 3, ChatColor.AQUA + "3 Point Selection", ""));
+        gui.setItem(12, ItemUtils.getSkullItem(1, "MHF_ArrowDown", ChatColor.AQUA + "Down", ""));
+        gui.setItem(14, ItemUtils.getSkullItem(1, "MHF_ArrowUp", ChatColor.AQUA + "Up", ""));
+
+        return gui;
+    }
+
 }

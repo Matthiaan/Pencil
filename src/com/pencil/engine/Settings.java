@@ -10,6 +10,7 @@ import java.util.Set;
 public class Settings {
 
     private static final Settings configuration = new Settings("config");
+    private static final Settings analytics = new Settings("analytics");
     private static final Settings players = new Settings("players");
 
     private File file;
@@ -17,6 +18,10 @@ public class Settings {
 
     public static Settings getConfig() {
         return configuration;
+    }
+
+    public static Settings getAnalytics() {
+        return analytics;
     }
 
     public static Settings getPlayers() {

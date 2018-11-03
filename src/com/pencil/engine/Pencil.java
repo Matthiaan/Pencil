@@ -1,5 +1,6 @@
 package com.pencil.engine;
 
+import com.pencil.engine.utils.service.MetricsService;
 import com.pencil.engine.utils.service.PlayerService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -10,6 +11,7 @@ public class Pencil extends JavaPlugin {
 
     private static Metrics metrics;
     private static PlayerService playerService;
+    private static MetricsService metricsService;
 
     /**
      * This method is used to start the plugin, all necessary
@@ -31,19 +33,33 @@ public class Pencil extends JavaPlugin {
             onDisable();
         }
 
+        if (Settings.getAnalytics().get("analytics") == null) {
+            Settings.getAnalytics().set("analytics.command-usage-ratio.commands", 0);
+            Settings.getAnalytics().set("analytics.command-usage-ratio.interface", 0);
+            Settings.getAnalytics().set("analytics.selection-type.normal", 0);
+            Settings.getAnalytics().set("analytics.selection-type.poly", 0);
+        }
+
         if (Settings.getConfig().<Boolean>get("settings.use-metrics")) {
             metrics = new Metrics(getPlugin());
-
-            //TODO: Add metrics for which operations, commands, miscellaneous  utilities, etc are used!
         }
 
         playerService = new PlayerService();
         playerService.init();
+
+        metricsService = new MetricsService(metrics);
     }
 
     @Override
     public void onDisable() {
-        super.onDisable();
+        Settings.getAnalytics().set("analytics.command-usage-ratio.commands",
+                Settings.getAnalytics().<Integer>get("analytics.command-usage-ratio.commands" + metricsService.getCommands()));
+        Settings.getAnalytics().set("analytics.command-usage-ratio.interface",
+                Settings.getAnalytics().<Integer>get("analytics.command-usage-ratio.interface" + metricsService.getGuiCommands()));
+        Settings.getAnalytics().set("analytics.selection-type.normal",
+                Settings.getAnalytics().<Integer>get("analytics.selection-type.normal" + metricsService.getNormalType()));
+        Settings.getAnalytics().set("analytics.selection-type.poly",
+                Settings.getAnalytics().<Integer>get("analytics.selection-type.poly" + metricsService.getPolyType()));
     }
 
     public static Plugin getPlugin() {

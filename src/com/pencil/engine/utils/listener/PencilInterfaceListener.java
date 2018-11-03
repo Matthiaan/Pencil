@@ -48,6 +48,14 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 21) {
                     player.closeInventory();
                 }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Point Selection")) {
+                if (slot == 12) {
+
+                } else if (slot == 14) {
+
+                } else if (slot == 30) {
+
+                }
             }
 
             event.setResult(Event.Result.DENY);
