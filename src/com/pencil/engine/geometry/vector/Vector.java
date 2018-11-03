@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 
 /**
  * @author sk89q
@@ -849,5 +850,19 @@ public class Vector implements Comparable<Vector>, Cloneable {
      */
     public Location toLocation(World world) {
         return new Location(world, x, y, z);
+    }
+
+    /**
+     * Put a single Vector into a list.
+     * @see com.pencil.engine.geometry.selection.Selection
+     *
+     * @return A list that contains the current Vector.
+     */
+    public ArrayList<Vector> toArray() {
+        ArrayList<Vector> list = new ArrayList<>();
+
+        list.add(new Vector(x, y, z));
+
+        return list;
     }
 }
