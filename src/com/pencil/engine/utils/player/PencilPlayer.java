@@ -1,6 +1,9 @@
 package com.pencil.engine.utils.player;
 
+import com.pencil.engine.geometry.vector.Vector;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
 
 public class PencilPlayer {
 
@@ -16,14 +19,15 @@ public class PencilPlayer {
     private PencilHistory history;
 
     private SelectionMode selectionMode;
-    private int polyPointsLeft;
+    private ArrayList<Vector> positions;
 
     public PencilPlayer(Player player) {
         this.player = player;
 
         history = new PencilHistory(player.getUniqueId());
+
         selectionMode = SelectionMode.NA;
-        polyPointsLeft = 0;
+        positions = new ArrayList<>();
     }
 
     public Player getPlayer() {
@@ -42,11 +46,11 @@ public class PencilPlayer {
         this.selectionMode = selectionMode;
     }
 
-    public int getPolyPointsLeft() {
-        return polyPointsLeft;
+    public void updatePositions(ArrayList<Vector> positions) {
+        this.positions = positions;
     }
 
-    public void setPolyPointsLeft(int polyPointsLeft) {
-        this.polyPointsLeft = polyPointsLeft;
+    public ArrayList<Vector> getPositions() {
+        return positions;
     }
 }

@@ -43,14 +43,14 @@ public class PencilInterfaceListener implements Listener {
                     pencilPlayer.setSelectionMode(PencilPlayer.SelectionMode.NORMAL);
 
                     player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage("You can select either 1 or 2 positions!",
+                    player.sendMessage(MessageService.formatMessage("You can select either 1 or 2 positions! Positions will automatically reset after selecting more than 2 positions!",
                             MessageService.MessageType.INFO, false));
                 } else if (slot == 11) {
                     pencilPlayer.setSelectionMode(PencilPlayer.SelectionMode.POLY);
 
                     player.closeInventory();
-                    player.openInventory(InterfaceUtils.createScaleInterface(Pencil.getPrefix() + ChatColor.GREEN + "Poly Point Selection",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, 3, ChatColor.AQUA + "3 points", "")));
+                    player.sendMessage(MessageService.formatMessage("You can sas many positions as you want!",
+                            MessageService.MessageType.INFO, false));
                 } else if (slot == 15) {
                     pencilPlayer.setSelectionMode(PencilPlayer.SelectionMode.NA);
 
@@ -60,31 +60,16 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 16) {
                     player.closeInventory();
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Poly Point Selection")) {
-                Inventory gui = event.getClickedInventory();
-                ItemStack item = gui.getItem(22);
-
-                if (slot == 21) {
-                    item.setAmount(item.getAmount() - 1);
-                    gui.setItem(22, item);
-
-                    player.updateInventory();
-                } else if (slot == 23) {
-                    item.setAmount(item.getAmount() + 1);
-                    gui.setItem(22, item);
-
-                    player.updateInventory();
-                } else if (slot == 37) {
-                    player.closeInventory();
-                } else if (slot == 43) {
-                    pencilPlayer.setPolyPointsLeft(gui.getItem(22).getAmount());
-
-                    player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage("You can select " + gui.getItem(22).getAmount() + " positions!",
-                            MessageService.MessageType.INFO, false));
-                }
             } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Types")) {
-
+                if (slot == 10) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createCuboidShapesInterface());
+                } else if (slot == 11) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createSphericalShapesInterface());
+                } else if (slot == 16) {
+                    player.closeInventory();
+                }
             }
 
             event.setResult(Event.Result.DENY);

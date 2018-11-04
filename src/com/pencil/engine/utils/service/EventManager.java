@@ -3,6 +3,8 @@ package com.pencil.engine.utils.service;
 import com.pencil.engine.Pencil;
 import com.pencil.engine.utils.events.PencilEvent;
 import com.pencil.engine.utils.events.PencilHotbarEvent;
+import com.pencil.engine.utils.events.PencilShapeFillRequestEvent;
+import com.pencil.engine.utils.events.PencilVectorSelectionEvent;
 import com.pencil.engine.utils.listener.PencilHotbarListener;
 import com.pencil.engine.utils.listener.PencilInterfaceListener;
 import com.pencil.engine.utils.listener.PencilUtilityListener;
@@ -34,7 +36,7 @@ public class EventManager implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(new PencilUtilityListener(), Pencil.getPlugin());
     }
 
-    public void process(Player player, PencilEvent event) {
+    private void process(Player player, PencilEvent event) {
         Pencil.getPlayerService().getPlayer(player).getHistory().addAction(event.getAction());
     }
 
@@ -43,6 +45,24 @@ public class EventManager implements Listener {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             queueEvent(new PencilHotbarEvent(event.getPlayer(), event.getItem()));
         }
+    }
+
+    //TODO: Now I use 2 listeners, I need to limit this to only 1!
+    @EventHandler (priority = EventPriority.MONITOR)
+    public void logHotbarEvent(PencilHotbarEvent event) {
+        process(event.getPlayer(), event);
+    }
+
+    //TODO: Now I use 2 listeners, I need to limit this to only 1!
+    @EventHandler (priority = EventPriority.MONITOR)
+    public void logShapeFillRequestEvent(PencilShapeFillRequestEvent event) {
+        process(event.getPlayer(), event);
+    }
+
+    //TODO: Now I use 2 listeners, I need to limit this to only 1!
+    @EventHandler (priority = EventPriority.MONITOR)
+    public void logVectorSelectionEvent(PencilVectorSelectionEvent event) {
+        process(event.getPlayer(), event);
     }
 
 }

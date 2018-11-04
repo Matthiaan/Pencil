@@ -44,7 +44,7 @@ public class MessageService {
 
         UTILS_INVENTORY_FULL("Seems like you inventory is full!"),
         UTILS_FIRST_POSITION_SET("Position 1 has been set! "),
-        UTILS_SECOND_POSITION_SET("Position 2 has been set! "),
+        UTILS_SECOND_POSITION_SET("Position 2 has been set! ")
         ;
 
         private String message;

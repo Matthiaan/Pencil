@@ -64,27 +64,11 @@ public class ShapeUtils {
         return vectors;
     }
 
-    //TODO: See how I can implement this!
+    //TODO: Find an algorithm
     public static ArrayList<Vector> getPolygonDivisionFilled(PolygonSelection selection) {
         ArrayList<Vector> vertices = selection.getVertices();
 
         return vertices;
-    }
-
-    //TODO: Make a separate selection type for this. Currently it uses CuboidSelection to store a minimum and maximum value, but CANNOT be used AS the polygon!
-    public static CuboidSelection calculate(ArrayList<Vector> vectors) {
-        Vector currentMin = vectors.get(0);
-        Vector currentMax = vectors.get(vectors.size() - 1);
-
-        for (Vector vector : vectors) {
-            if (vector.getBlockY() < currentMin.getBlockY()) {
-                currentMin = vector;
-            } else if (vector.getBlockY() > currentMax.getBlockY()) {
-                currentMax = vector;
-            }
-        }
-
-        return new CuboidSelection(currentMin, currentMax);
     }
 
 }

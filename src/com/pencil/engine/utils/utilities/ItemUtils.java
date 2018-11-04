@@ -121,6 +121,14 @@ public class ItemUtils {
         return getSkullItem(1, "MHF_ArrowRight", ChatColor.GREEN + "Confirm");
     }
 
+    public static ItemStack getYesItem() {
+        return getItem(Material.GREEN_STAINED_GLASS_PANE, 0, 1, ChatColor.GREEN + "Yes");
+    }
+
+    public static ItemStack getNoItem() {
+        return getItem(Material.RED_STAINED_GLASS_PANE, 0, 1, ChatColor.RED + "No");
+    }
+
     public static boolean matches(ItemStack item, ItemStack comparison) {
         if (!(item.getType() == comparison.getType())) {
             return false;

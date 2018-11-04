@@ -1,7 +1,7 @@
 package com.pencil.engine.utils.events;
 
 import com.pencil.engine.utils.action.PencilAction;
-import com.pencil.engine.utils.action.PencilHotbarAction;
+import com.pencil.engine.utils.action.PencilNonUndoableAction;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -28,7 +28,7 @@ public class PencilHotbarEvent extends Event implements PencilEvent {
 
     @Override
     public PencilAction getAction() {
-        return new PencilHotbarAction(item);
+        return new PencilNonUndoableAction(PencilAction.ActionType.INTERFACE);
     }
 
     @Override

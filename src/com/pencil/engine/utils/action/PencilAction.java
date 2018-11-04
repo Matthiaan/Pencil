@@ -15,7 +15,7 @@ public abstract interface PencilAction {
         COMMAND,
         OPERATION,
         SELECTION,
-        INTERFACE
+        INTERFACE,
     }
 
     /**
