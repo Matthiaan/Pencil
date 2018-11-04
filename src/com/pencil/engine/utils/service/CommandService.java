@@ -1,6 +1,9 @@
 package com.pencil.engine.utils.service;
 
+import com.pencil.engine.command.LogCommand;
+import com.pencil.engine.command.MenuCommand;
 import com.pencil.engine.command.PencilCommand;
+import com.pencil.engine.command.UndoCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,7 +17,10 @@ public class CommandService implements CommandExecutor {
     private ArrayList<PencilCommand> commands;
 
     public CommandService() {
-        this.commands = new ArrayList<>();
+        commands = new ArrayList<>();
+        commands.add(new LogCommand());
+        commands.add(new MenuCommand());
+        commands.add(new UndoCommand());
     }
 
     @Override

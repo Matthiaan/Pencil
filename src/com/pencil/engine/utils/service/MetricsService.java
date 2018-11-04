@@ -1,6 +1,7 @@
 package com.pencil.engine.utils.service;
 
 import com.pencil.engine.Metrics;
+import com.pencil.engine.Pencil;
 import com.pencil.engine.Settings;
 
 import java.util.HashMap;
@@ -30,8 +31,6 @@ public class MetricsService {
         }
     }
 
-    private Metrics metrics;
-
     //Command Usage Ratio
     private int commands;
     private int guiCommands;
@@ -40,16 +39,14 @@ public class MetricsService {
     private int normalType;
     private int polyType;
 
-    public MetricsService(Metrics metrics) {
-        this.metrics = metrics;
-
+    public MetricsService() {
         commands = 0;
         guiCommands = 0;
 
         normalType = 0;
         polyType = 0;
 
-        metrics.addCustomChart(new Metrics.AdvancedPie(MetricsLogType.COMMAND_USAGE_RATIO.getName(), new Callable<Map<String, Integer>>() {
+        Pencil.getMetrics().addCustomChart(new Metrics.AdvancedPie(MetricsLogType.COMMAND_USAGE_RATIO.getName(), new Callable<Map<String, Integer>>() {
             @Override
             public Map<String, Integer> call() throws Exception {
                 Map<String, Integer> valueMap = new HashMap<>();
@@ -69,7 +66,7 @@ public class MetricsService {
             }
         }));
 
-        metrics.addCustomChart(new Metrics.AdvancedPie(MetricsLogType.SELECTION_TYPE.getName(), new Callable<Map<String, Integer>>() {
+        Pencil.getMetrics().addCustomChart(new Metrics.AdvancedPie(MetricsLogType.SELECTION_TYPE.getName(), new Callable<Map<String, Integer>>() {
             @Override
             public Map<String, Integer> call() throws Exception {
                 Map<String, Integer> valueMap = new HashMap<>();

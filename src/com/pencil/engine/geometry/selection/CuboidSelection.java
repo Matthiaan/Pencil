@@ -79,7 +79,7 @@ public class CuboidSelection implements Selection {
 
     @Override
     public ArrayList<Vector> getVectors() {
-        return ShapeUtils.getCuboidFilled(min, max);
+        return ShapeUtils.getCuboidFilled(this);
     }
 
     @Override
@@ -89,11 +89,6 @@ public class CuboidSelection implements Selection {
                 new CuboidSelection(this.min.setX(max.getX()), this.max.setX(max.getX()), getWorld()),
                 new CuboidSelection(this.min.setZ(min.getZ()), this.max.setZ(min.getZ()), getWorld()),
                 new CuboidSelection(this.min.setZ(max.getZ()), this.max.setZ(max.getZ()), getWorld())});
-     }
-
-    @Override
-    public Location asLocation(World world) {
-        return null;
     }
 
     @Override

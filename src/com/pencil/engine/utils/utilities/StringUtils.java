@@ -1,10 +1,10 @@
 package com.pencil.engine.utils.utilities;
 
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.codec.binary.Base64;
 
 import java.util.Random;
 
-public class TypeUtils {
+public class StringUtils {
 
     /**
      * Chat Interactions are used to keep players who can't find the right
@@ -48,9 +48,4 @@ public class TypeUtils {
     public static ChatInteraction getRandomInteraction() {
         return ChatInteraction.getFromID(new Random().nextInt(4));
     }
-
-    public static long convertToTicks(double minutes) {
-        return (long) minutes * (20);
-    }
-
 }

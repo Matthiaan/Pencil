@@ -2,6 +2,7 @@ package com.pencil.engine.utils.utilities;
 
 import com.pencil.engine.geometry.selection.CuboidSelection;
 import com.pencil.engine.geometry.selection.MultiSelection;
+import com.pencil.engine.geometry.selection.PolygonSelection;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
 
@@ -9,7 +10,23 @@ import java.util.ArrayList;
 
 public class ShapeUtils {
 
-    public static ArrayList<Vector> getCuboidFilled(Vector min, Vector max) {
+    public enum ShapeType {
+        //Rectangular Shapes
+        CUBOID,
+        CUBE,
+        PYRAMID,
+        PRISM,
+
+        //Spherical Shapes
+        SPHERE,
+        ELLIPSOID,
+        CYLINDER
+    }
+
+    public static ArrayList<Vector> getCuboidFilled(CuboidSelection selection) {
+        Vector min = selection.getNativeMinimumVector();
+        Vector max = selection.getNativeMaximumVector();
+
         ArrayList<Vector> vectors = new ArrayList<>();
 
         for (int x = Math.max(max.getBlockX(), min.getBlockX()); x >= Math.min(min.getBlockX(), max.getBlockX()); x--) {
@@ -23,14 +40,17 @@ public class ShapeUtils {
         return vectors;
     }
 
-    public static ArrayList<Vector> getCuboidUnfilled(Vector min, Vector max) {
+    public static ArrayList<Vector> getCuboidUnfilled(CuboidSelection selection) {
+        Vector min = selection.getNativeMinimumVector();
+        Vector max = selection.getNativeMaximumVector();
+
         ArrayList<Vector> vectors = new ArrayList<>();
         CuboidSelection temporary = new CuboidSelection(min, max, null);
         MultiSelection walls = temporary.getWalls();
 
-        for (Selection selection : walls.getSelections()) {
-            Vector nMin = selection.getNativeMinimumVector();
-            Vector nMax = selection.getNativeMaximumVector();
+        for (Selection s : walls.getSelections()) {
+            Vector nMin = s.getNativeMinimumVector();
+            Vector nMax = s.getNativeMaximumVector();
 
             for (int x = Math.max(nMax.getBlockX(), nMin.getBlockX()); x >= Math.min(nMin.getBlockX(), nMax.getBlockX()); x--) {
                 for (int y = Math.max(nMax.getBlockY(), nMin.getBlockY()); y >= Math.min(nMin.getBlockY(), nMax.getBlockY()); y--) {
@@ -42,6 +62,13 @@ public class ShapeUtils {
         }
 
         return vectors;
+    }
+
+    //TODO: See how I can implement this!
+    public static ArrayList<Vector> getPolygonDivisionFilled(PolygonSelection selection) {
+        ArrayList<Vector> vertices = selection.getVertices();
+
+        return vertices;
     }
 
     //TODO: Make a separate selection type for this. Currently it uses CuboidSelection to store a minimum and maximum value, but CANNOT be used AS the polygon!

@@ -1,5 +1,6 @@
 package com.pencil.engine;
 
+import com.pencil.engine.utils.service.CommandService;
 import com.pencil.engine.utils.service.MetricsService;
 import com.pencil.engine.utils.service.PlayerService;
 import org.bukkit.Bukkit;
@@ -44,10 +45,12 @@ public class Pencil extends JavaPlugin {
             metrics = new Metrics(getPlugin());
         }
 
+        getCommand("pencil").setExecutor(new CommandService());
+
         playerService = new PlayerService();
         playerService.init();
 
-        metricsService = new MetricsService(metrics);
+        metricsService = new MetricsService();
     }
 
     @Override
@@ -63,7 +66,7 @@ public class Pencil extends JavaPlugin {
     }
 
     public static Plugin getPlugin() {
-        return Bukkit.getServer().getPluginManager().getPlugin("Pencil");
+        return Bukkit.getServer().getPluginManager().getPlugin("PSuite");
     }
 
     private static boolean hasPlugin(String name) {

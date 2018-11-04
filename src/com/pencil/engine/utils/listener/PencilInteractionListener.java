@@ -52,6 +52,7 @@ public class PencilInteractionListener implements Listener {
 
                         Bukkit.getServer().getPluginManager().callEvent(new PencilVectorSelectionEvent(player.getPlayer(), vector));
                     } else if (action == Action.LEFT_CLICK_AIR || action == Action.RIGHT_CLICK_AIR) {
+                        event.getPlayer().openInventory(InterfaceUtils.createShapeTypeInterface());
                     }
                 } else if (player.getSelectionMode() == PencilPlayer.SelectionMode.POLY) {
                     if (action == Action.LEFT_CLICK_BLOCK || action == Action.RIGHT_CLICK_BLOCK) {
@@ -75,7 +76,7 @@ public class PencilInteractionListener implements Listener {
 
                         Bukkit.getServer().getPluginManager().callEvent(new PencilVectorSelectionEvent(player.getPlayer(), vector));
                     } else if (action == Action.LEFT_CLICK_AIR || action == Action.RIGHT_CLICK_AIR) {
-
+                        event.getPlayer().openInventory(InterfaceUtils.createShapeTypeInterface());
                     }
                 }
             }

@@ -25,6 +25,8 @@ public class Vector implements Comparable<Vector>, Cloneable {
     public static final Vector UNIT_Y = new Vector(0, 1, 0);
     public static final Vector UNIT_Z = new Vector(0, 0, 1);
     public static final Vector ONE = new Vector(1, 1, 1);
+    public static final Vector MAX = new Vector(Integer.MAX_VALUE, 256, Integer.MAX_VALUE);
+    public static final Vector MIN = new Vector(-Integer.MAX_VALUE, 0, -Integer.MAX_VALUE);
 
     protected final double x, y, z;
 
