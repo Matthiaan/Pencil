@@ -2,27 +2,22 @@ package com.pencil.engine.utils.events;
 
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.utils.action.PencilAction;
-import com.pencil.engine.utils.action.PencilNonUndoableAction;
 import com.pencil.engine.utils.utilities.ShapeUtils;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import java.util.Optional;
-
-public class PencilShapeFillRequestEvent extends Event implements PencilEvent {
+public class PencilShapeFillEvent extends Event implements PencilEvent {
 
     private static final HandlerList handlers = new HandlerList();
     private Player player;
     private ShapeUtils.ShapeType type;
     private Selection selection;
-    private Optional<PencilEvent> previous;
+    private Material material;
 
-    public PencilShapeFillRequestEvent(Player player, ShapeUtils.ShapeType type, Selection selection, Optional<PencilEvent> previous) {
+    public PencilShapeFillEvent(Player player, ShapeUtils.ShapeType type, Selection selection) {
         this.player = player;
-        this.type = type;
-        this.selection = selection;
-        this.previous = previous;
     }
 
     public Player getPlayer() {
@@ -37,13 +32,17 @@ public class PencilShapeFillRequestEvent extends Event implements PencilEvent {
         return selection;
     }
 
-    public Optional<PencilEvent> getPrevious() {
-        return previous;
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     @Override
     public PencilAction getAction() {
-        return new PencilNonUndoableAction(PencilAction.ActionType.INTERFACE);
+        return null;
     }
 
     @Override

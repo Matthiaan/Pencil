@@ -14,8 +14,4 @@ package com.pencil.engine.routines.engines;
  *
  * Also a bit of memory management is done through here!
  */
-public class RenderEngine {
-
-    public RenderEngine() {
-    }
-}
+public class RenderEngine { }

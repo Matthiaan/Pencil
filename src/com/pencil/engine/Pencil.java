@@ -1,8 +1,10 @@
 package com.pencil.engine;
 
+import com.pencil.engine.utils.InterfaceSet;
 import com.pencil.engine.utils.service.CommandService;
 import com.pencil.engine.utils.service.MetricsService;
 import com.pencil.engine.utils.service.PlayerService;
+import com.pencil.engine.utils.utilities.InterfaceUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
@@ -13,6 +15,8 @@ public class Pencil extends JavaPlugin {
     private static Metrics metrics;
     private static PlayerService playerService;
     private static MetricsService metricsService;
+
+    private static InterfaceSet materials;
 
     /**
      * This method is used to start the plugin, all necessary
@@ -51,6 +55,8 @@ public class Pencil extends JavaPlugin {
         playerService.init();
 
         metricsService = new MetricsService();
+
+        materials = InterfaceUtils.createMaterialInterface();
     }
 
     @Override
@@ -83,5 +89,9 @@ public class Pencil extends JavaPlugin {
 
     public static PlayerService getPlayerService() {
         return playerService;
+    }
+
+    public static InterfaceSet getMaterials() {
+        return materials;
     }
 }

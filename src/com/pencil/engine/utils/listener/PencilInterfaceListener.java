@@ -1,10 +1,13 @@
 package com.pencil.engine.utils.listener;
 
 import com.pencil.engine.Pencil;
+import com.pencil.engine.utils.events.PencilShapeFillRequestEvent;
 import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
 import com.pencil.engine.utils.utilities.InterfaceUtils;
 import com.pencil.engine.utils.utilities.ItemUtils;
+import com.pencil.engine.utils.utilities.ShapeUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -68,6 +71,30 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createSphericalShapesInterface());
                 } else if (slot == 16) {
+                    player.closeInventory();
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Cuboid Shapes")) {
+                if (slot == 10) {
+                    //TODO: Create a Scaling Interface
+                } else if (slot == 11) {
+
+                } else if (slot == 12) {
+
+                } else if (slot == 13) {
+
+                } else if (slot == 16) {
+                    //TODO: Call a PencilResetEvent
+                    player.closeInventory();
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Spherical Shapes")) {
+                if (slot == 10) {
+
+                } else if (slot == 11) {
+
+                } else if (slot == 12) {
+
+                } else if (slot == 16) {
+                    //TODO: Call a PencilResetEvent
                     player.closeInventory();
                 }
             }
