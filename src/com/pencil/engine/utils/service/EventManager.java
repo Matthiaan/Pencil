@@ -3,10 +3,15 @@ package com.pencil.engine.utils.service;
 import com.pencil.engine.Pencil;
 import com.pencil.engine.utils.events.PencilEvent;
 import com.pencil.engine.utils.events.PencilHotbarEvent;
-import com.pencil.engine.utils.events.PencilShapeFillRequestEvent;
+import com.pencil.engine.utils.events.PencilMaterialRequestEvent;
+import com.pencil.engine.utils.events.shape.PencilPreShapeCreationEvent;
+import com.pencil.engine.utils.events.shape.PencilShapeFillEvent;
+import com.pencil.engine.utils.events.shape.PencilShapeFillRequestEvent;
 import com.pencil.engine.utils.events.PencilVectorSelectionEvent;
+import com.pencil.engine.utils.events.shape.PencilShapeScaleRequestEvent;
 import com.pencil.engine.utils.listener.PencilHotbarListener;
 import com.pencil.engine.utils.listener.PencilInterfaceListener;
+import com.pencil.engine.utils.listener.PencilMaterialListener;
 import com.pencil.engine.utils.listener.PencilUtilityListener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -33,6 +38,7 @@ public class EventManager implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(new PencilHotbarListener(), Pencil.getPlugin());
         Bukkit.getServer().getPluginManager().registerEvents(new PencilInterfaceListener(), Pencil.getPlugin());
         Bukkit.getServer().getPluginManager().registerEvents(new PencilInterfaceListener(), Pencil.getPlugin());
+        Bukkit.getServer().getPluginManager().registerEvents(new PencilMaterialListener(), Pencil.getPlugin());
         Bukkit.getServer().getPluginManager().registerEvents(new PencilUtilityListener(), Pencil.getPlugin());
     }
 
@@ -49,19 +55,37 @@ public class EventManager implements Listener {
 
     //TODO: Now I use 2 listeners, I need to limit this to only 1!
     @EventHandler (priority = EventPriority.MONITOR)
-    public void logHotbarEvent(PencilHotbarEvent event) {
+    public void logVectorSelectionEvent(PencilVectorSelectionEvent event) {
         process(event.getPlayer(), event);
     }
 
-    //TODO: Now I use 2 listeners, I need to limit this to only 1!
+    @EventHandler (priority = EventPriority.MONITOR)
+    public void logPreShapeCreationEvent(PencilPreShapeCreationEvent event) {
+        process(event.getPlayer(), event);
+    }
+
+    @EventHandler (priority = EventPriority.MONITOR)
+    public void logShapeFillEvent(PencilShapeFillEvent event) {
+        process(event.getPlayer(), event);
+    }
+
     @EventHandler (priority = EventPriority.MONITOR)
     public void logShapeFillRequestEvent(PencilShapeFillRequestEvent event) {
         process(event.getPlayer(), event);
     }
 
-    //TODO: Now I use 2 listeners, I need to limit this to only 1!
     @EventHandler (priority = EventPriority.MONITOR)
-    public void logVectorSelectionEvent(PencilVectorSelectionEvent event) {
+    public void logHotbarEvent(PencilHotbarEvent event) {
+        process(event.getPlayer(), event);
+    }
+
+    @EventHandler (priority = EventPriority.MONITOR)
+    public void logMaterialRequestEvent(PencilMaterialRequestEvent event) {
+        process(event.getPlayer(), event);
+    }
+
+    @EventHandler (priority = EventPriority.MONITOR)
+    public void logShapeScaleRequestEvent(PencilShapeScaleRequestEvent event) {
         process(event.getPlayer(), event);
     }
 

@@ -1,5 +1,7 @@
 package com.pencil.engine.utils.player;
 
+import com.pencil.engine.Pencil;
+import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
 import org.bukkit.entity.Player;
 
@@ -19,7 +21,6 @@ public class PencilPlayer {
     private PencilHistory history;
 
     private SelectionMode selectionMode;
-    private ArrayList<Vector> positions;
 
     public PencilPlayer(Player player) {
         this.player = player;
@@ -27,7 +28,6 @@ public class PencilPlayer {
         history = new PencilHistory(player.getUniqueId());
 
         selectionMode = SelectionMode.NA;
-        positions = new ArrayList<>();
     }
 
     public Player getPlayer() {
@@ -47,10 +47,10 @@ public class PencilPlayer {
     }
 
     public void updatePositions(ArrayList<Vector> positions) {
-        this.positions = positions;
+        Pencil.getSelectionManager().add(this, positions);
     }
 
-    public ArrayList<Vector> getPositions() {
-        return positions;
+    public Selection getCurrentSelection() {
+        return Pencil.getSelectionManager().get(this, false);
     }
 }

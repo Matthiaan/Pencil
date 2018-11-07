@@ -4,7 +4,6 @@ import com.pencil.engine.Pencil;
 import com.pencil.engine.routines.engines.InterfaceEngine;
 import com.pencil.engine.utils.InterfaceSet;
 import com.pencil.engine.utils.service.MessageService;
-import com.sun.org.apache.bcel.internal.generic.NamedAndTyped;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -76,6 +75,7 @@ public class InterfaceUtils {
         gui.setItem(10, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Cuboid Shapes"));
         gui.setItem(11, ItemUtils.getSkullItemFromBase64(1, ChatColor.AQUA + "Spherical Shapes",
                 "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjI0MDcwYzliNjY1OWVkMjViMmNhMTI2OTE1ZjRkODgyMGZhZmNlNDMyNGVkOWE4ZjRiOGE1MDYzNDUzMDdmIn19fQ=="));
+        gui.setItem(12, ItemUtils.getItem(Material.STICK, 0, 1, ChatColor.AQUA + "Regular Set"));
 
         return gui;
     }
@@ -111,7 +111,7 @@ public class InterfaceUtils {
     }
 
     public static Inventory createFilledShapeRequestInterface() {
-        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Spherical Shapes", 5, 9);
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Filled Shape", 5, 9);
 
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
@@ -130,10 +130,9 @@ public class InterfaceUtils {
         InterfaceSet set = new InterfaceSet();
 
         Inventory stone = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Stone Types", 6, 9);
-        InterfaceEngine.fillInventory(stone, ItemUtils.getFillItem());
 
-        stone.setItem(46, ItemUtils.getPreviousPageItem());
-        stone.setItem(52, ItemUtils.getNextPageItem());
+        stone.setItem(45, ItemUtils.getPreviousPageItem());
+        stone.setItem(53, ItemUtils.getNextPageItem());
         stone.setItem(49, ItemUtils.getExitItem());
         stone.setItem(0, ItemUtils.getItem(Material.STONE, 0, 1, ChatColor.AQUA + "Stone"));
         stone.setItem(1, ItemUtils.getItem(Material.GRANITE, 0, 1, ChatColor.AQUA + "Granite"));
@@ -184,8 +183,10 @@ public class InterfaceUtils {
         set.add(stone);
 
         Inventory natural = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Natural Materials", 6, 9);
-        InterfaceEngine.fillInventory(natural, ItemUtils.getFillItem());
 
+        natural.setItem(45, ItemUtils.getPreviousPageItem());
+        natural.setItem(53, ItemUtils.getNextPageItem());
+        natural.setItem(49, ItemUtils.getExitItem());
         natural.setItem(0, ItemUtils.getItem(Material.SAND, 0, 1, ChatColor.AQUA + "Sand"));
         natural.setItem(1, ItemUtils.getItem(Material.SANDSTONE, 0, 1, ChatColor.AQUA + "Sandstone"));
         natural.setItem(2, ItemUtils.getItem(Material.SMOOTH_SANDSTONE, 0, 1, ChatColor.AQUA + "Smooth Sandstone"));
@@ -233,8 +234,10 @@ public class InterfaceUtils {
         set.add(natural);
 
         Inventory wood = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Woods", 6, 9);
-        InterfaceEngine.fillInventory(wood, ItemUtils.getFillItem());
 
+        wood.setItem(45, ItemUtils.getPreviousPageItem());
+        wood.setItem(53, ItemUtils.getNextPageItem());
+        wood.setItem(49, ItemUtils.getExitItem());
         wood.setItem(0, ItemUtils.getItem(Material.ACACIA_LOG, 0, 1, ChatColor.AQUA + "Acacia Log"));
         wood.setItem(1, ItemUtils.getItem(Material.BIRCH_LOG, 0, 1, ChatColor.AQUA + "Birch Log"));
         wood.setItem(2, ItemUtils.getItem(Material.DARK_OAK_LOG, 0, 1, ChatColor.AQUA + "Dark Oak Log"));
@@ -273,8 +276,10 @@ public class InterfaceUtils {
         set.add(wood);
 
         Inventory slab = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Slabs & Stairs", 6, 9);
-        InterfaceEngine.fillInventory(slab, ItemUtils.getFillItem());
 
+        slab.setItem(45, ItemUtils.getPreviousPageItem());
+        slab.setItem(53, ItemUtils.getNextPageItem());
+        slab.setItem(49, ItemUtils.getExitItem());
         slab.setItem(0, ItemUtils.getItem(Material.STONE_SLAB, 0, 1, ChatColor.AQUA + "Stone Slab"));
         slab.setItem(1, ItemUtils.getItem(Material.COBBLESTONE_SLAB, 0, 1, ChatColor.AQUA + "Cobblestone Slab"));
         slab.setItem(2, ItemUtils.getItem(Material.STONE_BRICK_SLAB, 0, 1, ChatColor.AQUA + "Stone Brick Slab"));
@@ -311,8 +316,10 @@ public class InterfaceUtils {
         set.add(slab);
 
         Inventory coloredItemsOne = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 1", 6, 9);
-        InterfaceEngine.fillInventory(coloredItemsOne, ItemUtils.getFillItem());
 
+        coloredItemsOne.setItem(45, ItemUtils.getPreviousPageItem());
+        coloredItemsOne.setItem(53, ItemUtils.getNextPageItem());
+        coloredItemsOne.setItem(49, ItemUtils.getExitItem());
         coloredItemsOne.setItem(0, ItemUtils.getItem(Material.BLACK_STAINED_GLASS, 0, 1, ChatColor.AQUA + "Black Stained Glass"));
         coloredItemsOne.setItem(1, ItemUtils.getItem(Material.BLACK_STAINED_GLASS_PANE, 0, 1, ChatColor.AQUA + "Black Stained Glass Pane"));
         coloredItemsOne.setItem(2, ItemUtils.getItem(Material.BLACK_WOOL, 0, 1, ChatColor.AQUA + "Black Wool"));
@@ -356,8 +363,10 @@ public class InterfaceUtils {
         set.add(coloredItemsOne);
 
         Inventory coloredItemsTwo = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 2", 6, 9);
-        InterfaceEngine.fillInventory(coloredItemsTwo, ItemUtils.getFillItem());
 
+        coloredItemsTwo.setItem(45, ItemUtils.getPreviousPageItem());
+        coloredItemsTwo.setItem(53, ItemUtils.getNextPageItem());
+        coloredItemsTwo.setItem(49, ItemUtils.getExitItem());
         coloredItemsTwo.setItem(0, ItemUtils.getItem(Material.LIME_STAINED_GLASS, 0, 1, ChatColor.AQUA + "Lime Stained Glass"));
         coloredItemsTwo.setItem(1, ItemUtils.getItem(Material.LIME_STAINED_GLASS_PANE, 0, 1, ChatColor.AQUA + "Lime Stained Glass Pane"));
         coloredItemsTwo.setItem(2, ItemUtils.getItem(Material.LIME_WOOL, 0, 1, ChatColor.AQUA + "Lime Wool"));
@@ -401,8 +410,10 @@ public class InterfaceUtils {
         set.add(coloredItemsTwo);
 
         Inventory coloredItemsThree = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 3", 6, 9);
-        InterfaceEngine.fillInventory(coloredItemsThree, ItemUtils.getFillItem());
 
+        coloredItemsThree.setItem(45, ItemUtils.getPreviousPageItem());
+        coloredItemsThree.setItem(53, ItemUtils.getNextPageItem());
+        coloredItemsThree.setItem(49, ItemUtils.getExitItem());
         coloredItemsThree.setItem(0, ItemUtils.getItem(Material.MAGENTA_STAINED_GLASS, 0, 1, ChatColor.AQUA + "Magenta Stained Glass"));
         coloredItemsThree.setItem(1, ItemUtils.getItem(Material.MAGENTA_STAINED_GLASS_PANE, 0, 1, ChatColor.AQUA + "Magenta Stained Glass Pane"));
         coloredItemsThree.setItem(2, ItemUtils.getItem(Material.MAGENTA_WOOL, 0, 1, ChatColor.AQUA + "Magenta Wool"));
@@ -446,8 +457,10 @@ public class InterfaceUtils {
         set.add(coloredItemsThree);
 
         Inventory sea = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Sea Materials", 6, 9);
-        InterfaceEngine.fillInventory(sea, ItemUtils.getFillItem());
 
+        sea.setItem(45, ItemUtils.getPreviousPageItem());
+        sea.setItem(53, ItemUtils.getNextPageItem());
+        sea.setItem(49, ItemUtils.getExitItem());
         sea.setItem(0, ItemUtils.getItem(Material.BRAIN_CORAL_BLOCK, 0, 1, ChatColor.AQUA + "Brain Coral"));
         sea.setItem(1, ItemUtils.getItem(Material.BUBBLE_CORAL_BLOCK, 0, 1, ChatColor.AQUA + "Bubble Coral"));
         sea.setItem(2, ItemUtils.getItem(Material.FIRE_CORAL_BLOCK, 0, 1, ChatColor.AQUA + "Fire Coral"));
@@ -473,8 +486,10 @@ public class InterfaceUtils {
         set.add(sea);
 
         Inventory random = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Redstone", 6, 9);
-        InterfaceEngine.fillInventory(random, ItemUtils.getFillItem());
 
+        random.setItem(45, ItemUtils.getPreviousPageItem());
+        random.setItem(53, ItemUtils.getNextPageItem());
+        random.setItem(49, ItemUtils.getExitItem());
         random.setItem(0, ItemUtils.getItem(Material.ANVIL, 0, 1, ChatColor.AQUA + "Anvil"));
         random.setItem(1, ItemUtils.getItem(Material.BEACON, 0, 1, ChatColor.AQUA + "Beacon"));
         random.setItem(2, ItemUtils.getItem(Material.ENDER_CHEST, 0, 1, ChatColor.AQUA + "Ender Chest"));

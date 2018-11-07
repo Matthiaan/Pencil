@@ -1,7 +1,10 @@
 package com.pencil.engine.utils.listener;
 
 import com.pencil.engine.Pencil;
-import com.pencil.engine.utils.events.PencilShapeFillRequestEvent;
+import com.pencil.engine.utils.events.shape.PencilPreShapeCreationEvent;
+import com.pencil.engine.utils.events.shape.PencilShapeFillRequestEvent;
+import com.pencil.engine.utils.events.shape.PencilShapeScaleRequestEvent;
+import com.pencil.engine.utils.player.PencilPlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -21,8 +24,8 @@ public class PencilUtilityListener implements Listener {
     }
 
     @EventHandler (priority = EventPriority.HIGHEST)
-    public void onShapeFillRequest(PencilShapeFillRequestEvent event) {
-
+    public void onPreShapeCreationEvent(PencilPreShapeCreationEvent event) {
+        //TODO: Here I want to generate the shape
     }
 
 }

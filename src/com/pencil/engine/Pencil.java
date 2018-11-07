@@ -1,9 +1,13 @@
 package com.pencil.engine;
 
 import com.pencil.engine.utils.InterfaceSet;
+import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.CommandService;
 import com.pencil.engine.utils.service.MetricsService;
 import com.pencil.engine.utils.service.PlayerService;
+import com.pencil.engine.utils.service.manager.ScaleManager;
+import com.pencil.engine.utils.service.manager.SelectionManager;
+import com.pencil.engine.utils.service.manager.ShapeManager;
 import com.pencil.engine.utils.utilities.InterfaceUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,6 +19,10 @@ public class Pencil extends JavaPlugin {
     private static Metrics metrics;
     private static PlayerService playerService;
     private static MetricsService metricsService;
+
+    private static ScaleManager scaleManager;
+    private static SelectionManager selectionManager;
+    private static ShapeManager shapeManager;
 
     private static InterfaceSet materials;
 
@@ -56,6 +64,10 @@ public class Pencil extends JavaPlugin {
 
         metricsService = new MetricsService();
 
+        scaleManager = new ScaleManager();
+        selectionManager = new SelectionManager();
+        shapeManager = new ShapeManager();
+
         materials = InterfaceUtils.createMaterialInterface();
     }
 
@@ -91,7 +103,33 @@ public class Pencil extends JavaPlugin {
         return playerService;
     }
 
+    public static ScaleManager getScaleManager() {
+        return scaleManager;
+    }
+
+    public static SelectionManager getSelectionManager() {
+        return selectionManager;
+    }
+
+    public static ShapeManager getShapeManager() {
+        return shapeManager;
+    }
+
     public static InterfaceSet getMaterials() {
         return materials;
+    }
+
+    public static void reset(PencilPlayer player, boolean shape, boolean selection, boolean scale) {
+        if (selection) {
+            selectionManager.reset(player);
+        }
+
+        if (shape) {
+            shapeManager.reset(player);
+        }
+
+        if (scale) {
+            scaleManager.reset(player);
+        }
     }
 }

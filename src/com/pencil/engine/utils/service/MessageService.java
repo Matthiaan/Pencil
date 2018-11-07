@@ -44,7 +44,10 @@ public class MessageService {
 
         UTILS_INVENTORY_FULL("Seems like you inventory is full!"),
         UTILS_FIRST_POSITION_SET("Position 1 has been set! "),
-        UTILS_SECOND_POSITION_SET("Position 2 has been set! ")
+        UTILS_SECOND_POSITION_SET("Position 2 has been set! "),
+        UTILS_MAKE_SELECTION_VECTOR("Please make a selection first! (Vector Selection)"),
+        UTILS_MAKE_SELECTION_NORMAL("Please make a selection first! (Normal Selection)"),
+        UTILS_MAKE_SELECTION_POLY("Please make a selection first! (Polygon Selection)"),
         ;
 
         private String message;
