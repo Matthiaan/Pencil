@@ -93,6 +93,17 @@ public class ItemUtils {
         return null;
     }
 
+    public static ItemStack changeMeta(ItemStack item, String name, String... lore) {
+        ItemMeta meta = item.getItemMeta();
+
+        meta.setDisplayName(name);
+        meta.setLore(Arrays.asList(lore));
+
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
     public static ItemStack getExitItem() {
         return getItem(Material.BARRIER, 0, 1, ChatColor.RED + "Exit");
     }

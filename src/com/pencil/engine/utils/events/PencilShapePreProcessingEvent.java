@@ -1,37 +1,34 @@
 package com.pencil.engine.utils.events;
 
-import com.pencil.engine.Pencil;
-import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.utils.action.PencilAction;
-import com.pencil.engine.utils.action.PencilVectorAction;
+import com.pencil.engine.utils.action.PencilShapeAction;
+import com.pencil.engine.utils.player.PencilPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class PencilVectorSelectionEvent extends Event implements PencilEvent {
+public class PencilShapePreProcessingEvent extends Event implements PencilEvent {
 
     private static final HandlerList handlers = new HandlerList();
     private Player player;
-    private Vector vector;
+    private PencilPlayer.ShapeRequest request;
 
-    public PencilVectorSelectionEvent(Player player, Vector vector) {
+    public PencilShapePreProcessingEvent(Player player, PencilPlayer.ShapeRequest request) {
         this.player = player;
-        this.vector = vector;
-
-        Pencil.getEventService().process(player, this);
+        this.request = request;
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public Vector getVector() {
-        return vector;
+    public PencilPlayer.ShapeRequest getRequest() {
+        return request;
     }
 
     @Override
     public PencilAction getAction() {
-        return new PencilVectorAction(vector);
+        return new PencilShapeAction(request);
     }
 
     @Override
@@ -42,5 +39,4 @@ public class PencilVectorSelectionEvent extends Event implements PencilEvent {
     public static HandlerList getHandlerList() {
         return handlers;
     }
-
 }

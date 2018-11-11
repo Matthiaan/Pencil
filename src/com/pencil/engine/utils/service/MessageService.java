@@ -17,10 +17,6 @@ public class MessageService {
         MessageType(ChatColor color) {
             this.color = color;
         }
-
-        public ChatColor getColor() {
-            return color;
-        }
     }
 
     public enum PreFormattedMessage {
@@ -29,6 +25,7 @@ public class MessageService {
         ACTION_NOT_UNDOABLE("That action isn't undoable! If you want to skip actions please provide an index!"),
         ACTION_NO_ACTIONS_HISTORY("Your current history of actions is empty!"),
         ACTION_HISTORY_CLEARED("Your current history has been cleared!"),
+        ACTION_SHAPE_CREATION("Processing your Shape request..."),
 
         NO_PERMISSION("Seems like you don't have the permission to execute this command!"),
         NO_COMMAND("Pencil didn't recognise that command!"),
@@ -45,9 +42,7 @@ public class MessageService {
         UTILS_INVENTORY_FULL("Seems like you inventory is full!"),
         UTILS_FIRST_POSITION_SET("Position 1 has been set! "),
         UTILS_SECOND_POSITION_SET("Position 2 has been set! "),
-        UTILS_MAKE_SELECTION_VECTOR("Please make a selection first! (Vector Selection)"),
-        UTILS_MAKE_SELECTION_NORMAL("Please make a selection first! (Normal Selection)"),
-        UTILS_MAKE_SELECTION_POLY("Please make a selection first! (Polygon Selection)"),
+        UTILS_POSITION_SET("Position has been added!"),
         ;
 
         private String message;

@@ -2,7 +2,7 @@ package com.pencil.engine.utils.utilities;
 
 import com.pencil.engine.Pencil;
 import com.pencil.engine.routines.engines.InterfaceEngine;
-import com.pencil.engine.utils.InterfaceSet;
+import com.pencil.engine.utils.MaterialSet;
 import com.pencil.engine.utils.service.MessageService;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -29,7 +29,6 @@ public class InterfaceUtils {
 
     public static Inventory createMenuInterface() {
         Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Menu", 3, 9);
-
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
         gui.setItem(21, ItemUtils.getExitItem());
@@ -39,36 +38,48 @@ public class InterfaceUtils {
         return gui;
     }
 
-    public static Inventory createVectorInterface() {
-        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Point Selection", 3, 9);
+    public static Inventory createWandMenu() {
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Wand Menu", 3, 9);
+        InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
+        gui.setItem(21, ItemUtils.getExitItem());
+        gui.setItem(10, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Position Selection"));
+        gui.setItem(11, ItemUtils.getItem(Material.STONE, 0, 1, ChatColor.AQUA + "Shape Types"));
+
+        return gui;
+    }
+
+    public static Inventory createVectorInterface() {
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Position Selection", 3, 9);
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
         gui.setItem(16, ItemUtils.getExitItem());
-        gui.setItem(10, ItemUtils.getCustomItem(Material.WOODEN_HOE, 0, (short) 1, 1, ChatColor.AQUA + "Singular Point Selection"));
-        gui.setItem(11, ItemUtils.getCustomItem(Material.WOODEN_HOE, 0, (short) 2, 1, ChatColor.AQUA + "Poly Point Selection"));
-        gui.setItem(15, ItemUtils.getItem(Material.FEATHER, 0, 1, ChatColor.AQUA + "Reset Point Selection"));
+
+        //TODO: Decide on their names!
+        gui.setItem(10, ItemUtils.getCustomItem(Material.WOODEN_HOE, 0, (short) 1, 1, ChatColor.AQUA + "Single-Position Selection"));
+        gui.setItem(11, ItemUtils.getCustomItem(Material.WOODEN_HOE, 0, (short) 1, 1, ChatColor.AQUA + "Double-Position Selection"));
+        gui.setItem(12, ItemUtils.getCustomItem(Material.WOODEN_HOE, 0, (short) 2, 1, ChatColor.AQUA + "Multi-Position Selection"));
+        gui.setItem(14, ItemUtils.getItem(Material.FEATHER, 0, 1, ChatColor.AQUA + "Reset Selected Positions"));
+        gui.setItem(15, ItemUtils.getItem(Material.FEATHER, 0, 1, ChatColor.AQUA + "Reset Position Selection"));
 
         return gui;
     }
 
     public static Inventory createScaleInterface(String name, ItemStack item) {
         Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + name, 5, 9);
-
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
         gui.setItem(37, ItemUtils.getExitItem());
         gui.setItem(43, ItemUtils.getConfirmItem());
         gui.setItem(22, item);
-        gui.setItem(21, ItemUtils.getSkullItem(1, "MHF_ArrowDown", ChatColor.AQUA + "Down"));
-        gui.setItem(23, ItemUtils.getSkullItem(1, "MHF_ArrowUp", ChatColor.AQUA + "Up"));
+        gui.setItem(21, ItemUtils.getSkullItem(1, "MHF_ArrowDown", ChatColor.AQUA + "- 1"));
+        gui.setItem(23, ItemUtils.getSkullItem(1, "MHF_ArrowUp", ChatColor.AQUA + "+ 1"));
 
         return gui;
     }
 
     public static Inventory createShapeTypeInterface() {
         Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Shape Types", 3, 9);
-
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
         gui.setItem(16, ItemUtils.getExitItem());
@@ -82,7 +93,6 @@ public class InterfaceUtils {
 
     public static Inventory createCuboidShapesInterface() {
         Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Cuboid Shapes", 3, 9);
-
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
         gui.setItem(16, ItemUtils.getExitItem());
@@ -96,7 +106,6 @@ public class InterfaceUtils {
 
     public static Inventory createSphericalShapesInterface() {
         Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Spherical Shapes", 3, 9);
-
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
         gui.setItem(16, ItemUtils.getExitItem());
@@ -110,9 +119,8 @@ public class InterfaceUtils {
         return gui;
     }
 
-    public static Inventory createFilledShapeRequestInterface() {
+    public static Inventory createFilledShapeDialogInterface() {
         Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Filled Shape", 5, 9);
-
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
         gui.setItem(31, ItemUtils.getExitItem());
@@ -123,12 +131,23 @@ public class InterfaceUtils {
         return gui;
     }
 
+    public static Inventory createResetDialogInterface() {
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Reset Request", 5, 9);
+        InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
+
+        gui.setItem(31, ItemUtils.getExitItem());
+        gui.setItem(12, ItemUtils.getNoItem());
+        gui.setItem(14, ItemUtils.getYesItem());
+        gui.setItem(13, ItemUtils.getItem(Material.PAPER, 0, 1, ChatColor.AQUA + "Would you like reset your shape creation?",
+                ChatColor.WHITE + "This gets rid of any selection, scale, material, etc... selected!"));
+
+        return gui;
+    }
+
     //TODO: Increase Performance!
     //TODO: Implement Brown!
     //TODO: Would I give up the nice ordered structure for a .isSolid() method?
-    public static InterfaceSet createMaterialInterface() {
-        InterfaceSet set = new InterfaceSet();
-
+    public static MaterialSet createMaterialInterface() {
         Inventory stone = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Stone Types", 6, 9);
 
         stone.setItem(45, ItemUtils.getPreviousPageItem());
@@ -180,8 +199,6 @@ public class InterfaceUtils {
         stone.setItem(43, ItemUtils.getItem(Material.SMOOTH_QUARTZ, 0, 1, ChatColor.AQUA + "Smooth Quartz"));
         stone.setItem(44, ItemUtils.getItem(Material.BONE_BLOCK, 0, 1, ChatColor.AQUA + "Bone Block"));
 
-        set.add(stone);
-
         Inventory natural = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Natural Materials", 6, 9);
 
         natural.setItem(45, ItemUtils.getPreviousPageItem());
@@ -231,8 +248,6 @@ public class InterfaceUtils {
         natural.setItem(38, ItemUtils.getItem(Material.CARVED_PUMPKIN, 0, 1, ChatColor.AQUA + "Carved Pumpkin"));
         natural.setItem(39, ItemUtils.getItem(Material.JACK_O_LANTERN, 0, 1, ChatColor.AQUA + "Jack O Lantern"));
 
-        set.add(natural);
-
         Inventory wood = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Woods", 6, 9);
 
         wood.setItem(45, ItemUtils.getPreviousPageItem());
@@ -273,8 +288,6 @@ public class InterfaceUtils {
         wood.setItem(40, ItemUtils.getItem(Material.OAK_FENCE_GATE, 0, 1, ChatColor.AQUA + "Oak Fence Gate"));
         wood.setItem(41, ItemUtils.getItem(Material.SPRUCE_FENCE_GATE, 0, 1, ChatColor.AQUA + "Spruce Fence Gate"));
 
-        set.add(wood);
-
         Inventory slab = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Slabs & Stairs", 6, 9);
 
         slab.setItem(45, ItemUtils.getPreviousPageItem());
@@ -312,8 +325,6 @@ public class InterfaceUtils {
         slab.setItem(30, ItemUtils.getItem(Material.JUNGLE_STAIRS, 0, 1, ChatColor.AQUA + "Jungle Stairs"));
         slab.setItem(31, ItemUtils.getItem(Material.OAK_STAIRS, 0, 1, ChatColor.AQUA + "Oak Stairs"));
         slab.setItem(32, ItemUtils.getItem(Material.SPRUCE_STAIRS, 0, 1, ChatColor.AQUA + "Spruce Stairs"));
-
-        set.add(slab);
 
         Inventory coloredItemsOne = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 1", 6, 9);
 
@@ -360,8 +371,6 @@ public class InterfaceUtils {
         coloredItemsOne.setItem(41, ItemUtils.getItem(Material.YELLOW_CONCRETE_POWDER, 0, 1, ChatColor.AQUA + "Yellow Concrete Powder"));
         coloredItemsOne.setItem(42, ItemUtils.getItem(Material.YELLOW_CONCRETE, 0, 1, ChatColor.AQUA + "Yellow Concrete"));
 
-        set.add(coloredItemsOne);
-
         Inventory coloredItemsTwo = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 2", 6, 9);
 
         coloredItemsTwo.setItem(45, ItemUtils.getPreviousPageItem());
@@ -406,8 +415,6 @@ public class InterfaceUtils {
         coloredItemsTwo.setItem(40, ItemUtils.getItem(Material.BLUE_GLAZED_TERRACOTTA, 0, 1, ChatColor.AQUA + "Blue Glazed Terracotta"));
         coloredItemsTwo.setItem(41, ItemUtils.getItem(Material.BLUE_CONCRETE_POWDER, 0, 1, ChatColor.AQUA + "Blue Concrete Powder"));
         coloredItemsTwo.setItem(42, ItemUtils.getItem(Material.BLUE_CONCRETE, 0, 1, ChatColor.AQUA + "Blue Concrete"));
-
-        set.add(coloredItemsTwo);
 
         Inventory coloredItemsThree = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 3", 6, 9);
 
@@ -454,8 +461,6 @@ public class InterfaceUtils {
         coloredItemsThree.setItem(41, ItemUtils.getItem(Material.GRAY_CONCRETE_POWDER, 0, 1, ChatColor.AQUA + "Gray Concrete Powder"));
         coloredItemsThree.setItem(42, ItemUtils.getItem(Material.GRAY_CONCRETE, 0, 1, ChatColor.AQUA + "Gray Concrete"));
 
-        set.add(coloredItemsThree);
-
         Inventory sea = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Sea Materials", 6, 9);
 
         sea.setItem(45, ItemUtils.getPreviousPageItem());
@@ -483,9 +488,7 @@ public class InterfaceUtils {
 
         sea.setItem(36, ItemUtils.getItem(Material.DRIED_KELP_BLOCK, 0, 1, ChatColor.AQUA + "Dried Kelp Block"));
 
-        set.add(sea);
-
-        Inventory random = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Redstone", 6, 9);
+        Inventory random = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Random Materials", 6, 9);
 
         random.setItem(45, ItemUtils.getPreviousPageItem());
         random.setItem(53, ItemUtils.getNextPageItem());
@@ -496,12 +499,11 @@ public class InterfaceUtils {
         random.setItem(3, ItemUtils.getItem(Material.CRAFTING_TABLE, 0, 1, ChatColor.AQUA + "Crafting Table"));
         random.setItem(4, ItemUtils.getItem(Material.ENCHANTING_TABLE, 0, 1, ChatColor.AQUA + "Enchanting Table"));
         random.setItem(5, ItemUtils.getItem(Material.FURNACE, 0, 1, ChatColor.AQUA + "Furnace"));
-        random.setItem(6, ItemUtils.getItem(Material.JUKEBOX, 0, 1, ChatColor.AQUA + "Jukebox"));
         random.setItem(7, ItemUtils.getItem(Material.NOTE_BLOCK, 0, 1, ChatColor.AQUA + "Note Block"));
+        random.setItem(8, ItemUtils.getItem(Material.BARRIER, 0, 1, ChatColor.AQUA + "Barrier"));
+        random.setItem(8, ItemUtils.getItem(Material.COBWEB, 0, 1, ChatColor.AQUA + "Air"));
 
-        set.add(random);
-
-        return set;
+        return new MaterialSet(stone, natural, wood, slab, coloredItemsOne, coloredItemsTwo, coloredItemsThree, sea, random);
     }
 
 }

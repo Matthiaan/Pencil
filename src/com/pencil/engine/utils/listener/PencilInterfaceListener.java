@@ -1,9 +1,10 @@
 package com.pencil.engine.utils.listener;
 
+import com.google.common.reflect.Invokable;
 import com.pencil.engine.Pencil;
-import com.pencil.engine.geometry.selection.Selection;
-import com.pencil.engine.utils.events.shape.PencilShapeFillRequestEvent;
-import com.pencil.engine.utils.events.shape.PencilShapeScaleRequestEvent;
+import com.pencil.engine.geometry.selection.CuboidSelection;
+import com.pencil.engine.geometry.vector.Vector;
+import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
 import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
 import com.pencil.engine.utils.utilities.InterfaceUtils;
@@ -18,6 +19,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class PencilInterfaceListener implements Listener {
 
@@ -41,25 +46,36 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 21) {
                     player.closeInventory();
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Point Selection")) {
-                //TODO: See whether I can auto-add a pencil inventory closer so I don't always have to call player.closeInventory();
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Position Selection")) {
                 if (slot == 10) {
-                    pencilPlayer.setSelectionMode(PencilPlayer.SelectionMode.NORMAL);
+                    pencilPlayer.setMode(PencilPlayer.SelectionMode.VECTOR);
 
                     player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage("You can select either 1 or 2 positions! Positions will automatically reset after selecting more than 2 positions!",
+                    player.sendMessage(MessageService.formatMessage("Whenever selecting more than 1 position, the previous stored position will be overwritten!",
                             MessageService.MessageType.INFO, false));
                 } else if (slot == 11) {
-                    pencilPlayer.setSelectionMode(PencilPlayer.SelectionMode.POLY);
+                    pencilPlayer.setMode(PencilPlayer.SelectionMode.DOUBLE);
 
                     player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage("You can select as many positions as you want!",
+                    player.sendMessage(MessageService.formatMessage("Whenever selecting more than 2 positions, the previous stored positions will be overwritten!",
+                            MessageService.MessageType.INFO, false));
+                } else if (slot == 12) {
+                    pencilPlayer.setMode(PencilPlayer.SelectionMode.MULTI);
+
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage("Pencil will keep storing positions until these have been reset!",
+                            MessageService.MessageType.INFO, false));
+                } else if (slot == 14) {
+                    Pencil.getVectorManager().remove(pencilPlayer);
+
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage("Your stored positions have been reset!",
                             MessageService.MessageType.INFO, false));
                 } else if (slot == 15) {
-                    pencilPlayer.setSelectionMode(PencilPlayer.SelectionMode.NA);
+                    pencilPlayer.setMode(PencilPlayer.SelectionMode.NA);
 
                     player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage("You're Selection Mode has been reset!",
+                    player.sendMessage(MessageService.formatMessage("Your Selection Mode has been reset!",
                             MessageService.MessageType.INFO, false));
                 } else if (slot == 16) {
                     player.closeInventory();
@@ -75,164 +91,619 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                 }
             } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Cuboid Shapes")) {
-                if (!Pencil.getSelectionManager().hasSelection(pencilPlayer)) {
-                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_MAKE_SELECTION_VECTOR.getMessage(),
-                            MessageService.MessageType.WARNING, true));
-                    player.closeInventory();
+                ShapeUtils.PositionSetType type = ShapeUtils.getType(Pencil.getVectorManager().get(pencilPlayer));
+
+                if (type == null) {
+                    //We are using the player's position now!
+                    //TODO: Implement an option to enable/disable this!
+                    type = ShapeUtils.PositionSetType.SINGLE;
+
+                    Vector vector = new Vector(pencilPlayer.getPlayer().getLocation());
+                    Pencil.getVectorManager().add(pencilPlayer, new ArrayList<>(Collections.singleton(vector)));
                 }
 
-                //TODO: Make a way to determine when to reset!
-                Selection selection = Pencil.getSelectionManager().get(pencilPlayer, false);
-
                 if (slot == 10) {
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapeScaleRequestEvent(player, ShapeUtils.ShapeType.CUBE,
-                            selection, null));
+                    //TODO: Shape -> Scaling/Height/Radii -> Filled? -> Material -> Render
+                    pencilPlayer.setShapeRequest(ShapeUtils.ShapeType.CUBE);
+                    player.closeInventory();
 
-                    player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale X",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, 1, ChatColor.AQUA + "Scale of the shape")));
+                    switch (type) {
+                        case SINGLE:
+                            //TODO: Better inventory name?
+                            player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale",
+                                    ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Size of one side of your cube.")));
 
-                    //TODO: Create a Scaling Interface
-                    //TODO: -> Scaling -> Filled? -> Material
+                            break;
+                        case DOUBLE:
+                            player.sendMessage(MessageService.formatMessage("You can't create a cube when you have 2 positions stored!",
+                                    MessageService.MessageType.ERROR, true));
+
+                            break;
+                        case MULTI:
+                            ArrayList<Vector> mVectors = Pencil.getVectorManager().get(pencilPlayer);
+
+                            Vector mMin = mVectors.get(0);
+                            Vector mMax = mVectors.get(1);
+
+                            //Calculating so that min and max are contained inside of the cube! (Min is already in)
+                            int p = Math.abs(mMax.getBlockX() - mMin.getBlockX());
+
+                            CuboidSelection dSelection = new CuboidSelection(mMin, new Vector(p, p, p), player.getWorld());
+
+                            pencilPlayer.getCurrentRequest().setSelection(dSelection);
+                            player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+                            player.sendMessage(MessageService.formatMessage("This feature is in Alpha Phase!",
+                                    MessageService.MessageType.WARNING, true));
+                            break;
+                    }
                 } else if (slot == 11) {
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapeScaleRequestEvent(player, ShapeUtils.ShapeType.CUBOID,
-                            selection, null));
+                    pencilPlayer.setShapeRequest(ShapeUtils.ShapeType.CUBOID);
+                    player.closeInventory();
 
-                    player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale X",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, 1, ChatColor.AQUA + "Scale of the shape")));
+                    switch (type) {
+                        case SINGLE:
+                            player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale X",
+                                    ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Width of your cuboid.")));
+
+                            break;
+                        case DOUBLE:
+                            ArrayList<Vector> dVectors = Pencil.getVectorManager().get(pencilPlayer);
+
+                            Vector dMin = dVectors.get(0);
+                            Vector dMax = dVectors.get(1);
+                            CuboidSelection selection = new CuboidSelection(dMin, dMax, player.getWorld());
+
+                            pencilPlayer.getCurrentRequest().setSelection(selection);
+                            player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+                            player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
+                                    MessageService.MessageType.INFO, false));
+
+                            break;
+                        case MULTI:
+                            //TODO: Rework this
+                            ArrayList<Vector> mVectors = Pencil.getVectorManager().get(pencilPlayer);
+
+                            Vector mMin = mVectors.get(0);
+                            Vector mMax = mVectors.get(1);
+
+                            //Calculating so that min and max are contained inside of the cube! (Min is already in)
+                            int p = Math.abs(mMax.getBlockX() - mMin.getBlockX());
+
+                            CuboidSelection mSelection = new CuboidSelection(mMin, new Vector(p, p, p), player.getWorld());
+
+                            pencilPlayer.getCurrentRequest().setSelection(mSelection);
+                            player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+                            player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
+                                    MessageService.MessageType.WARNING, true));
+
+                            break;
+                    }
                 } else if (slot == 12) {
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapeScaleRequestEvent(player, ShapeUtils.ShapeType.PYRAMID,
-                            selection, null));
+                    pencilPlayer.setShapeRequest(ShapeUtils.ShapeType.PYRAMID);
+                    player.closeInventory();
 
-                    player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale X",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, 1, ChatColor.AQUA + "Scale of the shape")));
+                    switch (type) {
+                        case SINGLE:
+                            player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale X",
+                                    ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Width of your pyramid.")));
+
+                            break;
+                        case DOUBLE:
+                            //TODO: Rework this
+                            ArrayList<Vector> dVectors = Pencil.getVectorManager().get(pencilPlayer);
+
+                            Vector dMin = dVectors.get(0);
+                            Vector dMax = dVectors.get(1);
+
+                            //Calculating so that min and max are contained inside of A CUBE! (Min is already in)
+                            //The pyramid will be based on a square ground plane!
+                            int p = Math.abs(dMax.getBlockX() - dMin.getBlockX());
+
+                            CuboidSelection mSelection = new CuboidSelection(dMin, new Vector(p, p, p), player.getWorld());
+
+                            pencilPlayer.getCurrentRequest().setSelection(mSelection);
+                            player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+                            player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
+                                    MessageService.MessageType.WARNING, true));
+
+                            break;
+                        case MULTI:
+                            player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
+                                    MessageService.MessageType.WARNING, true));
+
+                            break;
+                    }
                 } else if (slot == 13) {
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapeScaleRequestEvent(player, ShapeUtils.ShapeType.PRISM,
-                            selection, null));
+                    pencilPlayer.setShapeRequest(ShapeUtils.ShapeType.PRISM);
+                    player.closeInventory();
 
-                    player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale X",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, 1, ChatColor.AQUA + "Scale of the shape")));
+                    switch (type) {
+                        case SINGLE:
+                            player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
+                                    MessageService.MessageType.WARNING, true));
+
+                            break;
+                        case DOUBLE:
+                            player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
+                                    MessageService.MessageType.WARNING, true));
+
+                            break;
+                        case MULTI:
+                            player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
+                                    MessageService.MessageType.WARNING, true));
+
+                            break;
+                    }
                 } else if (slot == 16) {
-                    Pencil.reset(pencilPlayer, true, false, true);
-
                     player.closeInventory();
                 }
             } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Spherical Shapes")) {
+                ShapeUtils.PositionSetType type = ShapeUtils.getType(Pencil.getVectorManager().get(pencilPlayer));
+
+                if (type == null) {
+                    //We are using the player's position now!
+                    //TODO: Implement an option to enable/disable this!
+                    type = ShapeUtils.PositionSetType.SINGLE;
+
+                    Vector vector = new Vector(pencilPlayer.getPlayer().getLocation());
+                    Pencil.getVectorManager().add(pencilPlayer, new ArrayList<>(Collections.singleton(vector)));
+                }
+
                 if (slot == 10) {
+                    pencilPlayer.setShapeRequest(ShapeUtils.ShapeType.SPHERE);
+                    player.closeInventory();
 
+                    switch (type) {
+                        case SINGLE:
+                            player.openInventory(InterfaceUtils.createScaleInterface("General Radius",
+                                    ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Radius of the sphere.")));
+
+                            break;
+                        case DOUBLE:
+                            ArrayList<Vector> dVectors = Pencil.getVectorManager().get(pencilPlayer);
+
+                            Vector dMin = dVectors.get(0);
+                            Vector dMax = dVectors.get(1);
+
+                            int p = Math.abs(dMax.getBlockX() - dMin.getBlockX());
+
+                            CuboidSelection dSelection = new CuboidSelection(dMin, new Vector(p, p, p), player.getWorld());
+
+                            //TODO: We should skip directly to the "filled-shape"-dialog
+                            pencilPlayer.getCurrentRequest().setSelection(dSelection);
+                            player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+
+                            break;
+                        case MULTI:
+                            player.sendMessage(MessageService.formatMessage("This feature will be available in a next update!",
+                                    MessageService.MessageType.WARNING, true));
+
+                            break;
+                    }
                 } else if (slot == 11) {
+                    pencilPlayer.setShapeRequest(ShapeUtils.ShapeType.ELLIPSOID);
+                    player.closeInventory();
 
+                    switch (type) {
+                        case SINGLE:
+                            player.openInventory(InterfaceUtils.createScaleInterface("Radius X",
+                                    ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "X Radius of the sphere.")));
+
+                            break;
+                        case DOUBLE:
+                            ArrayList<Vector> dVectors = Pencil.getVectorManager().get(pencilPlayer);
+
+                            Vector dMin = dVectors.get(0);
+                            Vector dMax = dVectors.get(1);
+
+                            CuboidSelection dSelection = new CuboidSelection(dMin, dMax, player.getWorld());
+
+                            pencilPlayer.getCurrentRequest().setSelection(dSelection);
+                            player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+                            player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
+                                    MessageService.MessageType.WARNING, true));
+
+                            break;
+                        case MULTI:
+                            player.sendMessage(MessageService.formatMessage("This feature will be available in a next update!",
+                                    MessageService.MessageType.WARNING, true));
+
+                            break;
+                    }
                 } else if (slot == 12) {
+                    pencilPlayer.setShapeRequest(ShapeUtils.ShapeType.CYLINDER);
+                    player.closeInventory();
 
+                    switch (type) {
+                        case SINGLE:
+                            player.openInventory(InterfaceUtils.createScaleInterface("General Radius",
+                                    ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Radius of the cylinder.")));
+                        case DOUBLE:
+                            ArrayList<Vector> dVectors = Pencil.getVectorManager().get(pencilPlayer);
+
+                            Vector dMin = dVectors.get(0);
+                            Vector dMax = dVectors.get(1);
+
+                            int p = Math.abs(dMax.getBlockX() - dMin.getBlockX());
+
+                            CuboidSelection dSelection = new CuboidSelection(dMin, new Vector(p, p, p), player.getWorld());
+
+                            //TODO: We should skip directly to the "filled-shape"-dialog
+                            pencilPlayer.getCurrentRequest().setSelection(dSelection);
+                            player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+
+                            break;
+                        case MULTI:
+                            player.sendMessage(MessageService.formatMessage("This feature will be available in a next update!",
+                                    MessageService.MessageType.WARNING, true));
+
+                            break;
+                    }
                 } else if (slot == 16) {
-                    Pencil.reset(pencilPlayer, true, false, true);
-
                     player.closeInventory();
                 }
             }
             //TODO: Fix this mess of code!
-            else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Scale X")) {
+            //TODO: Fix cursor reset!
+            else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Scale")) {
                 if (slot == 21) {
-                    int a = event.getClickedInventory().getItem(22).getAmount() - 1;
+                    ItemStack item = event.getClickedInventory().getItem(22);
 
-                    if (a == 0) {
-                        a = 1;
-                    }
-
-                    player.closeInventory();
-                    player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale X",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, a, ChatColor.AQUA + "Scale of the shape")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    player.updateInventory();
                 } else if (slot == 23) {
-                    int a = event.getClickedInventory().getItem(22).getAmount() + 1;
+                    ItemStack item = event.getClickedInventory().getItem(22);
 
-                    player.closeInventory();
-                    player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale X",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, a, ChatColor.AQUA + "Scale of the shape")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    player.updateInventory();
                 } else if (slot == 43) {
-                    Pencil.getScaleManager().set(pencilPlayer, event.getClickedInventory().getItem(23).getAmount());
+                    pencilPlayer.getCurrentRequest().setScale(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0));
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+                } else if (slot == 37) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Scale X")) {
+                if (slot == 21) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
 
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 23) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
+
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 43) {
+                    String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
+
+                    pencilPlayer.getCurrentRequest().setScale(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale Y",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, 1, ChatColor.AQUA + "Scale of the shape")));
+                            ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Height of your " + type + ".")));
                 } else if (slot == 37) {
-                    Pencil.reset(pencilPlayer, true, false, true);
-
                     player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
             } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Scale Y")) {
                 if (slot == 21) {
-                    int a = event.getClickedInventory().getItem(22).getAmount() - 1;
+                    ItemStack item = event.getClickedInventory().getItem(22);
 
-                    if (a == 0) {
-                        a = 1;
-                    }
-
-                    player.closeInventory();
-                    player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale Y",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, a, ChatColor.AQUA + "Scale of the shape")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    player.updateInventory();
                 } else if (slot == 23) {
-                    int a = event.getClickedInventory().getItem(22).getAmount() + 1;
+                    ItemStack item = event.getClickedInventory().getItem(22);
 
-                    player.closeInventory();
-                    player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale Y",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, a, ChatColor.AQUA + "Scale of the shape")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    player.updateInventory();
                 } else if (slot == 43) {
-                    Pencil.getScaleManager().set(pencilPlayer, event.getClickedInventory().getItem(23).getAmount());
+                    String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
 
+                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(0, event.getInventory().getItem(22).getAmount(), 0)));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale Z",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, 1, ChatColor.AQUA + "Scale of the shape")));
+                            ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Length of your " + type + ".")));
                 } else if (slot == 37) {
-                    Pencil.reset(pencilPlayer, true, false, true);
-
                     player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
             } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Scale Z")) {
                 if (slot == 21) {
-                    int a = event.getClickedInventory().getItem(22).getAmount() - 1;
+                    ItemStack item = event.getClickedInventory().getItem(22);
 
-                    if (a == 0) {
-                        a = 1;
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 23) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
+
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 43) {
+                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(0, 0, event.getInventory().getItem(22).getAmount())));
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+                } else if (slot == 37) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "General Radius")) {
+                if (slot == 21) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
+
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 23) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
+
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 43) {
+                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0)));
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+                } else if (slot == 37) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Radius X")) {
+                if (slot == 21) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
+
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 23) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
+
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 43) {
+                    String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
+
+                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0)));
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createScaleInterface("Radius Y",
+                            ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Y Radius of the " + type + ".")));
+                } else if (slot == 37) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Radius Y")) {
+                if (slot == 21) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
+
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 23) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
+
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 43) {
+                    String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
+
+                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(0, event.getInventory().getItem(22).getAmount(), 0));
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createScaleInterface("Radius Z",
+                            ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Z Radius of the " + type + ".")));
+                } else if (slot == 37) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Radius Z")) {
+                if (slot == 21) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
+
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 23) {
+                    ItemStack item = event.getClickedInventory().getItem(22);
+
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    player.updateInventory();
+                } else if (slot == 43) {
+                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(0, 0, event.getInventory().getItem(22).getAmount())));
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+                } else if (slot == 37) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Filled Shape")) {
+                if (slot == 12) {
+                    pencilPlayer.getCurrentRequest().setFilled(false);
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getStone());
+                } else if (slot == 14) {
+                    pencilPlayer.getCurrentRequest().setFilled(true);
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getStone());
+                } else if (slot == 31) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Stone Types")) {
+                if (slot < 45) {
+                    Material material = event.getClickedInventory().getItem(slot).getType();
+
+                    if (material != Material.AIR) {
+                        pencilPlayer.getCurrentRequest().setMaterial(material);
                     }
 
                     player.closeInventory();
-                    player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale Z",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, a, ChatColor.AQUA + "Scale of the shape")));
-                } else if (slot == 23) {
-                    int a = event.getClickedInventory().getItem(22).getAmount() + 1;
+                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
+                            MessageService.MessageType.INFO, false));
 
+                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
+                } else if (slot == 45) {
                     player.closeInventory();
-                    player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale Z",
-                            ItemUtils.getItem(Material.STONE_BUTTON, 0, a, ChatColor.AQUA + "Scale of the shape")));
-                } else if (slot == 43) {
-                    Pencil.getScaleManager().set(pencilPlayer, event.getClickedInventory().getItem(23).getAmount());
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapeFillRequestEvent(player,
-                            Pencil.getShapeManager().get(pencilPlayer, false),
-                            Pencil.getSelectionManager().get(pencilPlayer, false),
-                            Pencil.getScaleManager().get(pencilPlayer, false),
-                            null));
-
+                    player.openInventory(Pencil.getMaterials().getRandom());
+                } else if (slot == 53) {
                     player.closeInventory();
-                    player.openInventory(InterfaceUtils.createFilledShapeRequestInterface());
-                } else if (slot == 37) {
-                    Pencil.reset(pencilPlayer, true, false, true);
-
+                    player.openInventory(Pencil.getMaterials().getNatural());
+                } else if (slot == 49) {
                     player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Filled Shape")) {
-                boolean result = true;
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Natural Materials")) {
+                if (slot < 45) {
+                    Material material = event.getClickedInventory().getItem(slot).getType();
 
-                if (slot == 12) {
-                    result = true;
-
-                    //TODO: Create Material Interface Listener...
-                } else if (slot == 14) {
-                    result = false;
-
-                    //TODO: Create Material Interface Listener...
-                } else if (slot == 31) {
-                    Pencil.reset(pencilPlayer, true, false, true);
+                    if (material != Material.AIR) {
+                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                    }
 
                     player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
+                            MessageService.MessageType.INFO, false));
+
+                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
+                } else if (slot == 45) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getStone());
+                } else if (slot == 53) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getWood());
+                } else if (slot == 49) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Woods")) {
+                if (slot < 45) {
+                    Material material = event.getClickedInventory().getItem(slot).getType();
+
+                    if (material != Material.AIR) {
+                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                    }
+
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
+                            MessageService.MessageType.INFO, false));
+
+                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
+                } else if (slot == 45) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getNatural());
+                } else if (slot == 53) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getSlab());
+                } else if (slot == 49) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Slabs & Stairs")) {
+                if (slot < 45) {
+                    Material material = event.getClickedInventory().getItem(slot).getType();
+
+                    if (material != Material.AIR) {
+                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                    }
+
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
+                            MessageService.MessageType.INFO, false));
+
+                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
+                } else if (slot == 45) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getWood());
+                } else if (slot == 53) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getcOne());
+                } else if (slot == 49) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 1")) {
+                if (slot < 45) {
+                    Material material = event.getClickedInventory().getItem(slot).getType();
+
+                    if (material != Material.AIR) {
+                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                    }
+
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
+                            MessageService.MessageType.INFO, false));
+
+                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
+                } else if (slot == 45) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getSlab());
+                } else if (slot == 53) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getcTwo());
+                } else if (slot == 49) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 2")) {
+                if (slot < 45) {
+                    Material material = event.getClickedInventory().getItem(slot).getType();
+
+                    if (material != Material.AIR) {
+                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                    }
+
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
+                            MessageService.MessageType.INFO, false));
+
+                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
+                } else if (slot == 45) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getcOne());
+                } else if (slot == 53) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getcThree());
+                } else if (slot == 49) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 3")) {
+                if (slot < 45) {
+                    pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                } else if (slot == 45) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getcTwo());
+                } else if (slot == 53) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getSea());
+                } else if (slot == 49) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Sea Materials")) {
+                if (slot < 45) {
+                    pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                } else if (slot == 45) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getcThree());
+                } else if (slot == 53) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getRandom());
+                } else if (slot == 49) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Random Materials")) {
+                if (slot < 45) {
+                    Material material = event.getClickedInventory().getItem(slot).getType();
+
+                    if (material == Material.COBWEB) {
+                        material = Material.AIR;
+                    }
+
+                    pencilPlayer.getCurrentRequest().isApplicableMaterial(material, true);
+                } else if (slot == 45) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getSea());
+                } else if (slot == 53) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getStone());
+                } else if (slot == 49) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
             }
 

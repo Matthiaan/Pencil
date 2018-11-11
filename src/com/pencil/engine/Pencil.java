@@ -1,13 +1,8 @@
 package com.pencil.engine;
 
-import com.pencil.engine.utils.InterfaceSet;
-import com.pencil.engine.utils.player.PencilPlayer;
-import com.pencil.engine.utils.service.CommandService;
-import com.pencil.engine.utils.service.MetricsService;
-import com.pencil.engine.utils.service.PlayerService;
-import com.pencil.engine.utils.service.manager.ScaleManager;
-import com.pencil.engine.utils.service.manager.SelectionManager;
-import com.pencil.engine.utils.service.manager.ShapeManager;
+import com.pencil.engine.utils.MaterialSet;
+import com.pencil.engine.utils.service.*;
+import com.pencil.engine.utils.service.manager.VectorManager;
 import com.pencil.engine.utils.utilities.InterfaceUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,14 +12,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Pencil extends JavaPlugin {
 
     private static Metrics metrics;
-    private static PlayerService playerService;
+
+    private static EventService eventService;
+    private static ManagementService managementService;
     private static MetricsService metricsService;
+    private static PlayerService playerService;
 
-    private static ScaleManager scaleManager;
-    private static SelectionManager selectionManager;
-    private static ShapeManager shapeManager;
-
-    private static InterfaceSet materials;
+    private static MaterialSet materials;
 
     /**
      * This method is used to start the plugin, all necessary
@@ -59,16 +53,17 @@ public class Pencil extends JavaPlugin {
 
         getCommand("pencil").setExecutor(new CommandService());
 
+        eventService = new EventService();
+        managementService = new ManagementService();
+        metricsService = new MetricsService();
+
         playerService = new PlayerService();
         playerService.init();
 
-        metricsService = new MetricsService();
-
-        scaleManager = new ScaleManager();
-        selectionManager = new SelectionManager();
-        shapeManager = new ShapeManager();
-
         materials = InterfaceUtils.createMaterialInterface();
+
+        //Management related
+        managementService.register(new VectorManager());
     }
 
     @Override
@@ -99,37 +94,28 @@ public class Pencil extends JavaPlugin {
         return metrics;
     }
 
+    public static EventService getEventService() {
+        return eventService;
+    }
+
+    public static ManagementService getManagementService() {
+        return managementService;
+    }
+
+    public static MetricsService getMetricsService() {
+        return metricsService;
+    }
+
     public static PlayerService getPlayerService() {
         return playerService;
     }
 
-    public static ScaleManager getScaleManager() {
-        return scaleManager;
-    }
-
-    public static SelectionManager getSelectionManager() {
-        return selectionManager;
-    }
-
-    public static ShapeManager getShapeManager() {
-        return shapeManager;
-    }
-
-    public static InterfaceSet getMaterials() {
+    public static MaterialSet getMaterials() {
         return materials;
     }
 
-    public static void reset(PencilPlayer player, boolean shape, boolean selection, boolean scale) {
-        if (selection) {
-            selectionManager.reset(player);
-        }
-
-        if (shape) {
-            shapeManager.reset(player);
-        }
-
-        if (scale) {
-            scaleManager.reset(player);
-        }
+    public static VectorManager getVectorManager() {
+        return (VectorManager) managementService.getManager("vector_manager");
     }
+
 }

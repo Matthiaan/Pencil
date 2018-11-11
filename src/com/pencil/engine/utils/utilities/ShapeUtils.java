@@ -6,6 +6,7 @@ import com.pencil.engine.geometry.selection.PolygonSelection;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
 
+import java.net.Authenticator;
 import java.util.ArrayList;
 
 public class ShapeUtils {
@@ -21,6 +22,24 @@ public class ShapeUtils {
         SPHERE,
         ELLIPSOID,
         CYLINDER
+    }
+
+    public enum PositionSetType {
+        SINGLE,
+        DOUBLE,
+        MULTI
+    }
+
+    public static PositionSetType getType(ArrayList<Vector> vectors) {
+        if (vectors.size() == 1) {
+            return PositionSetType.SINGLE;
+        } else if (vectors.size() == 2) {
+            return PositionSetType.DOUBLE;
+        } else if (vectors.size() != 0) {
+            return PositionSetType.MULTI;
+        } else {
+            return null;
+        }
     }
 
     public static ArrayList<Vector> getCuboidFilled(CuboidSelection selection) {
