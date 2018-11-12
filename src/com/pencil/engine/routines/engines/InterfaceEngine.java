@@ -7,8 +7,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class InterfaceEngine {
 
-    public static Inventory createInventory(String name, int rows, int columns) {
-        return Bukkit.createInventory(null, (rows * columns) - 1, name);
+    public static Inventory createInventory(String name, int slots) {
+        return Bukkit.createInventory(null, slots, name);
     }
 
     public static void displayInventory(Player player, Inventory inventory) {

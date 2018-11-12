@@ -21,8 +21,8 @@ public class ItemUtils {
 
     private static Field profileField;
 
-    public static ItemStack getItem(Material material, int id, int amount, String name, String... lore) {
-        ItemStack item = new ItemStack(material, amount, (short) 0, (byte) id);
+    public static ItemStack getItem(Material material, int amount, String name, String... lore) {
+        ItemStack item = new ItemStack(material, amount);
         ItemMeta meta = item.getItemMeta();
 
         meta.setDisplayName(name);
@@ -105,11 +105,11 @@ public class ItemUtils {
     }
 
     public static ItemStack getExitItem() {
-        return getItem(Material.BARRIER, 0, 1, ChatColor.RED + "Exit");
+        return getItem(Material.BARRIER, 1, ChatColor.RED + "Exit");
     }
 
     public static ItemStack getFillItem() {
-        return getItem(Material.GRAY_STAINED_GLASS_PANE, 0, 1, "");
+        return getItem(Material.GRAY_STAINED_GLASS_PANE, 1, "");
     }
 
     public static ItemStack getNextPageItem() {
@@ -121,11 +121,11 @@ public class ItemUtils {
     }
 
     public static ItemStack getMenuItem() {
-        return getItem(Material.COMPASS, 0, 1, Pencil.getPrefix() + ChatColor.AQUA + "Menu");
+        return getItem(Material.COMPASS, 1, Pencil.getPrefix() + ChatColor.AQUA + "Menu");
     }
 
     public static ItemStack getWandItem() {
-        return getItem(Material.DIAMOND_AXE, 0, 1, Pencil.getPrefix() + ChatColor.AQUA + "Pencil Wand");
+        return getItem(Material.DIAMOND_AXE, 1, Pencil.getPrefix() + ChatColor.AQUA + "Pencil Wand");
     }
 
     public static ItemStack getConfirmItem() {
@@ -133,11 +133,11 @@ public class ItemUtils {
     }
 
     public static ItemStack getYesItem() {
-        return getItem(Material.GREEN_STAINED_GLASS_PANE, 0, 1, ChatColor.GREEN + "Yes");
+        return getItem(Material.GREEN_STAINED_GLASS_PANE, 1, ChatColor.GREEN + "Yes");
     }
 
     public static ItemStack getNoItem() {
-        return getItem(Material.RED_STAINED_GLASS_PANE, 0, 1, ChatColor.RED + "No");
+        return getItem(Material.RED_STAINED_GLASS_PANE, 1, ChatColor.RED + "No");
     }
 
     public static boolean matches(ItemStack item, ItemStack comparison) {
