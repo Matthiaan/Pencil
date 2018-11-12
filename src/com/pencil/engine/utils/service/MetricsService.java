@@ -46,6 +46,8 @@ public class MetricsService {
         normalType = 0;
         polyType = 0;
 
+        //TODO: Fix this null (because the maps haven't been saved/initialized!)
+        /*
         Pencil.getMetrics().addCustomChart(new Metrics.AdvancedPie(MetricsLogType.COMMAND_USAGE_RATIO.getName(), new Callable<Map<String, Integer>>() {
             @Override
             public Map<String, Integer> call() throws Exception {
@@ -85,6 +87,7 @@ public class MetricsService {
                 return Settings.getAnalytics().<Integer>get("analytics.selection-type.poly");
             }
         }));
+        */
     }
 
     public int getCommands() {

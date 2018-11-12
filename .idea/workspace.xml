@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ea5d90a-792e-4fed-ba0d-a751959ab869" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/PSuite.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/PSuite.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/PSuite.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/geometry/selection/PolygonSelection.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/geometry/selection/PolygonSelection.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/PlayerService.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/PlayerService.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MetricsService.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MetricsService.java" />
       <change beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,11 +18,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PencilInterfaceListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="695" column="0" lean-forward="false" selection-start-line="695" selection-start-column="0" selection-end-line="695" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+            <state relative-caret-position="230">
+              <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Pencil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MetricsService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/MetricsService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="452">
+              <caret line="48" column="80" lean-forward="false" selection-start-line="48" selection-start-column="80" selection-end-line="48" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -78,7 +108,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/CommandService.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MetricsService.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/TypeUtils.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/StringUtils.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/geometry/vector/MultiVector.java" />
@@ -110,7 +139,6 @@
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/MaterialSet.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/ManagementService.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/Manager.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/VectorManager.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ShapeUtils.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventService.java" />
@@ -128,6 +156,8 @@
         <option value="$PROJECT_DIR$/src/com/pencil/engine/geometry/selection/PolygonSelection.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/PlayerService.java" />
         <option value="$PROJECT_DIR$/src/plugin.yml" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MetricsService.java" />
       </list>
     </option>
   </component>
@@ -180,6 +210,21 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -193,7 +238,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BFM" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/New Pencil/Builds/Version-0.0.1.4" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -330,7 +375,7 @@
       <workItem from="1541784018129" duration="4796000" />
       <workItem from="1541799219097" duration="2391000" />
       <workItem from="1541868787461" duration="8904000" />
-      <workItem from="1541958883862" duration="1518000" />
+      <workItem from="1541958883862" duration="2995000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1540671502142</created>
@@ -437,11 +482,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542045251906</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Commit #12&#10;&#10;PSuite Pencil version ALPHA-0.0.1.2&#10;First official Pencil 2.0 Build">
+      <created>1542045406596</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1542045406596</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120257000" />
+    <option name="totallyTimeSpent" value="121734000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -497,22 +549,14 @@
     <MESSAGE value="Commit #10&#10;&#10;ALMOST finished Shape Generation!&#10;&#10;Only have to interpret the blocks!" />
     <MESSAGE value="Commit #11&#10;&#10;Reworked the complete shape generation process!&#10;&#10;Finished shape generation (still need to rework some shape position &#10;generations).&#10;&#10;Started working on the rendering of the shapes!" />
     <MESSAGE value="Commit #12&#10;&#10;PSuite Pencil version ALPHA-0.0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #12&#10;&#10;PSuite Pencil version ALPHA-0.0.1" />
+    <MESSAGE value="Commit #12&#10;&#10;PSuite Pencil version ALPHA-0.0.1.2&#10;First official Pencil 2.0 Build" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #12&#10;&#10;PSuite Pencil version ALPHA-0.0.1.2&#10;First official Pencil 2.0 Build" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/engines/ShapeEngine.java" />
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_171/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1995">
-          <caret line="195" column="16" lean-forward="false" selection-start-line="195" selection-start-column="12" selection-end-line="195" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/request/Request.java" />
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/request/ShapeRequest.java" />
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilEvent.java">
@@ -736,22 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="695" column="0" lean-forward="false" selection-start-line="695" selection-start-column="0" selection-end-line="695" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="18" column="47" lean-forward="true" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/CommandService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -792,10 +820,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="695" column="0" lean-forward="false" selection-start-line="695" selection-start-column="0" selection-end-line="695" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/plugin.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        <state relative-caret-position="230">
+          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Metrics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/MetricsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="48" column="80" lean-forward="false" selection-start-line="48" selection-start-column="80" selection-end-line="48" selection-end-column="80" />
           <folding />
         </state>
       </provider>

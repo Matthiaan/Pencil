@@ -47,7 +47,11 @@ public class Pencil extends JavaPlugin {
             Settings.getAnalytics().set("analytics.selection-type.poly", 0);
         }
 
-        if (Settings.getConfig().<Boolean>get("settings.use-metrics")) {
+        if (Settings.getConfig().get("settings.use-metrics") == null) {
+            Settings.getConfig().set("settings.metrics", true);
+        }
+
+        if (Settings.getConfig().get("settings.use-metrics") == "true") {
             metrics = new Metrics(getPlugin());
         }
 
@@ -68,6 +72,7 @@ public class Pencil extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        /*
         Settings.getAnalytics().set("analytics.command-usage-ratio.commands",
                 Settings.getAnalytics().<Integer>get("analytics.command-usage-ratio.commands" + metricsService.getCommands()));
         Settings.getAnalytics().set("analytics.command-usage-ratio.interface",
@@ -76,6 +81,7 @@ public class Pencil extends JavaPlugin {
                 Settings.getAnalytics().<Integer>get("analytics.selection-type.normal" + metricsService.getNormalType()));
         Settings.getAnalytics().set("analytics.selection-type.poly",
                 Settings.getAnalytics().<Integer>get("analytics.selection-type.poly" + metricsService.getPolyType()));
+        */
     }
 
     public static Plugin getPlugin() {
