@@ -1,35 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ea5d90a-792e-4fed-ba0d-a751959ab869" name="Default" comment="Commit #11&#10;&#10;Reworked the complete shape generation process!&#10;&#10;Finished shape generation (still need to rework some shape position &#10;generations).&#10;&#10;Started working on the rendering of the shapes!">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/MaterialSet.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapePreProcessingEvent.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/ManagementService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/Manager.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/VectorManager.java" />
+    <list default="true" id="0ea5d90a-792e-4fed-ba0d-a751959ab869" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/InterfaceSet.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilShapeAction.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilShapeAction.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilVectorSelectionEvent.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilVectorSelectionEvent.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/shape/PencilPreShapeCreationEvent.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/shape/PencilShapeFillEvent.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/shape/PencilShapeFillRequestEvent.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/shape/PencilShapeScaleRequestEvent.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInteractionListener.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInteractionListener.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilMaterialListener.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventManager.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventService.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/ScaleManager.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/SelectionManager.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/ShapeManager.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ShapeUtils.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ShapeUtils.java" />
+      <change beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,41 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="PencilInterfaceListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java">
+      <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="695" column="0" lean-forward="true" selection-start-line="695" selection-start-column="0" selection-end-line="695" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderEngine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-194">
-              <caret line="35" column="6" lean-forward="false" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PencilUtilityListener.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="27" column="10" lean-forward="false" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InterfaceUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="503" column="59" lean-forward="false" selection-start-line="503" selection-start-column="59" selection-end-line="503" selection-end-column="59" />
+            <state relative-caret-position="92">
+              <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -112,7 +57,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/pencil/engine/geometry/selection/CuboidSelection.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/geometry/selection/PolygonSelection.java" />
-        <option value="$PROJECT_DIR$/src/plugin.yml" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/CommandService.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MetricsService.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/TypeUtils.java" />
@@ -161,6 +105,7 @@
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java" />
+        <option value="$PROJECT_DIR$/src/plugin.yml" />
       </list>
     </option>
   </component>
@@ -194,10 +139,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -216,118 +158,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="command" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="geometry" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="geometry" type="462c0819:PsiDirectoryNode" />
-              <item name="selection" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="geometry" type="462c0819:PsiDirectoryNode" />
-              <item name="vector" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="engines" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="action" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="events" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="listener" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="player" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="utilities" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -470,7 +307,8 @@
       <workItem from="1541611492241" duration="8390000" />
       <workItem from="1541784018129" duration="4796000" />
       <workItem from="1541799219097" duration="2391000" />
-      <workItem from="1541868787461" duration="8284000" />
+      <workItem from="1541868787461" duration="8904000" />
+      <workItem from="1541958883862" duration="1344000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1540671502142</created>
@@ -563,11 +401,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541614791196</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Commit #11&#10;&#10;Reworked the complete shape generation process!&#10;&#10;Finished shape generation (still need to rework some shape position &#10;generations).&#10;&#10;Started working on the rendering of the shapes!">
+      <created>1541935982834</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1541935982834</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118119000" />
+    <option name="totallyTimeSpent" value="120083000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -575,7 +420,6 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32825485" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -586,7 +430,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.213125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.255625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -599,6 +443,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32825485" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963988" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -629,20 +474,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/Spigot/spigot-1.13.jar!/com/mojang/authlib/GameProfile.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="51" lean-forward="true" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Spigot/spigot-1.13.jar!/com/mojang/authlib/properties/PropertyMap.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="25" column="11" lean-forward="false" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/MetricsService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-256">
@@ -788,22 +619,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/shape/PencilPreFormattingPhaseEvent.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="96" column="21" lean-forward="false" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilVectorSelectionEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -830,7 +645,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
+        <state relative-caret-position="11569">
           <caret line="503" column="59" lean-forward="false" selection-start-line="503" selection-start-column="59" selection-end-line="503" selection-end-column="59" />
           <folding />
         </state>
@@ -892,26 +707,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java">
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="695" column="0" lean-forward="true" selection-start-line="695" selection-start-column="0" selection-end-line="695" selection-end-column="0" />
+        <state relative-caret-position="430">
+          <caret line="26" column="57" lean-forward="false" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-194">
+        <state relative-caret-position="23">
           <caret line="35" column="6" lean-forward="false" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java">
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="27" column="10" lean-forward="false" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+        <state relative-caret-position="89">
+          <caret line="695" column="0" lean-forward="false" selection-start-line="695" selection-start-column="0" selection-end-line="695" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="18" column="47" lean-forward="true" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/CommandService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
           <folding />
         </state>
       </provider>
