@@ -1,5 +1,5 @@
 name: PSuite
-version: 0.0.1
+version: 0.0.1.2
 main: com.pencil.engine.Pencil
 description: A powerful and lightweight terrain-editor for Minecraft 1.13 and up!
 website: https://github.com/Matthiaan/Pencil

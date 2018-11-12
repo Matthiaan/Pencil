@@ -28,8 +28,7 @@ public class PlayerService {
         if (!players.containsKey(player)) {
             PencilPlayer pencilPlayer = new PencilPlayer(player);
 
-            pencilPlayer.setSelectionMode(PencilPlayer.SelectionMode.NA);
-
+            pencilPlayer.setMode(PencilPlayer.SelectionMode.NA);
             players.put(player, pencilPlayer);
         }
     }

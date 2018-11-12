@@ -1,7 +1,6 @@
 package com.pencil.engine.geometry.selection;
 
 import com.pencil.engine.geometry.vector.Vector;
-import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.utilities.ShapeUtils;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -10,17 +9,21 @@ import java.util.ArrayList;
 
 public class PolygonSelection implements Selection {
 
+    public enum FillMode {
+        REGULAR, DIVIDE
+    }
+
     //This class does have a FillMode because we want to know whether to use a regular fill or a division fill!
-    private PencilPlayer.FillMode mode;
+    private FillMode mode;
     private ArrayList<Vector> vertices;
     private World world;
 
-    public PolygonSelection(PencilPlayer.FillMode mode, ArrayList<Vector> vertices) {
+    public PolygonSelection(FillMode mode, ArrayList<Vector> vertices) {
         this.mode = mode;
         this.vertices = vertices;
     }
 
-    public PolygonSelection(PencilPlayer.FillMode mode, ArrayList<Vector> vertices, World world) {
+    public PolygonSelection(FillMode mode, ArrayList<Vector> vertices, World world) {
         this.mode = mode;
         this.vertices = vertices;
         this.world = world;
