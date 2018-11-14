@@ -145,8 +145,10 @@ public class ItemUtils {
             return false;
         }
 
-        if ((!(item.getItemMeta() == comparison.getItemMeta()))) {
-            return false;
+        if (item.hasItemMeta() && comparison.hasItemMeta()) {
+            if (!item.getItemMeta().getDisplayName().equalsIgnoreCase(comparison.getItemMeta().getDisplayName())) {
+                return false;
+            }
         }
 
         return true;

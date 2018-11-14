@@ -1,7 +1,6 @@
 package com.pencil.engine.utils.service;
 
 import com.pencil.engine.Pencil;
-import com.pencil.engine.utils.utilities.StringUtils;
 import org.bukkit.ChatColor;
 
 public class MessageService {
@@ -62,7 +61,7 @@ public class MessageService {
         }
 
         if (interaction) {
-            return Pencil.getPrefix() + type.color + StringUtils.getRandomInteraction() + message + ChatColor.RESET;
+            return Pencil.getPrefix() + type.color + "Oops! " + message + ChatColor.RESET;
         } else {
             return Pencil.getPrefix() + type.color + message + ChatColor.RESET;
         }

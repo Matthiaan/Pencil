@@ -26,7 +26,7 @@ public class PencilInteractionListener implements Listener {
     @EventHandler (priority = EventPriority.MONITOR)
     public void onInteraction(PlayerInteractEvent event) {
         if (event.getItem().getItemMeta().getDisplayName().contains(Pencil.getPrefix())) {
-            if (event.getItem() == ItemUtils.getWandItem()) {
+            if (ItemUtils.matches(event.getItem(), ItemUtils.getWandItem())) {
                 PencilPlayer player = Pencil.getPlayerService().getPlayer(event.getPlayer());
                 Action action = event.getAction();
                 PencilPlayer.SelectionMode mode = player.getMode();
@@ -37,6 +37,8 @@ public class PencilInteractionListener implements Listener {
 
                     if (mode != PencilPlayer.SelectionMode.NA) {
                         if (mode == PencilPlayer.SelectionMode.VECTOR) {
+                            System.out.println("Vector Selection");
+
                             //We want to reset the position every time!
                             event.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_FIRST_POSITION_SET.getMessage(),
                                     MessageService.MessageType.INFO, false));
@@ -70,15 +72,25 @@ public class PencilInteractionListener implements Listener {
                     Bukkit.getServer().getPluginManager().callEvent(new PencilVectorSelectionEvent(player.getPlayer(), vector));
                 } else {
                     //It's a click in the air!
+                    System.out.println("Got here!");
+
                     InterfaceUtils.createWandMenu();
                 }
             }
         }
     }
 
-    @EventHandler (priority = EventPriority.LOW)
+    @EventHandler (priority = EventPriority.HIGHEST)
     public void onHotbarInteraction(PlayerInteractEvent event) {
-        if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+        if (event.getItem() == null) {
+            return;
+        }
+
+        if (!event.getItem().hasItemMeta()) {
+            return;
+        }
+
+        if (event.getItem().getItemMeta().getDisplayName().contains(Pencil.getPrefix())) {
             Pencil.getEventService().queueEvent(new PencilHotbarEvent(event.getPlayer(), event.getItem()));
         }
     }

@@ -10,36 +10,41 @@ public class LogCommand extends PencilCommand {
 
     @Override
     public void onCommand(Player player, String[] args) {
-        if (player.hasPermission(getPermission())) {
-            if (args.length != 0) {
-                String argument = args[0];
+        if (args.length != 0) {
+            String argument = args[0];
 
-                if (argument.equalsIgnoreCase("show")) {
-                    if (!Pencil.getPlayerService().getPlayer(player).getHistory().getActions().isEmpty()) {
-                        for (PencilAction action : Pencil.getPlayerService().getPlayer(player).getHistory().getActions().values()) {
-                            player.sendMessage(MessageService.formatMessage(action.toString(), MessageService.MessageType.LIST, false));
-                        }
-                    } else {
-                        player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_NO_ACTIONS_HISTORY.getMessage(),
-                                MessageService.MessageType.INFO, false));
+            if (argument.equalsIgnoreCase("show")) {
+                if (!Pencil.getPlayerService().getPlayer(player).getHistory().getActions().isEmpty()) {
+                    for (PencilAction action : Pencil.getPlayerService().getPlayer(player).getHistory().getActions().values()) {
+                        player.sendMessage(MessageService.formatMessage(action.toString(), MessageService.MessageType.LIST, false));
                     }
-                } else if (argument.equalsIgnoreCase("clear")) {
-                    Pencil.getPlayerService().getPlayer(player).getHistory().clear();
-
-                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_HISTORY_CLEARED.getMessage(),
-                            MessageService.MessageType.LIST, false));
                 } else {
-                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.COMMAND_ARGUMENT_NOT_RECOGNIZED.getMessage(),
-                            MessageService.MessageType.INFO, true));
+                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_NO_ACTIONS_HISTORY.getMessage(),
+                            MessageService.MessageType.INFO, false));
                 }
+            } else if (argument.equalsIgnoreCase("clear")) {
+                Pencil.getPlayerService().getPlayer(player).getHistory().clear();
+
+                player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_HISTORY_CLEARED.getMessage(),
+                        MessageService.MessageType.LIST, false));
             } else {
-                player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.COMMAND_ARGUMENT_MISSING.getMessage(),
+                player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.COMMAND_ARGUMENT_NOT_RECOGNIZED.getMessage(),
                         MessageService.MessageType.INFO, true));
             }
+        } else {
+            player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.COMMAND_ARGUMENT_MISSING.getMessage(),
+                    MessageService.MessageType.INFO, true));
+        }
+
+        //TODO: Make permissions
+        /*
+        if (player.hasPermission(getPermission())) {
+
         } else {
             player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_PERMISSION.getMessage(),
                     MessageService.MessageType.WARNING, true));
         }
+        */
     }
 
     @Override

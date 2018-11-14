@@ -24,16 +24,17 @@ public class InterfaceUtils {
     }
 
     public static boolean isPencilInventory(Inventory inventory) {
-        return inventory.getName().contains(Pencil.getPrefix());
+        return inventory.getName().contains("Pencil");
     }
 
     public static Inventory createMenuInterface() {
         Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Menu", 27);
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
-        gui.setItem(21, ItemUtils.getExitItem());
-        gui.setItem(10, ItemUtils.getItem(Material.DIAMOND_AXE, 1, Pencil.getPrefix() + ChatColor.AQUA + "Pencil Wand"));
-        gui.setItem(11, ItemUtils.getItem(Material.WRITTEN_BOOK, 1, Pencil.getPrefix() + ChatColor.AQUA + "History"));
+        gui.setItem(22, ItemUtils.getExitItem());
+        gui.setItem(10, ItemUtils.getItem(Material.DIAMOND_AXE, 1, ChatColor.AQUA + "Pencil Wand"));
+        gui.setItem(11, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Position Selection"));
+        gui.setItem(12, ItemUtils.getItem(Material.BOOK, 1, ChatColor.AQUA + "History"));
 
         return gui;
     }
@@ -59,7 +60,6 @@ public class InterfaceUtils {
         gui.setItem(10, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Single-Position Selection"));
         gui.setItem(11, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Double-Position Selection"));
         gui.setItem(12, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Multi-Position Selection"));
-        gui.setItem(14, ItemUtils.getItem(Material.FEATHER, 1, ChatColor.AQUA + "Reset Selected Positions"));
         gui.setItem(15, ItemUtils.getItem(Material.FEATHER, 1, ChatColor.AQUA + "Reset Position Selection"));
 
         return gui;

@@ -1,8 +1,8 @@
 name: PSuite
 api-version: 1.13
-version: 0.0.1.4
+version: 0.0.1.6
 main: com.pencil.engine.Pencil
-description: A powerful and lightweight terrain-editor for Minecraft 1.13 and up!
+description: A powerful and lightweight terrain-editor for Minecraft!
 website: https://github.com/Matthiaan/Pencil
 author: Matthiaantje
 

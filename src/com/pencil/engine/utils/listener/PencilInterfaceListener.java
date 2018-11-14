@@ -1,6 +1,5 @@
 package com.pencil.engine.utils.listener;
 
-import com.google.common.reflect.Invokable;
 import com.pencil.engine.Pencil;
 import com.pencil.engine.geometry.selection.CuboidSelection;
 import com.pencil.engine.geometry.vector.Vector;
@@ -29,12 +28,13 @@ public class PencilInterfaceListener implements Listener {
     //TODO: Fix Multi-Clicks!
     @EventHandler (priority = EventPriority.MONITOR)
     public void onInventory(InventoryClickEvent event) {
+
         if (InterfaceUtils.isPencilInventory(event.getClickedInventory())) {
             Player player = (Player) event.getWhoClicked();
             PencilPlayer pencilPlayer = Pencil.getPlayerService().getPlayer(player);
             int slot = event.getSlot();
 
-            if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Menu")) {
+            if (event.getClickedInventory().getName().contains("Menu")) {
                 if (slot == 10) {
                     if (InterfaceUtils.hasPlace(player)) {
                         player.getInventory().addItem(ItemUtils.getWandItem());
@@ -43,10 +43,13 @@ public class PencilInterfaceListener implements Listener {
                         MessageService.formatMessage(MessageService.PreFormattedMessage.GUI_ADDED_WAND_PENCIL.getMessage(),
                                 MessageService.MessageType.INFO, false);
                     }
-                } else if (slot == 21) {
+                } else if (slot == 11) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createVectorInterface());
+                } else if (slot == 22) {
                     player.closeInventory();
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Position Selection")) {
+            } else if (event.getClickedInventory().getName().contains("Position Selection")) {
                 if (slot == 10) {
                     pencilPlayer.setMode(PencilPlayer.SelectionMode.VECTOR);
 
@@ -80,7 +83,7 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 16) {
                     player.closeInventory();
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Types")) {
+            } else if (event.getClickedInventory().getName().contains("Shape Types")) {
                 if (slot == 10) {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createCuboidShapesInterface());
@@ -90,7 +93,7 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 16) {
                     player.closeInventory();
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Cuboid Shapes")) {
+            } else if (event.getClickedInventory().getName().contains("Cuboid Shapes")) {
                 ShapeUtils.PositionSetType type = ShapeUtils.getType(Pencil.getVectorManager().get(pencilPlayer));
 
                 if (type == null) {
@@ -237,7 +240,7 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 16) {
                     player.closeInventory();
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Spherical Shapes")) {
+            } else if (event.getClickedInventory().getName().contains("Spherical Shapes")) {
                 ShapeUtils.PositionSetType type = ShapeUtils.getType(Pencil.getVectorManager().get(pencilPlayer));
 
                 if (type == null) {
@@ -345,7 +348,7 @@ public class PencilInterfaceListener implements Listener {
             }
             //TODO: Fix this mess of code!
             //TODO: Fix cursor reset!
-            else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Scale")) {
+            else if (event.getClickedInventory().getName().contains("Shape Scale")) {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
@@ -364,7 +367,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Scale X")) {
+            } else if (event.getClickedInventory().getName().contains("Shape Scale X")) {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
@@ -386,7 +389,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Scale Y")) {
+            } else if (event.getClickedInventory().getName().contains("Shape Scale Y")) {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
@@ -408,7 +411,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Shape Scale Z")) {
+            } else if (event.getClickedInventory().getName().contains("Shape Scale Z")) {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
@@ -427,7 +430,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "General Radius")) {
+            } else if (event.getClickedInventory().getName().contains("General Radius")) {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
@@ -446,7 +449,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Radius X")) {
+            } else if (event.getClickedInventory().getName().contains("Radius X")) {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
@@ -468,7 +471,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Radius Y")) {
+            } else if (event.getClickedInventory().getName().contains("Radius Y")) {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
@@ -490,7 +493,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Radius Z")) {
+            } else if (event.getClickedInventory().getName().contains("Radius Z")) {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
@@ -509,7 +512,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Filled Shape")) {
+            } else if (event.getClickedInventory().getName().contains("Filled Shape")) {
                 if (slot == 12) {
                     pencilPlayer.getCurrentRequest().setFilled(false);
                     player.closeInventory();
@@ -522,7 +525,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Stone Types")) {
+            } else if (event.getClickedInventory().getName().contains("Stone Types")) {
                 if (slot < 45) {
                     Material material = event.getClickedInventory().getItem(slot).getType();
 
@@ -545,7 +548,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Natural Materials")) {
+            } else if (event.getClickedInventory().getName().contains("Natural Materials")) {
                 if (slot < 45) {
                     Material material = event.getClickedInventory().getItem(slot).getType();
 
@@ -568,7 +571,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Woods")) {
+            } else if (event.getClickedInventory().getName().contains("Woods")) {
                 if (slot < 45) {
                     Material material = event.getClickedInventory().getItem(slot).getType();
 
@@ -591,7 +594,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Slabs & Stairs")) {
+            } else if (event.getClickedInventory().getName().contains("Slabs & Stairs")) {
                 if (slot < 45) {
                     Material material = event.getClickedInventory().getItem(slot).getType();
 
@@ -614,7 +617,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 1")) {
+            } else if (event.getClickedInventory().getName().contains("Colored Items 1")) {
                 if (slot < 45) {
                     Material material = event.getClickedInventory().getItem(slot).getType();
 
@@ -637,7 +640,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 2")) {
+            } else if (event.getClickedInventory().getName().contains("Colored Items 2")) {
                 if (slot < 45) {
                     Material material = event.getClickedInventory().getItem(slot).getType();
 
@@ -660,7 +663,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Colored Items 3")) {
+            } else if (event.getClickedInventory().getName().contains("Colored Items 3")) {
                 if (slot < 45) {
                     pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                 } else if (slot == 45) {
@@ -673,7 +676,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Sea Materials")) {
+            } else if (event.getClickedInventory().getName().contains("Sea Materials")) {
                 if (slot < 45) {
                     pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                 } else if (slot == 45) {
@@ -686,7 +689,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
                 }
-            } else if (event.getClickedInventory().getName().equals(Pencil.getPrefix() + ChatColor.GREEN + "Random Materials")) {
+            } else if (event.getClickedInventory().getName().contains("Random Materials")) {
                 if (slot < 45) {
                     Material material = event.getClickedInventory().getItem(slot).getType();
 
