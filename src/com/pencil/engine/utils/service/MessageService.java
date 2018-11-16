@@ -25,6 +25,7 @@ public class MessageService {
         ACTION_NO_ACTIONS_HISTORY("Your current history of actions is empty!"),
         ACTION_HISTORY_CLEARED("Your current history has been cleared!"),
         ACTION_SHAPE_CREATION("Processing your Shape request..."),
+        ACTION_SELECTION_EMPTY("Watch out! Your selection is empty!"),
 
         NO_PERMISSION("Seems like you don't have the permission to execute this command!"),
         NO_COMMAND("Pencil didn't recognise that command!"),

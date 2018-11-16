@@ -24,7 +24,11 @@ public class InterfaceUtils {
     }
 
     public static boolean isPencilInventory(Inventory inventory) {
-        return inventory.getName().contains("Pencil");
+        if (inventory.getName().contains("Pencil")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static Inventory createMenuInterface() {
@@ -40,12 +44,12 @@ public class InterfaceUtils {
     }
 
     public static Inventory createWandMenu() {
-        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Wand Menu", 27);
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Wand Options", 27);
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
-        gui.setItem(21, ItemUtils.getExitItem());
+        gui.setItem(22, ItemUtils.getExitItem());
         gui.setItem(10, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Position Selection"));
-        gui.setItem(11, ItemUtils.getItem(Material.STONE, 1, ChatColor.AQUA + "Shape Types"));
+        gui.setItem(11, ItemUtils.getItem(Material.MAGMA_CREAM, 1, ChatColor.AQUA + "Shape Types"));
 
         return gui;
     }
@@ -84,9 +88,8 @@ public class InterfaceUtils {
 
         gui.setItem(16, ItemUtils.getExitItem());
         gui.setItem(10, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Cuboid Shapes"));
-        gui.setItem(11, ItemUtils.getSkullItemFromBase64(1, ChatColor.AQUA + "Spherical Shapes",
-                "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjI0MDcwYzliNjY1OWVkMjViMmNhMTI2OTE1ZjRkODgyMGZhZmNlNDMyNGVkOWE4ZjRiOGE1MDYzNDUzMDdmIn19fQ=="));
-        gui.setItem(12, ItemUtils.getItem(Material.STICK, 1, ChatColor.AQUA + "Regular Set"));
+        gui.setItem(11, ItemUtils.getSkullItem(1, "Drink", ChatColor.AQUA + "Spherical Shapes"));
+        gui.setItem(12, ItemUtils.getItem(Material.STICK, 1, ChatColor.AQUA + "Regular Fill"));
 
         return gui;
     }
@@ -109,12 +112,9 @@ public class InterfaceUtils {
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
         gui.setItem(16, ItemUtils.getExitItem());
-        gui.setItem(10, ItemUtils.getSkullItemFromBase64(1, ChatColor.AQUA + "Sphere",
-                "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjI0MDcwYzliNjY1OWVkMjViMmNhMTI2OTE1ZjRkODgyMGZhZmNlNDMyNGVkOWE4ZjRiOGE1MDYzNDUzMDdmIn19fQ=="));
-        gui.setItem(11, ItemUtils.getSkullItemFromBase64(1, ChatColor.AQUA + "Ellipsoid",
-                "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjI0MDcwYzliNjY1OWVkMjViMmNhMTI2OTE1ZjRkODgyMGZhZmNlNDMyNGVkOWE4ZjRiOGE1MDYzNDUzMDdmIn19fQ=="));
-        gui.setItem(12, ItemUtils.getSkullItemFromBase64(1, ChatColor.AQUA + "Cylinder",
-                "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjI0MDcwYzliNjY1OWVkMjViMmNhMTI2OTE1ZjRkODgyMGZhZmNlNDMyNGVkOWE4ZjRiOGE1MDYzNDUzMDdmIn19fQ=="));
+        gui.setItem(10, ItemUtils.getSkullItem(1, "Drink", ChatColor.AQUA + "Sphere"));
+        gui.setItem(11, ItemUtils.getSkullItem(1, "Drink", ChatColor.AQUA + "Ellipsoid"));
+        gui.setItem(12, ItemUtils.getSkullItem(1, "Drink", ChatColor.AQUA + "Cylinder"));
 
         return gui;
     }
@@ -160,7 +160,7 @@ public class InterfaceUtils {
         stone.setItem(4, ItemUtils.getItem(Material.COBBLESTONE, 1, ChatColor.AQUA + "Cobblestone"));
         stone.setItem(5, ItemUtils.getItem(Material.MOSSY_COBBLESTONE, 1, ChatColor.AQUA + "Mossy Cobblestone"));
         stone.setItem(6, ItemUtils.getItem(Material.BEDROCK, 1, ChatColor.AQUA + "Bedrock"));
-        stone.setItem(7, ItemUtils.getItem(Material.BRICK, 1, ChatColor.AQUA + "Brick"));
+        stone.setItem(7, ItemUtils.getItem(Material.BRICKS, 1, ChatColor.AQUA + "Brick"));
 
         stone.setItem(9, ItemUtils.getItem(Material.POLISHED_GRANITE, 1, ChatColor.AQUA + "Polished Granite"));
         stone.setItem(10, ItemUtils.getItem(Material.POLISHED_DIORITE, 1, ChatColor.AQUA + "Polished Diorite"));
@@ -183,7 +183,7 @@ public class InterfaceUtils {
         stone.setItem(27, ItemUtils.getItem(Material.OBSIDIAN, 1, ChatColor.AQUA + "Obsidian"));
         stone.setItem(28, ItemUtils.getItem(Material.GLOWSTONE, 1, ChatColor.AQUA + "Glowstone"));
         stone.setItem(29, ItemUtils.getItem(Material.NETHERRACK, 1, ChatColor.AQUA + "Netherrack"));
-        stone.setItem(30, ItemUtils.getItem(Material.NETHER_BRICK, 1, ChatColor.AQUA + "Nether Brick"));
+        stone.setItem(30, ItemUtils.getItem(Material.NETHER_BRICKS, 1, ChatColor.AQUA + "Nether Brick"));
         stone.setItem(31, ItemUtils.getItem(Material.RED_NETHER_BRICKS, 1, ChatColor.AQUA + "Red Nether Bricks"));
         stone.setItem(32, ItemUtils.getItem(Material.NETHER_WART_BLOCK, 1, ChatColor.AQUA + "Nether Wart Block"));
         stone.setItem(33, ItemUtils.getItem(Material.SOUL_SAND, 1, ChatColor.AQUA + "Soul Sand"));
@@ -225,23 +225,22 @@ public class InterfaceUtils {
         natural.setItem(17, ItemUtils.getItem(Material.WET_SPONGE, 1, ChatColor.AQUA + "Wet Sponge"));
 
         natural.setItem(18, ItemUtils.getItem(Material.ICE, 1, ChatColor.AQUA + "Ice"));
-        natural.setItem(19, ItemUtils.getItem(Material.FROSTED_ICE, 1, ChatColor.AQUA + "Frosted Ice"));
-        natural.setItem(20, ItemUtils.getItem(Material.PACKED_ICE, 1, ChatColor.AQUA + "Packed Ice"));
-        natural.setItem(21, ItemUtils.getItem(Material.BLUE_ICE, 1, ChatColor.AQUA + "Blue Ice"));
-        natural.setItem(22, ItemUtils.getItem(Material.COBWEB, 1, ChatColor.AQUA + "COBWEB"));
-        natural.setItem(23, ItemUtils.getItem(Material.COBBLESTONE_WALL, 1, ChatColor.AQUA + "Cobblestone Wall"));
-        natural.setItem(24, ItemUtils.getItem(Material.MOSSY_COBBLESTONE_WALL, 1, ChatColor.AQUA + "Mossy Cobblestone Wall"));
-        natural.setItem(25, ItemUtils.getItem(Material.SLIME_BLOCK, 1, ChatColor.AQUA + "Slime Block"));
+        natural.setItem(19, ItemUtils.getItem(Material.PACKED_ICE, 1, ChatColor.AQUA + "Packed Ice"));
+        natural.setItem(20, ItemUtils.getItem(Material.BLUE_ICE, 1, ChatColor.AQUA + "Blue Ice"));
+        natural.setItem(21, ItemUtils.getItem(Material.COBWEB, 1, ChatColor.AQUA + "COBWEB"));
+        natural.setItem(22, ItemUtils.getItem(Material.COBBLESTONE_WALL, 1, ChatColor.AQUA + "Cobblestone Wall"));
+        natural.setItem(23, ItemUtils.getItem(Material.MOSSY_COBBLESTONE_WALL, 1, ChatColor.AQUA + "Mossy Cobblestone Wall"));
+        natural.setItem(24, ItemUtils.getItem(Material.SLIME_BLOCK, 1, ChatColor.AQUA + "Slime Block"));
 
-        natural.setItem(26, ItemUtils.getItem(Material.ACACIA_LEAVES, 1, ChatColor.AQUA + "Acacia Leaves"));
-        natural.setItem(27, ItemUtils.getItem(Material.BIRCH_LEAVES, 1, ChatColor.AQUA + "Birch Leaves"));
-        natural.setItem(28, ItemUtils.getItem(Material.DARK_OAK_LEAVES, 1, ChatColor.AQUA + "Dark Oak Leaves"));
-        natural.setItem(29, ItemUtils.getItem(Material.JUNGLE_LEAVES, 1, ChatColor.AQUA + "Jungle Leaves"));
-        natural.setItem(30, ItemUtils.getItem(Material.OAK_LEAVES, 1, ChatColor.AQUA + "Oak Leaves"));
-        natural.setItem(31, ItemUtils.getItem(Material.SPRUCE_LEAVES, 1, ChatColor.AQUA + "Spruce Leaves"));
-        natural.setItem(32, ItemUtils.getItem(Material.RED_MUSHROOM_BLOCK, 1, ChatColor.AQUA + "Red Mushroom Block"));
-        natural.setItem(33, ItemUtils.getItem(Material.BROWN_MUSHROOM_BLOCK, 1, ChatColor.AQUA + "Brown Mushroom Block"));
-        natural.setItem(34, ItemUtils.getItem(Material.MUSHROOM_STEM, 1, ChatColor.AQUA + "Mushroom Stem"));
+        natural.setItem(27, ItemUtils.getItem(Material.ACACIA_LEAVES, 1, ChatColor.AQUA + "Acacia Leaves"));
+        natural.setItem(28, ItemUtils.getItem(Material.BIRCH_LEAVES, 1, ChatColor.AQUA + "Birch Leaves"));
+        natural.setItem(29, ItemUtils.getItem(Material.DARK_OAK_LEAVES, 1, ChatColor.AQUA + "Dark Oak Leaves"));
+        natural.setItem(30, ItemUtils.getItem(Material.JUNGLE_LEAVES, 1, ChatColor.AQUA + "Jungle Leaves"));
+        natural.setItem(31, ItemUtils.getItem(Material.OAK_LEAVES, 1, ChatColor.AQUA + "Oak Leaves"));
+        natural.setItem(32, ItemUtils.getItem(Material.SPRUCE_LEAVES, 1, ChatColor.AQUA + "Spruce Leaves"));
+        natural.setItem(33, ItemUtils.getItem(Material.RED_MUSHROOM_BLOCK, 1, ChatColor.AQUA + "Red Mushroom Block"));
+        natural.setItem(34, ItemUtils.getItem(Material.BROWN_MUSHROOM_BLOCK, 1, ChatColor.AQUA + "Brown Mushroom Block"));
+        natural.setItem(35, ItemUtils.getItem(Material.MUSHROOM_STEM, 1, ChatColor.AQUA + "Mushroom Stem"));
 
         natural.setItem(36, ItemUtils.getItem(Material.MELON, 1, ChatColor.AQUA + "Melon"));
         natural.setItem(37, ItemUtils.getItem(Material.PUMPKIN, 1, ChatColor.AQUA + "Pumpkin"));
@@ -499,9 +498,10 @@ public class InterfaceUtils {
         random.setItem(3, ItemUtils.getItem(Material.CRAFTING_TABLE, 1, ChatColor.AQUA + "Crafting Table"));
         random.setItem(4, ItemUtils.getItem(Material.ENCHANTING_TABLE, 1, ChatColor.AQUA + "Enchanting Table"));
         random.setItem(5, ItemUtils.getItem(Material.FURNACE, 1, ChatColor.AQUA + "Furnace"));
-        random.setItem(7, ItemUtils.getItem(Material.NOTE_BLOCK, 1, ChatColor.AQUA + "Note Block"));
-        random.setItem(8, ItemUtils.getItem(Material.BARRIER, 1, ChatColor.AQUA + "Barrier"));
-        random.setItem(8, ItemUtils.getItem(Material.COBWEB, 1, ChatColor.AQUA + "Air"));
+        random.setItem(6, ItemUtils.getItem(Material.NOTE_BLOCK, 1, ChatColor.AQUA + "Note Block"));
+
+        random.setItem(9, ItemUtils.getItem(Material.BARRIER, 1, ChatColor.AQUA + "Barrier"));
+        random.setItem(10, ItemUtils.getItem(Material.COBWEB, 1, ChatColor.AQUA + "Air"));
 
         return new MaterialSet(stone, natural, wood, slab, coloredItemsOne, coloredItemsTwo, coloredItemsThree, sea, random);
     }

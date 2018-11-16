@@ -9,11 +9,6 @@ public class MenuCommand extends PencilCommand {
 
     @Override
     public void onCommand(Player player, String[] args) {
-        if (args.length != 0) {
-            player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_ARGUMENTS.getMessage(),
-                    MessageService.MessageType.INFO, true));
-        }
-
         if (!(player.getInventory().firstEmpty() == -1)) {
             player.getInventory().addItem(ItemUtils.getMenuItem());
             player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.GUI_ADDED_MENU_PENCIL.getMessage(),

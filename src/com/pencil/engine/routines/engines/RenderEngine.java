@@ -2,6 +2,8 @@ package com.pencil.engine.routines.engines;
 
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
+import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
+import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.utilities.ShapeUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -22,18 +24,17 @@ import org.bukkit.entity.Player;
  */
 public class RenderEngine {
 
-    /*
-    public static void render(PencilPreShapeCreationEvent event) {
+    public static void render(PencilShapePreProcessingEvent event) {
         Player player = event.getPlayer();
+        PencilPlayer.ShapeRequest request = event.getRequest();
 
-        Selection selection = event.getSelection();
-        ShapeUtils.ShapeType type = event.getType();
-        Vector scale = event.getScale();
-        Material material = event.getMaterial();
-
-        render(player, selection, type, scale, event.isFilled(), material);
+        render(player,
+                request.getSelection(),
+                request.getType(),
+                request.getScale(),
+                request.isFilled(),
+                request.getMaterial());
     }
-    */
 
     /**
      * If the shape is a CUBE, I want to use 2 vectors.
@@ -56,6 +57,26 @@ public class RenderEngine {
             case ELLIPSOID:
             case CYLINDER:
         }
+    }
+
+    private static void drawCuboid(Player player) {
+
+    }
+
+    private static void drawPyramid(Player player) {
+
+    }
+
+    private static void drawPrism(Player player) {
+
+    }
+
+    private static void drawSphere(Player player) {
+
+    }
+
+    private static void drawCylinder(Player player) {
+
     }
 
 }

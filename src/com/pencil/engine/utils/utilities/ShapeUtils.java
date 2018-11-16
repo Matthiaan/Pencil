@@ -25,13 +25,16 @@ public class ShapeUtils {
     }
 
     public enum PositionSetType {
+        NONE,
         SINGLE,
         DOUBLE,
         MULTI
     }
 
     public static PositionSetType getType(ArrayList<Vector> vectors) {
-        if (vectors.size() == 1) {
+        if (vectors == null || vectors.size() == 0) {
+            return PositionSetType.NONE;
+        } else if (vectors.size() == 1) {
             return PositionSetType.SINGLE;
         } else if (vectors.size() == 2) {
             return PositionSetType.DOUBLE;

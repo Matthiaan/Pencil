@@ -20,6 +20,7 @@ public class PencilPlayer {
     private SelectionMode mode;
 
     private ShapeRequest shapeRequest;
+    private Selection selection;
 
     public PencilPlayer(Player player) {
         this.player = player;
@@ -51,6 +52,19 @@ public class PencilPlayer {
 
     public ShapeRequest getCurrentRequest() {
         return shapeRequest;
+    }
+
+    public void setSelection(Selection selection) {
+        if (selection == null) {
+            player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SELECTION_EMPTY.getMessage(),
+                    MessageService.MessageType.WARNING, false));
+        }
+
+        this.selection = selection;
+    }
+
+    public Selection getSelection() {
+        return selection;
     }
 
     public class ShapeRequest {

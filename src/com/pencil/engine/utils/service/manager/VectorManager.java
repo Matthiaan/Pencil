@@ -1,5 +1,9 @@
 package com.pencil.engine.utils.service.manager;
 
+import com.pencil.engine.geometry.selection.CuboidSelection;
+import com.pencil.engine.geometry.selection.PolygonSelection;
+import com.pencil.engine.geometry.selection.Selection;
+import com.pencil.engine.geometry.selection.VectorSelection;
 import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.utils.player.PencilPlayer;
 
@@ -37,6 +41,20 @@ public class VectorManager extends Manager {
             get(player).add(vector);
         } else {
             add(player, new ArrayList<>(Collections.singleton(vector)));
+        }
+    }
+
+    public Selection retrieve(PencilPlayer player) {
+        ArrayList<Vector> vectors = get(player);
+
+        if (vectors == null) {
+            return null;
+        } else if (vectors.size() == 1) {
+            return new VectorSelection(vectors.get(0), player.getPlayer().getWorld());
+        } else if (vectors.size() == 2) {
+            return new CuboidSelection(vectors.get(0), vectors.get(1), player.getPlayer().getWorld());
+        } else {
+            return new PolygonSelection(PolygonSelection.FillMode.REGULAR, vectors);
         }
     }
 

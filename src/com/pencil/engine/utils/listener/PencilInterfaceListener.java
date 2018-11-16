@@ -2,6 +2,7 @@ package com.pencil.engine.utils.listener;
 
 import com.pencil.engine.Pencil;
 import com.pencil.engine.geometry.selection.CuboidSelection;
+import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
 import com.pencil.engine.utils.player.PencilPlayer;
@@ -19,6 +20,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import sun.management.counter.perf.PerfLongArrayCounter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,6 +48,16 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 11) {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createVectorInterface());
+                } else if (slot == 22) {
+                    player.closeInventory();
+                }
+            } else if (event.getClickedInventory().getName().contains("Wand Options")) {
+                if (slot == 10) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createVectorInterface());
+                } else if (slot == 11) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createShapeTypeInterface());
                 } else if (slot == 22) {
                     player.closeInventory();
                 }
@@ -90,6 +102,11 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 11) {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createSphericalShapesInterface());
+                } else if (slot == 12) {
+                    player.closeInventory();
+                    player.openInventory(Pencil.getMaterials().getStone());
+
+                    pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
                 } else if (slot == 16) {
                     player.closeInventory();
                 }
@@ -527,17 +544,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Stone Types")) {
                 if (slot < 45) {
-                    Material material = event.getClickedInventory().getItem(slot).getType();
+                    if (pencilPlayer.getCurrentRequest() == null) {
+                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                    if (material != Material.AIR) {
-                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                        //TODO: Render this!
+                    } else {
+                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
-
-                    player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
-                            MessageService.MessageType.INFO, false));
-
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getRandom());
@@ -550,17 +563,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Natural Materials")) {
                 if (slot < 45) {
-                    Material material = event.getClickedInventory().getItem(slot).getType();
+                    if (pencilPlayer.getCurrentRequest() == null) {
+                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                    if (material != Material.AIR) {
-                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                        //TODO: Render this!
+                    } else {
+                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
-
-                    player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
-                            MessageService.MessageType.INFO, false));
-
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getStone());
@@ -573,17 +582,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Woods")) {
                 if (slot < 45) {
-                    Material material = event.getClickedInventory().getItem(slot).getType();
+                    if (pencilPlayer.getCurrentRequest() == null) {
+                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                    if (material != Material.AIR) {
-                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                        //TODO: Render this!
+                    } else {
+                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
-
-                    player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
-                            MessageService.MessageType.INFO, false));
-
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getNatural());
@@ -596,17 +601,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Slabs & Stairs")) {
                 if (slot < 45) {
-                    Material material = event.getClickedInventory().getItem(slot).getType();
+                    if (pencilPlayer.getCurrentRequest() == null) {
+                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                    if (material != Material.AIR) {
-                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                        //TODO: Render this!
+                    } else {
+                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
-
-                    player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
-                            MessageService.MessageType.INFO, false));
-
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getWood());
@@ -619,17 +620,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Colored Items 1")) {
                 if (slot < 45) {
-                    Material material = event.getClickedInventory().getItem(slot).getType();
+                    if (pencilPlayer.getCurrentRequest() == null) {
+                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                    if (material != Material.AIR) {
-                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                        //TODO: Render this!
+                    } else {
+                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
-
-                    player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
-                            MessageService.MessageType.INFO, false));
-
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getSlab());
@@ -642,17 +639,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Colored Items 2")) {
                 if (slot < 45) {
-                    Material material = event.getClickedInventory().getItem(slot).getType();
+                    if (pencilPlayer.getCurrentRequest() == null) {
+                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                    if (material != Material.AIR) {
-                        pencilPlayer.getCurrentRequest().setMaterial(material);
+                        //TODO: Render this!
+                    } else {
+                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
-
-                    player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
-                            MessageService.MessageType.INFO, false));
-
-                    Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(player, pencilPlayer.getCurrentRequest()));
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getcOne());
@@ -665,7 +658,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Colored Items 3")) {
                 if (slot < 45) {
-                    pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                    if (pencilPlayer.getCurrentRequest() == null) {
+                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+
+                        //TODO: Render this!
+                    } else {
+                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                    }
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getcTwo());
@@ -678,7 +677,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Sea Materials")) {
                 if (slot < 45) {
-                    pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                    if (pencilPlayer.getCurrentRequest() == null) {
+                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+
+                        //TODO: Render this!
+                    } else {
+                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                    }
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getcThree());
@@ -697,7 +702,13 @@ public class PencilInterfaceListener implements Listener {
                         material = Material.AIR;
                     }
 
-                    pencilPlayer.getCurrentRequest().isApplicableMaterial(material, true);
+                    if (pencilPlayer.getCurrentRequest() == null) {
+                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+
+                        //TODO: Render this!
+                    } else {
+                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                    }
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getSea());
@@ -707,6 +718,17 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 49) {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createResetDialogInterface());
+                }
+            } else if (event.getClickedInventory().getName().contains("Reset Request")) {
+                if (slot == 12) {
+                    player.closeInventory();
+                } else if (slot == 14) {
+                    player.closeInventory();
+                    pencilPlayer.setShapeRequest(null);
+
+                    Pencil.getVectorManager().remove(pencilPlayer);
+                } else if (slot == 31) {
+                    player.closeInventory();
                 }
             }
 

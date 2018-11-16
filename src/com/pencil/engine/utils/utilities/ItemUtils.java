@@ -140,6 +140,18 @@ public class ItemUtils {
         return getItem(Material.RED_STAINED_GLASS_PANE, 1, ChatColor.RED + "No");
     }
 
+    public static boolean isPencilItem(ItemStack item) {
+        if (item.hasItemMeta()) {
+            if (item.getItemMeta().getDisplayName().contains("Pencil")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public static boolean matches(ItemStack item, ItemStack comparison) {
         if (!(item.getType() == comparison.getType())) {
             return false;
