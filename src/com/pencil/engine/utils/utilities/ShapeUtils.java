@@ -6,7 +6,6 @@ import com.pencil.engine.geometry.selection.PolygonSelection;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
 
-import java.net.Authenticator;
 import java.util.ArrayList;
 
 public class ShapeUtils {
@@ -38,14 +37,20 @@ public class ShapeUtils {
             return PositionSetType.SINGLE;
         } else if (vectors.size() == 2) {
             return PositionSetType.DOUBLE;
-        } else if (vectors.size() != 0) {
-            return PositionSetType.MULTI;
         } else {
-            return null;
+            return PositionSetType.MULTI;
         }
     }
 
-    public static ArrayList<Vector> getCuboidFilled(CuboidSelection selection) {
+    public static ArrayList<Vector> getCuboid(CuboidSelection selection, boolean isFilled) {
+        if (isFilled) {
+            return getCuboidFilled(selection);
+        } else {
+            return getCuboidUnfilled(selection);
+        }
+    }
+
+    private static ArrayList<Vector> getCuboidFilled(CuboidSelection selection) {
         Vector min = selection.getNativeMinimumVector();
         Vector max = selection.getNativeMaximumVector();
 
@@ -62,7 +67,7 @@ public class ShapeUtils {
         return vectors;
     }
 
-    public static ArrayList<Vector> getCuboidUnfilled(CuboidSelection selection) {
+    private  static ArrayList<Vector> getCuboidUnfilled(CuboidSelection selection) {
         Vector min = selection.getNativeMinimumVector();
         Vector max = selection.getNativeMaximumVector();
 
@@ -84,6 +89,101 @@ public class ShapeUtils {
         }
 
         return vectors;
+    }
+
+    public static ArrayList<Vector> getPyramid(CuboidSelection selection, boolean isFilled) {
+        if (isFilled) {
+            return getPyramidFilled(selection);
+        } else {
+            return getPyramidUnfilled(selection);
+        }
+    }
+
+    public static ArrayList<Vector> getPyramidFilled(CuboidSelection selection) {
+        Vector min = selection.getNativeMinimumVector();
+        Vector max = selection.getNativeMaximumVector();
+        Vector minCalc = new Vector(max.getX(), min.getY(), max.getZ());
+
+        ArrayList<Vector> vectors = new ArrayList<>();
+
+        //Pyramids are generated using CuboidSelections!
+        CuboidSelection preSelection = new CuboidSelection(min, minCalc);
+        ArrayList<CuboidSelection> selections = getPyramidSelections(preSelection);
+
+        vectors.addAll(preSelection.getVectors());
+
+        for (CuboidSelection cSelection : selections) {
+            vectors.addAll(cSelection.getVectors());
+        }
+
+        return vectors;
+    }
+
+    private static ArrayList<Vector> getPyramidUnfilled(CuboidSelection selection) {
+        //TODO: Make this, now just return a filled selection
+        return getPyramidUnfilled(selection);
+    }
+
+    private static ArrayList<CuboidSelection> getPyramidSelections(CuboidSelection selection) {
+        Vector min = selection.getNativeMinimumVector();
+        Vector max = selection.getNativeMaximumVector();
+        Vector newMin = min;
+        Vector newMax = max;
+        ArrayList<CuboidSelection> selections = new ArrayList<>();
+
+        selections.add(selection);
+
+        int i = selection.getWidth();
+
+        //Expr ==> i = (i - 2)
+        while (i >= 1) {
+            if ((i == 1) || (i == 2)) {
+                //TODO: Fix this!
+
+                continue;
+            } else {
+                int x = max.getBlockX();
+                int z = max.getBlockZ();
+
+                newMin = new Vector(
+                     recalculatePyramidCoordinate(newMin.getBlockX(), x),
+                     0,
+                     recalculatePyramidCoordinate(newMin.getBlockZ(), z)
+                );
+
+                newMax = new Vector(
+                        reverse(recalculatePyramidCoordinate(newMax.getBlockX(), x)),
+                        0,
+                        reverse(recalculatePyramidCoordinate(newMax.getBlockZ(), z))
+                );
+
+                selections.add(new CuboidSelection(newMin, newMax));
+            }
+
+            i = i - 2;
+        }
+
+        return selections;
+    }
+
+    private static int recalculatePyramidCoordinate(int i, int p) {
+        if (i < 0) {
+            if (p < 0) {
+                return i - 1;
+            } else {
+                return i + 1;
+            }
+        } else {
+            if (p < 0) {
+                return i - 1;
+            } else {
+                return i + 1;
+            }
+        }
+    }
+
+    private static int reverse(int i) {
+        return -i;
     }
 
     //TODO: Find an algorithm

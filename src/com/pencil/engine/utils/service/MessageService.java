@@ -26,6 +26,7 @@ public class MessageService {
         ACTION_HISTORY_CLEARED("Your current history has been cleared!"),
         ACTION_SHAPE_CREATION("Processing your Shape request..."),
         ACTION_SELECTION_EMPTY("Watch out! Your selection is empty!"),
+        ACTION_SHAPE_PROCESSING_EXCEPTION("Seems like there was an error while processing your request!"),
 
         NO_PERMISSION("Seems like you don't have the permission to execute this command!"),
         NO_COMMAND("Pencil didn't recognise that command!"),
