@@ -1,6 +1,8 @@
 package com.pencil.engine.utils.listener;
 
 import com.pencil.engine.Pencil;
+import com.pencil.engine.routines.engines.RenderEngine;
+import com.pencil.engine.utils.events.PencilShapeEvent;
 import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
 import com.pencil.engine.utils.service.MessageService;
 import org.bukkit.event.EventHandler;
@@ -26,9 +28,12 @@ public class PencilUtilityListener implements Listener {
         event.getPlayer().sendMessage(MessageService.formatMessage("Received Request!",
                 MessageService.MessageType.INFO, false));
 
-        /*
         RenderEngine.render(event);
-        */
+    }
+
+    @EventHandler (priority = EventPriority.HIGHEST)
+    public void onPreShapeCreationEvent(PencilShapeEvent event) {
+
     }
 
 }

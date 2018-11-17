@@ -79,7 +79,7 @@ public class CuboidSelection implements Selection {
 
     @Override
     public ArrayList<Vector> getVectors() {
-        return ShapeUtils.getCuboidFilled(this);
+        return ShapeUtils.getCuboid(this, true);
     }
 
     @Override

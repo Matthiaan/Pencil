@@ -1,9 +1,6 @@
 package com.pencil.engine.utils.utilities;
 
-import com.pencil.engine.geometry.selection.CuboidSelection;
-import com.pencil.engine.geometry.selection.MultiSelection;
-import com.pencil.engine.geometry.selection.PolygonSelection;
-import com.pencil.engine.geometry.selection.Selection;
+import com.pencil.engine.geometry.selection.*;
 import com.pencil.engine.geometry.vector.Vector;
 
 import java.util.ArrayList;
@@ -121,7 +118,83 @@ public class ShapeUtils {
 
     private static ArrayList<Vector> getPyramidUnfilled(CuboidSelection selection) {
         //TODO: Make this, now just return a filled selection
-        return getPyramidUnfilled(selection);
+        return getPyramidFilled(selection);
+    }
+
+    public static ArrayList<Vector> getEllipsoid(VectorSelection selection, Vector scale, boolean filled) {
+        ArrayList<Vector> vectors = new ArrayList();
+        Vector origin = selection.getNativeMaximumVector();
+
+        double radiusX = scale.getX() + 0.5D;
+        double radiusY = scale.getY() + 0.5D;
+        double radiusZ = scale.getZ() + 0.5D;
+
+        radiusX += 0.5D;
+        radiusY += 0.5D;
+        radiusZ += 0.5D;
+
+        double invRadiusX = 1.0D / radiusX;
+        double invRadiusY = 1.0D / radiusY;
+        double invRadiusZ = 1.0D / radiusZ;
+
+        int ceilRadiusX = (int)Math.ceil(radiusX);
+        int ceilRadiusY = (int)Math.ceil(radiusY);
+        int ceilRadiusZ = (int)Math.ceil(radiusZ);
+
+        double nextXn = 0.0D;
+
+        forX:
+        for (int x = 0; x <= ceilRadiusX; ++x) {
+            final double xn = nextXn;
+            nextXn = (x + 1) * invRadiusX;
+            double nextYn = 0;
+
+            forY:
+            for (int y = 0; y <= ceilRadiusY; ++y) {
+                final double yn = nextYn;
+                nextYn = (y + 1) * invRadiusY;
+                double nextZn = 0;
+
+                forZ:
+                for (int z = 0; z <= ceilRadiusZ; ++z) {
+                    final double zn = nextZn;
+                    nextZn = (z + 1) * invRadiusZ;
+
+                    double distanceSq = (xn * xn) + (yn * yn) + (zn * zn);
+                    if (distanceSq > 1) {
+                        if (z == 0) {
+                            if (y == 0) {
+                                break forX;
+                            }
+                            break forY;
+                        }
+                        break forZ;
+                    }
+
+                    if (!filled) {
+                        if ((nextXn * nextXn) + (yn * yn) + (zn * zn) <= 1 && (xn * xn) + (nextYn * nextYn) + (zn * zn) <= 1 && (xn * xn) + (yn * yn) + (nextZn * nextZn) <= 1) {
+                            continue;
+                        }
+                    }
+
+                    vectors.add(new Vector(origin.add(x, y, z)));
+                    vectors.add(new Vector(origin.add(-x, y, z)));
+                    vectors.add(new Vector(origin.add(x, -y, z)));
+                    vectors.add(new Vector(origin.add(x, y, -z)));
+                    vectors.add(new Vector(origin.add(-x, -y, z)));
+                    vectors.add(new Vector(origin.add(x, -y, -z)));
+                    vectors.add(new Vector(origin.add(-x, y, -z)));
+                    vectors.add(new Vector(origin.add(-x, -y, -z)));
+                }
+            }
+        }
+
+
+        if(filled) {
+            vectors.add(origin);
+        }
+
+        return vectors;
     }
 
     private static ArrayList<CuboidSelection> getPyramidSelections(CuboidSelection selection) {

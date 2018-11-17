@@ -4,6 +4,7 @@ import com.pencil.engine.Pencil;
 import com.pencil.engine.geometry.selection.CuboidSelection;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
+import com.pencil.engine.routines.engines.RenderEngine;
 import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
 import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
@@ -280,18 +281,8 @@ public class PencilInterfaceListener implements Listener {
 
                             break;
                         case DOUBLE:
-                            ArrayList<Vector> dVectors = Pencil.getVectorManager().get(pencilPlayer);
-
-                            Vector dMin = dVectors.get(0);
-                            Vector dMax = dVectors.get(1);
-
-                            int p = Math.abs(dMax.getBlockX() - dMin.getBlockX());
-
-                            CuboidSelection dSelection = new CuboidSelection(dMin, new Vector(p, p, p), player.getWorld());
-
-                            //TODO: We should skip directly to the "filled-shape"-dialog
-                            pencilPlayer.getCurrentRequest().setSelection(dSelection);
-                            player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
+                            player.sendMessage(MessageService.formatMessage("This feature will be available in a next update!",
+                                    MessageService.MessageType.WARNING, true));
 
                             break;
                         case MULTI:
@@ -547,10 +538,12 @@ public class PencilInterfaceListener implements Listener {
                     if (pencilPlayer.getCurrentRequest() == null) {
                         pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                        //TODO: Render this!
+                        RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
                         pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
+
+                    player.closeInventory();
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getRandom());
@@ -566,10 +559,12 @@ public class PencilInterfaceListener implements Listener {
                     if (pencilPlayer.getCurrentRequest() == null) {
                         pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                        //TODO: Render this!
+                        RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
                         pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
+
+                    player.closeInventory();
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getStone());
@@ -585,10 +580,12 @@ public class PencilInterfaceListener implements Listener {
                     if (pencilPlayer.getCurrentRequest() == null) {
                         pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                        //TODO: Render this!
+                        RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
                         pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
+
+                    player.closeInventory();
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getNatural());
@@ -604,10 +601,12 @@ public class PencilInterfaceListener implements Listener {
                     if (pencilPlayer.getCurrentRequest() == null) {
                         pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                        //TODO: Render this!
+                        RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
                         pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
+
+                    player.closeInventory();
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getWood());
@@ -623,10 +622,12 @@ public class PencilInterfaceListener implements Listener {
                     if (pencilPlayer.getCurrentRequest() == null) {
                         pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                        //TODO: Render this!
+                        RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
                         pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
+
+                    player.closeInventory();
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getSlab());
@@ -642,10 +643,12 @@ public class PencilInterfaceListener implements Listener {
                     if (pencilPlayer.getCurrentRequest() == null) {
                         pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                        //TODO: Render this!
+                        RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
                         pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
+
+                    player.closeInventory();
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getcOne());
@@ -661,10 +664,12 @@ public class PencilInterfaceListener implements Listener {
                     if (pencilPlayer.getCurrentRequest() == null) {
                         pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                        //TODO: Render this!
+                        RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
                         pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
+
+                    player.closeInventory();
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getcTwo());
@@ -680,10 +685,12 @@ public class PencilInterfaceListener implements Listener {
                     if (pencilPlayer.getCurrentRequest() == null) {
                         pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                        //TODO: Render this!
+                        RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
                         pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
+
+                    player.closeInventory();
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getcThree());
@@ -705,10 +712,12 @@ public class PencilInterfaceListener implements Listener {
                     if (pencilPlayer.getCurrentRequest() == null) {
                         pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
 
-                        //TODO: Render this!
+                        RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
                         pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
                     }
+
+                    player.closeInventory();
                 } else if (slot == 45) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getSea());
