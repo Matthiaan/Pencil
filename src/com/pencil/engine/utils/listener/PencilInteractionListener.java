@@ -46,7 +46,7 @@ public class PencilInteractionListener implements Listener {
                                 event.getPlayer().sendMessage(MessageService.formatMessage(ChatColor.GREEN + "Position: " + vector.toString(),
                                         MessageService.MessageType.INFO, false));
 
-                                Pencil.getVectorManager().add(player, new ArrayList<>(Collections.singleton(vector)));
+                                Pencil.getVectorManager().addVector(player, vector);
                             } else if (mode == PencilPlayer.SelectionMode.DOUBLE) {
                                 //We want to store only 1 Vector in cache, than return it to the Vector Manager
 
@@ -58,16 +58,16 @@ public class PencilInteractionListener implements Listener {
                                         event.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_FIRST_POSITION_SET.getMessage(),
                                                 MessageService.MessageType.INFO, false));
                                     } else {
-                                        cached.get(player).add(vector);
+                                        Vector cachedVector = cached.get(player).get(0);
 
                                         event.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_SECOND_POSITION_SET.getMessage(),
                                                 MessageService.MessageType.INFO, false));
+
+                                        Pencil.getVectorManager().addCuboid(player, cachedVector, vector);
                                     }
 
                                     event.getPlayer().sendMessage(MessageService.formatMessage(ChatColor.GREEN + "Position: " + vector.toString(),
                                             MessageService.MessageType.INFO, false));
-
-                                    Pencil.getVectorManager().add(player, new ArrayList<>(cached.get(player)));
                                 } else {
                                     //We want to keep updating the Vector Manager
                                     event.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_FIRST_POSITION_SET.getMessage(),
@@ -83,14 +83,16 @@ public class PencilInteractionListener implements Listener {
                                 event.getPlayer().sendMessage(MessageService.formatMessage(ChatColor.GREEN + "Position: " + vector.toString(),
                                         MessageService.MessageType.INFO, false));
 
-                                Pencil.getVectorManager().update(player, vector);
+                                cached.get(player).add(vector);
+
+                                Pencil.getVectorManager().addPolygon(player, cached.get(player));
                             }
                         } else {
                             player.getPlayer().openInventory(InterfaceUtils.createVectorInterface());
                         }
 
                         event.setCancelled(true);
-                        Bukkit.getServer().getPluginManager().callEvent(new PencilVectorSelectionEvent(player.getPlayer(), vector));
+                        Pencil.getEventService().queueEvent(new PencilVectorSelectionEvent(player.getPlayer(), vector));
                     } else {
                         //It's a click in the air!
                         player.getPlayer().openInventory(InterfaceUtils.createWandMenu());

@@ -64,6 +64,7 @@ public class InterfaceUtils {
         gui.setItem(10, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Single-Position Selection"));
         gui.setItem(11, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Double-Position Selection"));
         gui.setItem(12, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Multi-Position Selection"));
+        gui.setItem(14, ItemUtils.getItem(Material.BONE_MEAL, 1, ChatColor.AQUA + "Reset Positions"));
         gui.setItem(15, ItemUtils.getItem(Material.FEATHER, 1, ChatColor.AQUA + "Reset Position Selection"));
 
         return gui;

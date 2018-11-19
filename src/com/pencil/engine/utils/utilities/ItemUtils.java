@@ -93,13 +93,14 @@ public class ItemUtils {
         return null;
     }
 
-    public static ItemStack changeMeta(ItemStack item, String name, String... lore) {
+    public static ItemStack changeMeta(ItemStack item, int newAmount, String name, String... lore) {
         ItemMeta meta = item.getItemMeta();
 
         meta.setDisplayName(name);
         meta.setLore(Arrays.asList(lore));
 
         item.setItemMeta(meta);
+        item.setAmount(newAmount);
 
         return item;
     }

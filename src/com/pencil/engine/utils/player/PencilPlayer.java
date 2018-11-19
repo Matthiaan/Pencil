@@ -1,7 +1,9 @@
 package com.pencil.engine.utils.player;
 
+import com.pencil.engine.Pencil;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
+import com.pencil.engine.utils.events.PencilShapeEvent;
 import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
 import com.pencil.engine.utils.service.MessageService;
 import com.pencil.engine.utils.utilities.ShapeUtils;
@@ -137,7 +139,11 @@ public class PencilPlayer {
                 owner.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
                         MessageService.MessageType.INFO, false));
 
-                Bukkit.getServer().getPluginManager().callEvent(new PencilShapePreProcessingEvent(owner, this));
+                if (Pencil.getSelectionManager().hasSelection(Pencil.getPlayerService().getPlayer(player))) {
+                    setSelection(Pencil.getSelectionManager().get(Pencil.getPlayerService().getPlayer(player)));
+                }
+
+                Pencil.getEventService().queueEvent(new PencilShapePreProcessingEvent(owner, this));
             }
         }
     }

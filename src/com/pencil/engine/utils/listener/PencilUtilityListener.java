@@ -25,9 +25,6 @@ public class PencilUtilityListener implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onPreShapeCreationEvent(PencilShapePreProcessingEvent event) {
-        event.getPlayer().sendMessage(MessageService.formatMessage("Received Request!",
-                MessageService.MessageType.INFO, false));
-
         RenderEngine.render(event);
     }
 

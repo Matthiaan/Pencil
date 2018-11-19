@@ -11,4 +11,13 @@ package com.pencil.engine.routines.engines;
  *
  * //TODO: Switch drawing from RenderEngine to here!
  */
-public class DrawEngine { }
+public class DrawEngine {
+
+    public enum DrawMode {
+        FAST,
+        FANCY,
+        REGULATED,
+        SLOW
+    }
+
+}

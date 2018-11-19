@@ -182,4 +182,9 @@ public class PolygonSelection implements Selection {
     public Location asLocation(World world, Vector other) {
         return null;
     }
+
+    @Override
+    public SelectionType getType() {
+        return SelectionType.POLYGON;
+    }
 }

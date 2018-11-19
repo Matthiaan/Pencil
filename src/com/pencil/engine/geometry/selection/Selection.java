@@ -13,6 +13,12 @@ import java.util.ArrayList;
  */
 public abstract interface Selection {
 
+    public enum SelectionType {
+        VECTOR,
+        CUBOID,
+        POLYGON
+    }
+
     /**
      * @see Vector
      *
@@ -89,5 +95,12 @@ public abstract interface Selection {
      * @return The given vector as a location.
      */
     Location asLocation(World world, Vector other);
+
+    /**
+     * Get the type of selection.
+     *
+     * @return The type of selection.
+     */
+    SelectionType getType();
 
 }

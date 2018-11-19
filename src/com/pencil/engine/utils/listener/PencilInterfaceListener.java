@@ -5,13 +5,11 @@ import com.pencil.engine.geometry.selection.CuboidSelection;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.routines.engines.RenderEngine;
-import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
 import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
 import com.pencil.engine.utils.utilities.InterfaceUtils;
 import com.pencil.engine.utils.utilities.ItemUtils;
 import com.pencil.engine.utils.utilities.ShapeUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -21,10 +19,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import sun.management.counter.perf.PerfLongArrayCounter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class PencilInterfaceListener implements Listener {
 
@@ -82,7 +78,7 @@ public class PencilInterfaceListener implements Listener {
                     player.sendMessage(MessageService.formatMessage("Pencil will keep storing positions until these have been reset!",
                             MessageService.MessageType.INFO, false));
                 } else if (slot == 14) {
-                    Pencil.getVectorManager().remove(pencilPlayer);
+                    Pencil.getSelectionManager().remove(pencilPlayer);
 
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage("Your stored positions have been reset!",
@@ -106,13 +102,11 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 12) {
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getStone());
-
-                    pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
                 } else if (slot == 16) {
                     player.closeInventory();
                 }
             } else if (event.getClickedInventory().getName().contains("Cuboid Shapes")) {
-                ShapeUtils.PositionSetType type = ShapeUtils.getType(Pencil.getVectorManager().get(pencilPlayer));
+                ShapeUtils.PositionSetType type = ShapeUtils.getType(Pencil.getSelectionManager().get(pencilPlayer));
 
                 if (type == null) {
                     //We are using the player's position now!
@@ -120,7 +114,7 @@ public class PencilInterfaceListener implements Listener {
                     type = ShapeUtils.PositionSetType.SINGLE;
 
                     Vector vector = new Vector(pencilPlayer.getPlayer().getLocation());
-                    Pencil.getVectorManager().add(pencilPlayer, new ArrayList<>(Collections.singleton(vector)));
+                    Pencil.getVectorManager().addVector(pencilPlayer, vector);
                 }
 
                 if (slot == 10) {
@@ -141,20 +135,9 @@ public class PencilInterfaceListener implements Listener {
 
                             break;
                         case MULTI:
-                            ArrayList<Vector> mVectors = Pencil.getVectorManager().get(pencilPlayer);
+                            player.sendMessage(MessageService.formatMessage("You can't create a cube when you have 2 positions stored!",
+                                    MessageService.MessageType.ERROR, true));
 
-                            Vector mMin = mVectors.get(0);
-                            Vector mMax = mVectors.get(1);
-
-                            //Calculating so that min and max are contained inside of the cube! (Min is already in)
-                            int p = Math.abs(mMax.getBlockX() - mMin.getBlockX());
-
-                            CuboidSelection dSelection = new CuboidSelection(mMin, new Vector(p, p, p), player.getWorld());
-
-                            pencilPlayer.getCurrentRequest().setSelection(dSelection);
-                            player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
-                            player.sendMessage(MessageService.formatMessage("This feature is in Alpha Phase!",
-                                    MessageService.MessageType.WARNING, true));
                             break;
                     }
                 } else if (slot == 11) {
@@ -168,7 +151,13 @@ public class PencilInterfaceListener implements Listener {
 
                             break;
                         case DOUBLE:
-                            ArrayList<Vector> dVectors = Pencil.getVectorManager().get(pencilPlayer);
+                            ArrayList<Vector> dVectors = Pencil.getSelectionManager().get(pencilPlayer, Selection.SelectionType.CUBOID).getVectors();
+
+                            if (dVectors == null) {
+                                System.out.println("error InterfaceUtils 160");
+
+                                return;
+                            }
 
                             Vector dMin = dVectors.get(0);
                             Vector dMax = dVectors.get(1);
@@ -181,20 +170,7 @@ public class PencilInterfaceListener implements Listener {
 
                             break;
                         case MULTI:
-                            //TODO: Rework this
-                            ArrayList<Vector> mVectors = Pencil.getVectorManager().get(pencilPlayer);
-
-                            Vector mMin = mVectors.get(0);
-                            Vector mMax = mVectors.get(1);
-
-                            //Calculating so that min and max are contained inside of the cube! (Min is already in)
-                            int p = Math.abs(mMax.getBlockX() - mMin.getBlockX());
-
-                            CuboidSelection mSelection = new CuboidSelection(mMin, new Vector(p, p, p), player.getWorld());
-
-                            pencilPlayer.getCurrentRequest().setSelection(mSelection);
-                            player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
-                            player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
+                            player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
                                     MessageService.MessageType.WARNING, true));
 
                             break;
@@ -211,7 +187,13 @@ public class PencilInterfaceListener implements Listener {
                             break;
                         case DOUBLE:
                             //TODO: Rework this
-                            ArrayList<Vector> dVectors = Pencil.getVectorManager().get(pencilPlayer);
+                            ArrayList<Vector> dVectors = Pencil.getSelectionManager().get(pencilPlayer, Selection.SelectionType.CUBOID).getVectors();
+
+                            if (dVectors == null) {
+                                System.out.println("error InterfaceUtils 196");
+
+                                return;
+                            }
 
                             Vector dMin = dVectors.get(0);
                             Vector dMax = dVectors.get(1);
@@ -259,7 +241,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                 }
             } else if (event.getClickedInventory().getName().contains("Spherical Shapes")) {
-                ShapeUtils.PositionSetType type = ShapeUtils.getType(Pencil.getVectorManager().get(pencilPlayer));
+                ShapeUtils.PositionSetType type = ShapeUtils.getType(Pencil.getSelectionManager().get(pencilPlayer));
 
                 if (type == null) {
                     //We are using the player's position now!
@@ -267,7 +249,7 @@ public class PencilInterfaceListener implements Listener {
                     type = ShapeUtils.PositionSetType.SINGLE;
 
                     Vector vector = new Vector(pencilPlayer.getPlayer().getLocation());
-                    Pencil.getVectorManager().add(pencilPlayer, new ArrayList<>(Collections.singleton(vector)));
+                    Pencil.getVectorManager().addVector(pencilPlayer, vector);
                 }
 
                 if (slot == 10) {
@@ -302,7 +284,13 @@ public class PencilInterfaceListener implements Listener {
 
                             break;
                         case DOUBLE:
-                            ArrayList<Vector> dVectors = Pencil.getVectorManager().get(pencilPlayer);
+                            ArrayList<Vector> dVectors = Pencil.getSelectionManager().get(pencilPlayer, Selection.SelectionType.CUBOID).getVectors();
+
+                            if (dVectors == null) {
+                                System.out.println("error InterfaceUtils 293");
+
+                                return;
+                            }
 
                             Vector dMin = dVectors.get(0);
                             Vector dMax = dVectors.get(1);
@@ -330,7 +318,13 @@ public class PencilInterfaceListener implements Listener {
                             player.openInventory(InterfaceUtils.createScaleInterface("General Radius",
                                     ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Radius of the cylinder.")));
                         case DOUBLE:
-                            ArrayList<Vector> dVectors = Pencil.getVectorManager().get(pencilPlayer);
+                            ArrayList<Vector> dVectors = Pencil.getSelectionManager().get(pencilPlayer, Selection.SelectionType.CUBOID).getVectors();
+
+                            if (dVectors == null) {
+                                System.out.println("error InterfaceUtils 160");
+
+                                return;
+                            }
 
                             Vector dMin = dVectors.get(0);
                             Vector dMax = dVectors.get(1);
@@ -360,15 +354,18 @@ public class PencilInterfaceListener implements Listener {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() - 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
                     player.updateInventory();
                 } else if (slot == 23) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    pencilPlayer.getCurrentRequest().setScale(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0));
+                    pencilPlayer.getCurrentRequest().setScale(new Vector(
+                            event.getInventory().getItem(22).getAmount(),
+                            event.getInventory().getItem(22).getAmount(),
+                            event.getInventory().getItem(22).getAmount()));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                 } else if (slot == 37) {
@@ -379,12 +376,12 @@ public class PencilInterfaceListener implements Listener {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() - 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
                     player.updateInventory();
                 } else if (slot == 23) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
                     String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
@@ -401,15 +398,23 @@ public class PencilInterfaceListener implements Listener {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() - 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
                     player.updateInventory();
                 } else if (slot == 23) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
                     String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
+
+                    if (pencilPlayer.getCurrentRequest().getScale() == null) {
+                        player.closeInventory();
+                        player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SOMETHING_WENT_WRONG.getMessage(),
+                                MessageService.MessageType.ERROR, true));
+
+                        return;
+                    }
 
                     pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(0, event.getInventory().getItem(22).getAmount(), 0)));
                     player.closeInventory();
@@ -423,15 +428,23 @@ public class PencilInterfaceListener implements Listener {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() - 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
                     player.updateInventory();
                 } else if (slot == 23) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(0, 0, event.getInventory().getItem(22).getAmount())));
+                    if (pencilPlayer.getCurrentRequest().getScale() == null) {
+                        player.closeInventory();
+                        player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SOMETHING_WENT_WRONG.getMessage(),
+                                MessageService.MessageType.ERROR, true));
+
+                        return;
+                    }
+
+                    pencilPlayer.getCurrentRequest().getScale().add(pencilPlayer.getCurrentRequest().getScale().add(new Vector(0, 0, event.getInventory().getItem(22).getAmount())));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                 } else if (slot == 37) {
@@ -442,12 +455,12 @@ public class PencilInterfaceListener implements Listener {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() - 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
                     player.updateInventory();
                 } else if (slot == 23) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
                     pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0)));
@@ -461,12 +474,12 @@ public class PencilInterfaceListener implements Listener {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() - 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
                     player.updateInventory();
                 } else if (slot == 23) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
                     String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
@@ -483,12 +496,12 @@ public class PencilInterfaceListener implements Listener {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() - 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
                     player.updateInventory();
                 } else if (slot == 23) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
                     String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
@@ -505,12 +518,12 @@ public class PencilInterfaceListener implements Listener {
                 if (slot == 21) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() - 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() - 1) + "")));
                     player.updateInventory();
                 } else if (slot == 23) {
                     ItemStack item = event.getClickedInventory().getItem(22);
 
-                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
+                    event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
                     pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(0, 0, event.getInventory().getItem(22).getAmount())));
@@ -536,7 +549,7 @@ public class PencilInterfaceListener implements Listener {
             } else if (event.getClickedInventory().getName().contains("Stone Types")) {
                 if (slot < 45) {
                     if (pencilPlayer.getCurrentRequest() == null) {
-                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+                        pencilPlayer.setSelection(Pencil.getSelectionManager().get(pencilPlayer));
 
                         RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
@@ -557,7 +570,7 @@ public class PencilInterfaceListener implements Listener {
             } else if (event.getClickedInventory().getName().contains("Natural Materials")) {
                 if (slot < 45) {
                     if (pencilPlayer.getCurrentRequest() == null) {
-                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+                        pencilPlayer.setSelection(Pencil.getSelectionManager().get(pencilPlayer));
 
                         RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
@@ -578,7 +591,7 @@ public class PencilInterfaceListener implements Listener {
             } else if (event.getClickedInventory().getName().contains("Woods")) {
                 if (slot < 45) {
                     if (pencilPlayer.getCurrentRequest() == null) {
-                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+                        pencilPlayer.setSelection(Pencil.getSelectionManager().get(pencilPlayer));
 
                         RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
@@ -599,7 +612,7 @@ public class PencilInterfaceListener implements Listener {
             } else if (event.getClickedInventory().getName().contains("Slabs & Stairs")) {
                 if (slot < 45) {
                     if (pencilPlayer.getCurrentRequest() == null) {
-                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+                        pencilPlayer.setSelection(Pencil.getSelectionManager().get(pencilPlayer));
 
                         RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
@@ -620,7 +633,7 @@ public class PencilInterfaceListener implements Listener {
             } else if (event.getClickedInventory().getName().contains("Colored Items 1")) {
                 if (slot < 45) {
                     if (pencilPlayer.getCurrentRequest() == null) {
-                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+                        pencilPlayer.setSelection(Pencil.getSelectionManager().get(pencilPlayer));
 
                         RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
@@ -641,7 +654,7 @@ public class PencilInterfaceListener implements Listener {
             } else if (event.getClickedInventory().getName().contains("Colored Items 2")) {
                 if (slot < 45) {
                     if (pencilPlayer.getCurrentRequest() == null) {
-                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+                        pencilPlayer.setSelection(Pencil.getSelectionManager().get(pencilPlayer));
 
                         RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
@@ -662,7 +675,7 @@ public class PencilInterfaceListener implements Listener {
             } else if (event.getClickedInventory().getName().contains("Colored Items 3")) {
                 if (slot < 45) {
                     if (pencilPlayer.getCurrentRequest() == null) {
-                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+                        pencilPlayer.setSelection(Pencil.getSelectionManager().get(pencilPlayer));
 
                         RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
@@ -683,7 +696,7 @@ public class PencilInterfaceListener implements Listener {
             } else if (event.getClickedInventory().getName().contains("Sea Materials")) {
                 if (slot < 45) {
                     if (pencilPlayer.getCurrentRequest() == null) {
-                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+                        pencilPlayer.setSelection(Pencil.getSelectionManager().get(pencilPlayer));
 
                         RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
@@ -710,7 +723,7 @@ public class PencilInterfaceListener implements Listener {
                     }
 
                     if (pencilPlayer.getCurrentRequest() == null) {
-                        pencilPlayer.setSelection(Pencil.getVectorManager().retrieve(pencilPlayer));
+                        pencilPlayer.setSelection(Pencil.getSelectionManager().get(pencilPlayer));
 
                         RenderEngine.render(player, pencilPlayer.getSelection(), event.getInventory().getItem(slot).getType());
                     } else {
@@ -735,7 +748,7 @@ public class PencilInterfaceListener implements Listener {
                     player.closeInventory();
                     pencilPlayer.setShapeRequest(null);
 
-                    Pencil.getVectorManager().remove(pencilPlayer);
+                    Pencil.getSelectionManager().remove(pencilPlayer);
                 } else if (slot == 31) {
                     player.closeInventory();
                 }

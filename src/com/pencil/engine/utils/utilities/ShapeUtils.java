@@ -27,12 +27,12 @@ public class ShapeUtils {
         MULTI
     }
 
-    public static PositionSetType getType(ArrayList<Vector> vectors) {
-        if (vectors == null || vectors.size() == 0) {
+    public static PositionSetType getType(Selection selection) {
+        if (selection == null) {
             return PositionSetType.NONE;
-        } else if (vectors.size() == 1) {
+        } else if (selection instanceof VectorSelection) {
             return PositionSetType.SINGLE;
-        } else if (vectors.size() == 2) {
+        } else if (selection instanceof CuboidSelection) {
             return PositionSetType.DOUBLE;
         } else {
             return PositionSetType.MULTI;

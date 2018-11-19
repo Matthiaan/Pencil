@@ -99,4 +99,9 @@ public class CuboidSelection implements Selection {
             return null;
         }
     }
+
+    @Override
+    public SelectionType getType() {
+        return SelectionType.CUBOID;
+    }
 }

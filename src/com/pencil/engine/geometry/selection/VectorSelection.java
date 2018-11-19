@@ -93,4 +93,9 @@ public class VectorSelection implements Selection {
             return null;
         }
     }
+
+    @Override
+    public SelectionType getType() {
+        return SelectionType.VECTOR;
+    }
 }

@@ -108,7 +108,7 @@ public class RenderEngine {
      */
     private static boolean drawCuboid(Selection selection, Vector scale, boolean isFilled, Material material, World world)
             throws ShapeProcessingException {
-        if (selection instanceof VectorSelection) {
+        if (selection.getType() == Selection.SelectionType.VECTOR) {
             VectorSelection vSelection = (VectorSelection) selection;
             Vector max = vSelection.getNativeMaximumVector().add(scale);
 
@@ -117,14 +117,12 @@ public class RenderEngine {
             }
 
             return true;
-        } else if (selection instanceof CuboidSelection) {
+        } else if (selection.getType() == Selection.SelectionType.CUBOID) {
             for (Vector vector : ShapeUtils.getCuboid((CuboidSelection) selection, isFilled)) {
                 drawVoxel(world, vector, material);
             }
 
             return true;
-        } else if (selection == null) {
-            throw new ShapeProcessingException("Null selection!");
         } else {
             throw new ShapeProcessingException("This cannot happen! Please contact a(n) operator/developer!");
         }
@@ -145,7 +143,7 @@ public class RenderEngine {
      */
     private static boolean drawPyramid(Selection selection, Vector scale, boolean isFilled, Material material, World world)
             throws ShapeProcessingException {
-        if (selection instanceof VectorSelection) {
+        if (selection.getType() == Selection.SelectionType.VECTOR) {
             VectorSelection vSelection = (VectorSelection) selection;
             Vector max = vSelection.getNativeMaximumVector().add(scale);
 
@@ -154,14 +152,12 @@ public class RenderEngine {
             }
 
             return true;
-        } else if (selection instanceof CuboidSelection) {
+        } else if (selection.getType() == Selection.SelectionType.CUBOID) {
             for (Vector vector : ShapeUtils.getPyramid((CuboidSelection) selection, isFilled)) {
                 drawVoxel(world, vector, material);
             }
 
             return true;
-        } else if (selection == null) {
-            throw new ShapeProcessingException("Null selection!");
         } else {
             throw new ShapeProcessingException("This cannot happen! Please contact a(n) operator/developer!");
         }
@@ -185,7 +181,7 @@ public class RenderEngine {
      */
     private static boolean drawSphere(Selection selection, Vector scale, boolean isFilled, Material material, World world)
             throws ShapeProcessingException {
-        if (selection instanceof VectorSelection) {
+        if (selection.getType() == Selection.SelectionType.VECTOR) {
             VectorSelection vSelection = (VectorSelection) selection;
 
             for (Vector vector : ShapeUtils.getEllipsoid(vSelection, scale, isFilled)) {
@@ -193,10 +189,6 @@ public class RenderEngine {
             }
 
             return true;
-        } else if (selection instanceof CuboidSelection) {
-            throw new ShapeProcessingException("Shapes can't be made using CuboidSelections");
-        } else if (selection == null) {
-            throw new ShapeProcessingException("Null selection!");
         } else {
             throw new ShapeProcessingException("This cannot happen! Please contact a(n) operator/developer!");
         }

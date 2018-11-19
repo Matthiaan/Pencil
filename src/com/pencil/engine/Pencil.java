@@ -2,6 +2,7 @@ package com.pencil.engine;
 
 import com.pencil.engine.utils.MaterialSet;
 import com.pencil.engine.utils.service.*;
+import com.pencil.engine.utils.service.manager.SelectionManager;
 import com.pencil.engine.utils.service.manager.VectorManager;
 import com.pencil.engine.utils.utilities.InterfaceUtils;
 import org.bukkit.Bukkit;
@@ -67,6 +68,7 @@ public class Pencil extends JavaPlugin {
         materials = InterfaceUtils.createMaterialInterface();
 
         //Management related
+        managementService.register(new SelectionManager());
         managementService.register(new VectorManager());
     }
 
@@ -118,6 +120,10 @@ public class Pencil extends JavaPlugin {
 
     public static MaterialSet getMaterials() {
         return materials;
+    }
+
+    public static SelectionManager getSelectionManager() {
+        return (SelectionManager) managementService.getManager("selection_manager");
     }
 
     public static VectorManager getVectorManager() {
