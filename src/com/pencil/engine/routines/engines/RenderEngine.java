@@ -73,12 +73,12 @@ public class RenderEngine {
             switch (type) {
                 case CUBE:
                 case CUBOID:
-                    return drawCuboid(selection, scale, isFilled, material, player.getWorld());
+                    return drawCuboid(player, selection, scale, isFilled, material, player.getWorld());
                 case PYRAMID:
-                    return drawPyramid(selection, scale, isFilled, material, player.getWorld());
+                    return drawPyramid(player, selection, scale, isFilled, material, player.getWorld());
                 case SPHERE:
                 case ELLIPSOID:
-                    return drawSphere(selection, scale, isFilled, material, player.getWorld());
+                    return drawSphere(player, selection, scale, isFilled, material, player.getWorld());
                 case CYLINDER:
                 case PRISM:
                     return false;
@@ -99,6 +99,7 @@ public class RenderEngine {
      * Note: We don't check for "PolygonSelection" since this is automatically
      * converted to a CuboidSelection in the Shape Selection process!
      *
+     * @param player The player that performs the operation.
      * @param selection The selection the operation should be performed within.
      * @param scale The optional scale of the operation.
      * @param isFilled Decides whether or not the to be generated shape should be filled or not.
@@ -106,20 +107,23 @@ public class RenderEngine {
      * @param world The world the operation should be performed within.
      * @throws ShapeProcessingException Is thrown whenever a selection doesn't match the requirements.
      */
-    private static boolean drawCuboid(Selection selection, Vector scale, boolean isFilled, Material material, World world)
+    private static boolean drawCuboid(Player player, Selection selection, Vector scale, boolean isFilled, Material material, World world)
             throws ShapeProcessingException {
         if (selection.getType() == Selection.SelectionType.VECTOR) {
             VectorSelection vSelection = (VectorSelection) selection;
             Vector max = vSelection.getNativeMaximumVector().add(scale);
+            ArrayList<Vector> vectors = ShapeUtils.getCuboid(new CuboidSelection(vSelection.getNativeMaximumVector(), max), isFilled);
 
-            for (Vector vector : ShapeUtils.getCuboid(new CuboidSelection(vSelection.getNativeMaximumVector(), max), isFilled)) {
-                drawVoxel(world, vector, material);
+            for (int i = 0; i < vectors.size(); i++) {
+                drawVoxel(player, world, vectors.get(i), material, (i == (vectors.size() - 1)));
             }
 
             return true;
         } else if (selection.getType() == Selection.SelectionType.CUBOID) {
-            for (Vector vector : ShapeUtils.getCuboid((CuboidSelection) selection, isFilled)) {
-                drawVoxel(world, vector, material);
+            ArrayList<Vector> vectors = ShapeUtils.getCuboid((CuboidSelection) selection, isFilled);
+
+            for (int i = 0; i < vectors.size(); i++) {
+                drawVoxel(player, world, vectors.get(i), material, (i == (vectors.size() - 1)));
             }
 
             return true;
@@ -134,6 +138,7 @@ public class RenderEngine {
      * Note: We don't check for "PolygonSelection" since this is automatically
      * converted to a CuboidSelection in the Shape Selection process!
      *
+     * @param player The player that performs the operation.
      * @param selection The selection the operation should be performed within.
      * @param scale The optional scale of the operation.
      * @param isFilled Decides whether or not the to be generated shape should be filled or not.
@@ -141,20 +146,23 @@ public class RenderEngine {
      * @param world The world the operation should be performed within.
      * @throws ShapeProcessingException Is thrown whenever a selection doesn't match the requirements.
      */
-    private static boolean drawPyramid(Selection selection, Vector scale, boolean isFilled, Material material, World world)
+    private static boolean drawPyramid(Player player, Selection selection, Vector scale, boolean isFilled, Material material, World world)
             throws ShapeProcessingException {
         if (selection.getType() == Selection.SelectionType.VECTOR) {
             VectorSelection vSelection = (VectorSelection) selection;
             Vector max = vSelection.getNativeMaximumVector().add(scale);
+            ArrayList<Vector> vectors = ShapeUtils.getPyramid(new CuboidSelection(vSelection.getNativeMaximumVector(), max), isFilled);
 
-            for (Vector vector : ShapeUtils.getPyramid(new CuboidSelection(vSelection.getNativeMaximumVector(), max), isFilled)) {
-                drawVoxel(world, vector, material);
+            for (int i = 0; i < vectors.size(); i++) {
+                drawVoxel(player, world, vectors.get(i), material, (i == (vectors.size() - 1)));
             }
 
             return true;
         } else if (selection.getType() == Selection.SelectionType.CUBOID) {
-            for (Vector vector : ShapeUtils.getPyramid((CuboidSelection) selection, isFilled)) {
-                drawVoxel(world, vector, material);
+            ArrayList<Vector> vectors = ShapeUtils.getPyramid((CuboidSelection) selection, isFilled);
+
+            for (int i = 0; i < vectors.size(); i++) {
+                drawVoxel(player, world, vectors.get(i), material, (i == (vectors.size() - 1)));
             }
 
             return true;
@@ -172,6 +180,7 @@ public class RenderEngine {
     /**
      * Method to draw a sphere!
      *
+     * @param player The player that performs the operation.
      * @param selection The selection the operation should be performed within.
      * @param scale The optional scale of the operation.
      * @param isFilled Decides whether or not the to be generated shape should be filled or not.
@@ -179,13 +188,14 @@ public class RenderEngine {
      * @param world The world the operation should be performed within.
      * @throws ShapeProcessingException Is thrown whenever a selection doesn't match the requirements.
      */
-    private static boolean drawSphere(Selection selection, Vector scale, boolean isFilled, Material material, World world)
+    private static boolean drawSphere(Player player, Selection selection, Vector scale, boolean isFilled, Material material, World world)
             throws ShapeProcessingException {
         if (selection.getType() == Selection.SelectionType.VECTOR) {
             VectorSelection vSelection = (VectorSelection) selection;
+            ArrayList<Vector> vectors = ShapeUtils.getEllipsoid(vSelection, scale, isFilled);
 
-            for (Vector vector : ShapeUtils.getEllipsoid(vSelection, scale, isFilled)) {
-                drawVoxel(world, vector, material);
+            for (int i = 0; i < vectors.size(); i++) {
+                drawVoxel(player, world, vectors.get(i), material, (i == (vectors.size() - 1)));
             }
 
             return true;
@@ -198,12 +208,20 @@ public class RenderEngine {
         return false;
     }
 
-    private static void drawVoxel(World world, Vector vector, Material material) {
-        world.getBlockAt(vector.toLocation(world)).setType(material);
+    private static void drawVoxel(Player player, World world, Vector vector, Material material, boolean isFinished) {
+        queueVoxel(player, new Voxel(vector, material, world), isFinished);
     }
 
-    private static void queueVoxel() {
-        //TODO: -> DrawEngine
+    private static void queueVoxel(Player player, Voxel voxel, boolean isFinished) {
+        if (!voxels.containsKey(player)) {
+            voxels.put(player, new ArrayList<>());
+        }
+
+        voxels.get(player).add(voxel);
+
+        if (isFinished) {
+            DrawEngine.draw(voxels.get(player));
+        }
     }
 
 }

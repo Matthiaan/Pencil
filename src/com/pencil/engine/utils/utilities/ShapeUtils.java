@@ -2,6 +2,8 @@ package com.pencil.engine.utils.utilities;
 
 import com.pencil.engine.geometry.selection.*;
 import com.pencil.engine.geometry.vector.Vector;
+import com.pencil.engine.routines.engines.DrawEngine;
+import com.pencil.engine.routines.engines.utils.Voxel;
 
 import java.util.ArrayList;
 
