@@ -7,6 +7,7 @@ import com.pencil.engine.utils.events.PencilShapeEvent;
 import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
 import com.pencil.engine.utils.service.MessageService;
 import com.pencil.engine.utils.utilities.ShapeUtils;
+import com.pencil.engine.utils.utilities.ToolUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -23,6 +24,7 @@ public class PencilPlayer {
 
     private ShapeRequest shapeRequest;
     private Selection selection;
+    private ToolUtils.ToolType toolType;
 
     public PencilPlayer(Player player) {
         this.player = player;
@@ -67,6 +69,14 @@ public class PencilPlayer {
 
     public Selection getSelection() {
         return selection;
+    }
+
+    public ToolUtils.ToolType getToolType() {
+        return toolType;
+    }
+
+    public void setToolType(ToolUtils.ToolType toolType) {
+        this.toolType = toolType;
     }
 
     public class ShapeRequest {

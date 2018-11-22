@@ -10,6 +10,7 @@ import com.pencil.engine.utils.service.MessageService;
 import com.pencil.engine.utils.utilities.InterfaceUtils;
 import com.pencil.engine.utils.utilities.ItemUtils;
 import com.pencil.engine.utils.utilities.ShapeUtils;
+import com.pencil.engine.utils.utilities.ToolUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -37,6 +38,7 @@ public class PencilInterfaceListener implements Listener {
                     if (InterfaceUtils.hasPlace(player)) {
                         player.getInventory().addItem(ItemUtils.getWandItem());
                         player.closeInventory();
+                        pencilPlayer.setToolType(ToolUtils.ToolType.REGULAR);
 
                         MessageService.formatMessage(MessageService.PreFormattedMessage.GUI_ADDED_WAND_PENCIL.getMessage(),
                                 MessageService.MessageType.INFO, false);
@@ -87,6 +89,23 @@ public class PencilInterfaceListener implements Listener {
 
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage("Your Selection Mode has been reset!",
+                            MessageService.MessageType.INFO, false));
+                } else if (slot == 16) {
+                    player.closeInventory();
+                }
+            } else  if (event.getClickedInventory().getName().contains("Pencil Tools")) {
+                if (slot == 10) {
+                    pencilPlayer.setToolType(ToolUtils.ToolType.REGULAR);
+
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.GUI_REGULAR_TOOL.getMessage(),
+                            MessageService.MessageType.INFO, false));
+                } else if (slot == 11) {
+                    pencilPlayer.setToolType(ToolUtils.ToolType.RULER);
+
+                    player.closeInventory();
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.GUI_RULER_TOOL.getMessage(),
                             MessageService.MessageType.INFO, false));
                 } else if (slot == 16) {
                     player.closeInventory();

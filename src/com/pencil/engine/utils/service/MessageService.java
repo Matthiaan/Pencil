@@ -28,6 +28,7 @@ public class MessageService {
         ACTION_SELECTION_EMPTY("Watch out! Your selection is empty!"),
         ACTION_SHAPE_PROCESSING_EXCEPTION("Seems like there was an error while processing your request!"),
         ACTION_SOMETHING_WENT_WRONG("Seems like something went wrong!"),
+        ACTION_RULER_FIRST_POSITION("Measure starting position set!"),
 
         NO_PERMISSION("Seems like you don't have the permission to execute this command!"),
         NO_COMMAND("Pencil didn't recognise that command!"),
@@ -40,6 +41,8 @@ public class MessageService {
 
         GUI_ADDED_MENU_PENCIL("You have received the Pencil Menu"),
         GUI_ADDED_WAND_PENCIL("You have received the Pencil Wand"),
+        GUI_REGULAR_TOOL("Your Pencil Wand type has been set to REGULAR selection mode!"),
+        GUI_RULER_TOOL("Your Pencil Wand type has been set to RULER mode!"),
 
         UTILS_INVENTORY_FULL("Seems like you inventory is full!"),
         UTILS_FIRST_POSITION_SET("Position 1 has been set! "),

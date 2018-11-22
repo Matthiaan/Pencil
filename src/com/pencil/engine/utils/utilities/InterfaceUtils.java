@@ -38,7 +38,8 @@ public class InterfaceUtils {
         gui.setItem(22, ItemUtils.getExitItem());
         gui.setItem(10, ItemUtils.getItem(Material.DIAMOND_AXE, 1, ChatColor.AQUA + "Pencil Wand"));
         gui.setItem(11, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Position Selection"));
-        gui.setItem(12, ItemUtils.getItem(Material.BOOK, 1, ChatColor.AQUA + "History"));
+        gui.setItem(12, ItemUtils.getItem(Material.SHEARS, 1, ChatColor.AQUA + "Tools"));
+        gui.setItem(13, ItemUtils.getItem(Material.BOOK, 1, ChatColor.AQUA + "History"));
 
         return gui;
     }
@@ -50,6 +51,17 @@ public class InterfaceUtils {
         gui.setItem(22, ItemUtils.getExitItem());
         gui.setItem(10, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Position Selection"));
         gui.setItem(11, ItemUtils.getItem(Material.MAGMA_CREAM, 1, ChatColor.AQUA + "Shape Types"));
+
+        return gui;
+    }
+
+    public static Inventory createToolsMenu() {
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Pencil Tools", 27);
+        InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
+
+        gui.setItem(16, ItemUtils.getExitItem());
+        gui.setItem(10, ItemUtils.getItem(Material.DIAMOND_AXE, 1, ChatColor.AQUA + "Regular Wand"));
+        gui.setItem(11, ItemUtils.getItem(Material.NAME_TAG, 1, ChatColor.AQUA + "Ruler"));
 
         return gui;
     }
