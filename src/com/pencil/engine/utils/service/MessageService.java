@@ -20,7 +20,9 @@ public class MessageService {
 
     public enum PreFormattedMessage {
         ACTION_UNDONE("Action has been undone!"),
-        ACTION_MULTI_UNDONE("Actions have been undone!"),
+        ACTION_MULTI_UNDONE("All actions have been undone!"),
+        ACTION_REDONE("Action has been redone!"),
+        ACTION_MULTI_REDONE("All actions have been redone!"),
         ACTION_NOT_UNDOABLE("That action isn't undoable! If you want to skip actions please provide an index!"),
         ACTION_NO_ACTIONS_HISTORY("Your current history of actions is empty!"),
         ACTION_HISTORY_CLEARED("Your current history has been cleared!"),

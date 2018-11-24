@@ -6,9 +6,11 @@ import org.bukkit.entity.Player;
 public class PencilShapeAction implements PencilAction {
 
     private PencilPlayer.ShapeRequest request;
+    private int ID;
 
-    public PencilShapeAction(PencilPlayer.ShapeRequest request) {
+    public PencilShapeAction(PencilPlayer.ShapeRequest request, int ID) {
         this.request = request;
+        this.ID = ID;
     }
 
     public PencilPlayer.ShapeRequest getRequest() {
@@ -23,6 +25,11 @@ public class PencilShapeAction implements PencilAction {
     @Override
     public void undo(Player player) {
         //TODO: Create Undo method
+    }
+
+    @Override
+    public int getID() {
+        return ID;
     }
 
     @Override

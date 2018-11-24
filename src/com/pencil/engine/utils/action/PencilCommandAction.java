@@ -6,9 +6,11 @@ import org.bukkit.entity.Player;
 public class PencilCommandAction implements PencilAction {
 
     private PencilCommand command;
+    private int ID;
 
-    public PencilCommandAction(PencilCommand command) {
+    public PencilCommandAction(PencilCommand command, int ID) {
         this.command = command;
+        this.ID = ID;
     }
 
     @Override
@@ -28,6 +30,11 @@ public class PencilCommandAction implements PencilAction {
     @Override
     public void undo(Player player) {
 
+    }
+
+    @Override
+    public int getID() {
+        return ID;
     }
 
     @Override

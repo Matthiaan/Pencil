@@ -1,5 +1,6 @@
 package com.pencil.engine.utils.events;
 
+import com.pencil.engine.Pencil;
 import com.pencil.engine.utils.action.PencilAction;
 import com.pencil.engine.utils.action.PencilNonUndoableAction;
 import org.bukkit.Material;
@@ -34,7 +35,7 @@ public class PencilMaterialRequestEvent extends Event implements PencilEvent {
 
     @Override
     public PencilAction getAction() {
-        return new PencilNonUndoableAction(PencilAction.ActionType.INTERFACE);
+        return new PencilNonUndoableAction(PencilAction.ActionType.INTERFACE, Pencil.getActionManager().getNextID(Pencil.getPlayerService().getPlayer(player)));
     }
 
     @Override

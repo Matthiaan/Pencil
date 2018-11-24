@@ -5,12 +5,10 @@ import com.pencil.engine.geometry.selection.CuboidSelection;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.routines.engines.RenderEngine;
+import com.pencil.engine.utils.action.PencilAction;
 import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
-import com.pencil.engine.utils.utilities.InterfaceUtils;
-import com.pencil.engine.utils.utilities.ItemUtils;
-import com.pencil.engine.utils.utilities.ShapeUtils;
-import com.pencil.engine.utils.utilities.ToolUtils;
+import com.pencil.engine.utils.utilities.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -19,6 +17,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -46,6 +45,12 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 11) {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createVectorInterface());
+                } else if (slot == 12) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createToolsMenu());
+                } else if (slot == 13) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createPlayerHistory(pencilPlayer));
                 } else if (slot == 22) {
                     player.closeInventory();
                 }
@@ -818,4 +823,51 @@ public class PencilInterfaceListener implements Listener {
         }
     }
 
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPencilHistory(InventoryClickEvent event) {
+        if (InterfaceUtils.isPencilInventory(event.getClickedInventory())) {
+            Player player = (Player) event.getWhoClicked();
+            PencilPlayer pencilPlayer = Pencil.getPlayerService().getPlayer(player);
+            int slot = event.getSlot();
+
+            if (event.getClickedInventory().getName().contains("History")) {
+                if (slot <= 17) {
+                    player.closeInventory();
+
+                    Inventory action = InterfaceUtils.createActionHistory(pencilPlayer, slot);
+
+                    if (action == null) {
+                        player.openInventory(InterfaceUtils.createPlayerHistory(pencilPlayer));
+                    } else {
+                        player.openInventory(action);
+                    }
+                } else if (slot == 22) {
+                    player.closeInventory();
+                }
+            } else if (event.getClickedInventory().getName().contains(player.getPlayer().getDisplayName() + StringUtils.getSuffix(player.getPlayer().getDisplayName()) + " History - Action")) {
+                if (slot == 12) {
+                    PencilAction action = Pencil.getActionManager().getPlayerActionMap(pencilPlayer).get(event.getClickedInventory().getItem(slot).getAmount());
+
+                    if (action.isUndoable()) {
+                        action.undo(player);
+                    }
+
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_UNDONE.getMessage(),
+                            MessageService.MessageType.INFO, false));
+                } else if (slot == 14) {
+                    //TODO: Create Redo!
+
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
+                            MessageService.MessageType.WARNING, true));
+                } else if (slot == 18) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createPlayerHistory(pencilPlayer));
+                } else if (slot == 26) {
+                    player.closeInventory();
+                }
+            }
+        }
+    }
 }

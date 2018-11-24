@@ -1,5 +1,6 @@
 package com.pencil.engine.utils.events;
 
+import com.pencil.engine.Pencil;
 import com.pencil.engine.utils.action.PencilAction;
 import com.pencil.engine.utils.action.PencilShapeAction;
 import com.pencil.engine.utils.player.PencilPlayer;
@@ -28,7 +29,7 @@ public class PencilShapePreProcessingEvent extends Event implements PencilEvent 
 
     @Override
     public PencilAction getAction() {
-        return new PencilShapeAction(request);
+        return new PencilShapeAction(request, Pencil.getActionManager().getNextID(Pencil.getPlayerService().getPlayer(player)));
     }
 
     @Override

@@ -38,4 +38,10 @@ public class PencilHistory {
     public void clear() {
         actions.clear();
     }
+
+    public int size() {
+        return actions.size();
+    }
+
+    
 }

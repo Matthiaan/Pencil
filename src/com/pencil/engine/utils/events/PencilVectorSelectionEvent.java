@@ -31,7 +31,7 @@ public class PencilVectorSelectionEvent extends Event implements PencilEvent {
 
     @Override
     public PencilAction getAction() {
-        return new PencilVectorAction(vector);
+        return new PencilVectorAction(vector, Pencil.getActionManager().getNextID(Pencil.getPlayerService().getPlayer(player)));
     }
 
     @Override

@@ -3,6 +3,14 @@ package com.pencil.engine.utils.utilities;
 import com.pencil.engine.Pencil;
 import com.pencil.engine.routines.engines.InterfaceEngine;
 import com.pencil.engine.utils.MaterialSet;
+import com.pencil.engine.utils.action.PencilAction;
+import com.pencil.engine.utils.action.PencilShapeAction;
+import com.pencil.engine.utils.action.PencilVectorAction;
+import com.pencil.engine.utils.events.PencilHotbarEvent;
+import com.pencil.engine.utils.events.PencilShapeEvent;
+import com.pencil.engine.utils.events.PencilVectorSelectionEvent;
+import com.pencil.engine.utils.player.PencilHistory;
+import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -517,6 +525,67 @@ public class InterfaceUtils {
         random.setItem(10, ItemUtils.getItem(Material.COBWEB, 1, ChatColor.AQUA + "Air"));
 
         return new MaterialSet(stone, natural, wood, slab, coloredItemsOne, coloredItemsTwo, coloredItemsThree, sea, random);
+    }
+
+    public static Inventory createPlayerHistory(PencilPlayer player) {
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + player.getPlayer().getDisplayName() + StringUtils.getSuffix(player.getPlayer().getDisplayName()) + " History", 27);
+        InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
+        PencilHistory history = player.getHistory();
+
+        gui.setItem(22, ItemUtils.getExitItem());
+
+        if (history.size() == 0) {
+            gui.setItem(0, ItemUtils.getItem(Material.PAPER, 1, ChatColor.AQUA + "No Actions to display!"));
+
+            return gui;
+        }
+
+        for (int i = 17; i >= 0; i--) {
+            PencilAction action = history.getAction(i);
+
+            if (action.isUndoable()) {
+                switch (action.getActionType()) {
+                    case OPERATION:
+                        if (action instanceof PencilShapeAction) {
+                            gui.setItem(i, ItemUtils.getSkullItem(1, "flashlight",
+                                    ChatColor.AQUA + "Operation: Generation -> " + ((PencilShapeAction) action).getRequest().getType().toString()));
+                        }
+
+                    case SELECTION:
+                        if (action instanceof PencilVectorAction) {
+                            gui.setItem(i, ItemUtils.getSkullItem(1, "flashlight",
+                                    ChatColor.AQUA + "Selection: Position Selection -> " + ((PencilVectorAction) action).getVector().toString()));
+                        }
+
+                    case INTERFACE:
+                    case COMMAND:
+                }
+            }
+        }
+
+        return gui;
+    }
+
+    //TODO: Implement Redo Actions (Current position, selected position, etc)
+    public static Inventory createActionHistory(PencilPlayer player, int id) {
+        PencilAction action = Pencil.getActionManager().getPlayerActionMap(player).get(id);
+
+        if (action == null) {
+            return null;
+        }
+
+        Inventory gui = InterfaceEngine.createInventory(ChatColor.GREEN + player.getPlayer().getDisplayName() + StringUtils.getSuffix(player.getPlayer().getDisplayName()) + " History - Action " + id,  27);
+        InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
+
+        gui.setItem(18, ItemUtils.getBackItem());
+        gui.setItem(26, ItemUtils.getExitItem());
+        gui.setItem(12, ItemUtils.getUndoItem());
+        gui.setItem(14, ItemUtils.getRedoItem());
+        gui.setItem(13, ItemUtils.getItem(Material.PAPER, id, ChatColor.AQUA + "Action Type -> " + action.getActionType().toString().toUpperCase(),
+                ChatColor.WHITE + "Action ID -> " +  id + "",
+                ChatColor.WHITE + "Is Undoable -> " + id + ""));
+
+        return gui;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.pencil.engine.utils.service;
 
+import com.pencil.engine.Pencil;
 import com.pencil.engine.utils.player.PencilPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -27,6 +28,7 @@ public class PlayerService {
     public void addPlayer(Player player) {
         if (!players.containsKey(player)) {
             PencilPlayer pencilPlayer = new PencilPlayer(player);
+            Pencil.getActionManager().register(pencilPlayer);
 
             pencilPlayer.setMode(PencilPlayer.SelectionMode.NA);
             players.put(player, pencilPlayer);

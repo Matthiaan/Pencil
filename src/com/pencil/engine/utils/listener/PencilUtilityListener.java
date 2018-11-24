@@ -4,7 +4,6 @@ import com.pencil.engine.Pencil;
 import com.pencil.engine.routines.engines.RenderEngine;
 import com.pencil.engine.utils.events.PencilShapeEvent;
 import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
-import com.pencil.engine.utils.service.MessageService;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;

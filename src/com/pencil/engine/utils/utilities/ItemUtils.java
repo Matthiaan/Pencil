@@ -109,6 +109,10 @@ public class ItemUtils {
         return getItem(Material.BARRIER, 1, ChatColor.RED + "Exit");
     }
 
+    public static ItemStack getBackItem() {
+        return getSkullItem(1, "MHF_ArrowLeft", ChatColor.GREEN + "Back");
+    }
+
     public static ItemStack getFillItem() {
         return getItem(Material.GRAY_STAINED_GLASS_PANE, 1, "");
     }
@@ -119,6 +123,14 @@ public class ItemUtils {
 
     public static ItemStack getPreviousPageItem() {
         return getSkullItem(1, "MHF_ArrowLeft", ChatColor.GREEN + "Previous Page");
+    }
+
+    public static ItemStack getUndoItem() {
+        return getSkullItem(1, "MHF_ArrowRight", ChatColor.GREEN + "Undo");
+    }
+
+    public static ItemStack getRedoItem() {
+        return getSkullItem(1, "MHF_ArrowLeft", ChatColor.GREEN + "Redo");
     }
 
     public static ItemStack getMenuItem() {

@@ -6,9 +6,11 @@ import org.bukkit.entity.Player;
 public class PencilVectorAction implements PencilAction {
 
     private Vector vector;
+    private int ID;
 
-    public PencilVectorAction(Vector vector) {
+    public PencilVectorAction(Vector vector, int ID) {
         this.vector = vector;
+        this.ID = ID;
     }
 
     public PencilAction.ActionType getActionType() {
@@ -25,7 +27,14 @@ public class PencilVectorAction implements PencilAction {
     }
 
     @Override
-    public void undo(Player player) { }
+    public void undo(Player player) {
+
+    }
+
+    @Override
+    public int getID() {
+        return ID;
+    }
 
     @Override
     public String toString() {

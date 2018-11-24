@@ -2,7 +2,6 @@ package com.pencil.engine.utils.service;
 
 import com.pencil.engine.command.LogCommand;
 import com.pencil.engine.command.MenuCommand;
-import com.pencil.engine.command.UndoCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,12 +16,10 @@ public class CommandService implements CommandExecutor, TabExecutor {
 
     private LogCommand logCommand;
     private MenuCommand menuCommand;
-    private UndoCommand undoCommand;
 
     public CommandService() {
         logCommand = new LogCommand();
         menuCommand = new MenuCommand();
-        undoCommand = new UndoCommand();
     }
 
     @Override
@@ -41,8 +38,6 @@ public class CommandService implements CommandExecutor, TabExecutor {
                 player.sendMessage(MessageService.formatMessage(logCommand.getName() +" " + logCommand.getArgs() + " -> " + logCommand.getDescription(),
                         MessageService.MessageType.LIST, false));
                 player.sendMessage(MessageService.formatMessage(menuCommand.getName() +" " + menuCommand.getArgs() + " -> " + menuCommand.getDescription(),
-                        MessageService.MessageType.LIST, false));
-                player.sendMessage(MessageService.formatMessage(undoCommand.getName() +" " + undoCommand.getArgs() + " -> " + undoCommand.getDescription(),
                         MessageService.MessageType.LIST, false));
 
                 return true;

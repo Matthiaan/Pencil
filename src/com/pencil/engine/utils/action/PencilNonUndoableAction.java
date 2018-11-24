@@ -5,9 +5,11 @@ import org.bukkit.entity.Player;
 public class PencilNonUndoableAction implements PencilAction {
 
     private ActionType type;
+    private int ID;
 
-    public PencilNonUndoableAction(ActionType type) {
+    public PencilNonUndoableAction(ActionType type, int ID) {
         this.type = type;
+        this.ID = ID;
     }
 
     @Override
@@ -21,6 +23,11 @@ public class PencilNonUndoableAction implements PencilAction {
     @Override
     public boolean isUndoable() {
         return false;
+    }
+
+    @Override
+    public int getID() {
+        return ID;
     }
 
     @Override

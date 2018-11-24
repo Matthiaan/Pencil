@@ -35,4 +35,11 @@ public abstract interface PencilAction {
      */
     abstract void undo(Player player);
 
+    /**
+     * Get the id of the current action.
+     *
+     * @return the id of the action.
+     */
+    abstract int getID();
+
 }

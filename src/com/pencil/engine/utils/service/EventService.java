@@ -29,7 +29,7 @@ public class EventService implements Listener {
     }
 
     public void process(Player player, PencilEvent event) {
-        Pencil.getPlayerService().getPlayer(player).getHistory().addAction(event.getAction());
+        Pencil.getActionManager().update(Pencil.getPlayerService().getPlayer(player), event.getAction());
     }
 
 }

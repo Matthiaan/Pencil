@@ -33,7 +33,7 @@ import java.util.HashMap;
  */
 public class RenderEngine {
 
-    private static HashMap<Player, ArrayList<Voxel>> voxels;
+    private static HashMap<Player, ArrayList<Voxel>> voxels = new HashMap<>();
 
     public static boolean render(PencilShapePreProcessingEvent event) {
         Player player = event.getPlayer();
