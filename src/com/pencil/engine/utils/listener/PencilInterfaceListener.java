@@ -524,7 +524,9 @@ public class PencilInterfaceListener implements Listener {
                     event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0)));
+                    pencilPlayer.getCurrentRequest().setScale(new Vector(event.getInventory().getItem(22).getAmount(),
+                            event.getInventory().getItem(22).getAmount(),
+                            event.getInventory().getItem(22).getAmount()));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                 } else if (slot == 37) {

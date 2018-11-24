@@ -1,5 +1,6 @@
 package com.pencil.engine.utils.utilities;
 
+import com.mysql.fabric.xmlrpc.base.Array;
 import com.pencil.engine.geometry.selection.*;
 import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.routines.engines.DrawEngine;
@@ -123,40 +124,36 @@ public class ShapeUtils {
         return getPyramidFilled(selection);
     }
 
+    public static ArrayList<Vector> getSphere(VectorSelection selection, int radius, boolean filled) {
+        return null;
+    }
+
     public static ArrayList<Vector> getEllipsoid(VectorSelection selection, Vector scale, boolean filled) {
-        ArrayList<Vector> vectors = new ArrayList();
-        Vector origin = selection.getNativeMaximumVector();
+        ArrayList<Vector> vectors = new ArrayList<>();
+        Vector origin = selection.getNativeMinimumVector();
 
-        double radiusX = scale.getX() + 0.5D;
-        double radiusY = scale.getY() + 0.5D;
-        double radiusZ = scale.getZ() + 0.5D;
+        double radiusX = scale.getBlockX();
+        double radiusY = scale.getBlockY();
+        double radiusZ = scale.getBlockZ();
 
-        radiusX += 0.5D;
-        radiusY += 0.5D;
-        radiusZ += 0.5D;
+        final double invRadiusX = 1 / radiusX;
+        final double invRadiusY = 1 / radiusY;
+        final double invRadiusZ = 1 / radiusZ;
 
-        double invRadiusX = 1.0D / radiusX;
-        double invRadiusY = 1.0D / radiusY;
-        double invRadiusZ = 1.0D / radiusZ;
+        final int ceilRadiusX = (int) Math.ceil(radiusX);
+        final int ceilRadiusY = (int) Math.ceil(radiusY);
+        final int ceilRadiusZ = (int) Math.ceil(radiusZ);
 
-        int ceilRadiusX = (int)Math.ceil(radiusX);
-        int ceilRadiusY = (int)Math.ceil(radiusY);
-        int ceilRadiusZ = (int)Math.ceil(radiusZ);
-
-        double nextXn = 0.0D;
-
-        forX:
-        for (int x = 0; x <= ceilRadiusX; ++x) {
+        double nextXn = 0;
+        forX: for (int x = 0; x <= ceilRadiusX; ++x) {
             final double xn = nextXn;
             nextXn = (x + 1) * invRadiusX;
             double nextYn = 0;
-
             forY:
             for (int y = 0; y <= ceilRadiusY; ++y) {
                 final double yn = nextYn;
                 nextYn = (y + 1) * invRadiusY;
                 double nextZn = 0;
-
                 forZ:
                 for (int z = 0; z <= ceilRadiusZ; ++z) {
                     final double zn = nextZn;
@@ -191,9 +188,74 @@ public class ShapeUtils {
             }
         }
 
-
-        if(filled) {
+        if (filled) {
             vectors.add(origin);
+        }
+
+        return vectors;
+    }
+
+    public static ArrayList<Vector> calculateCylinder(Vector min, double radiusX, double radiusZ, double height, boolean filled) {
+        ArrayList<Vector> vectors = new ArrayList<>();
+        vectors.add(min);
+
+
+        radiusX += 0.5;
+        radiusZ += 0.5;
+
+        if (height == 0) {
+            return null;
+        } else if (height < 0) {
+            height = -height;
+            min = min.subtract(0, height, 0);
+        }
+
+        if (min.getBlockY() < 0) {
+            min = min.setY(0);
+        } else if (min.getBlockY() + height - 1 > 256) {
+            height = 256 - min.getBlockY() + 1;
+        }
+
+        final double invRadiusX = 1 / radiusX;
+        final double invRadiusZ = 1 / radiusZ;
+
+        final int ceilRadiusX = (int) Math.ceil(radiusX);
+        final int ceilRadiusZ = (int) Math.ceil(radiusZ);
+
+        double nextXn = 0;
+        forX: for (int x = 0; x <= ceilRadiusX; ++x) {
+            final double xn = nextXn;
+            nextXn = (x + 1) * invRadiusX;
+            double nextZn = 0;
+            forZ: for (int z = 0; z <= ceilRadiusZ; ++z) {
+                final double zn = nextZn;
+                nextZn = (z + 1) * invRadiusZ;
+
+                double distanceSq = (xn * xn) + (zn * zn);
+                if (distanceSq > 1) {
+                    if (z == 0) {
+                        break forX;
+                    }
+                    break forZ;
+                }
+
+                if (!filled) {
+                    if ((nextXn * nextXn) + (z * z) <= 1 && (x * x) + (nextZn * nextZn) <= 1) {
+                        continue;
+                    }
+                }
+
+                for (int y = 0; y < height; ++y) {
+                    vectors.add(new Vector(min.add(x, y, z)));
+                    vectors.add(new Vector(min.add(-x, y, z)));
+                    vectors.add(new Vector(min.add(x, y, -z)));
+                    vectors.add(new Vector(min.add(-x, y, -z)));
+                }
+            }
+        }
+
+        if (filled) {
+            vectors.add(min);
         }
 
         return vectors;

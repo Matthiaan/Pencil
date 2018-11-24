@@ -540,8 +540,13 @@ public class InterfaceUtils {
             return gui;
         }
 
+        //TODO: Create Moving Line (if only 2 actions -> etc, etc...)
         for (int i = 17; i >= 0; i--) {
             PencilAction action = history.getAction(i);
+
+            if (action == null) {
+                continue;
+            }
 
             if (action.isUndoable()) {
                 switch (action.getActionType()) {

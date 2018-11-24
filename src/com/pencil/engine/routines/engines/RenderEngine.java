@@ -80,6 +80,7 @@ public class RenderEngine {
                 case ELLIPSOID:
                     return drawSphere(player, selection, scale, isFilled, material, player.getWorld());
                 case CYLINDER:
+
                 case PRISM:
                     return false;
             }
@@ -178,7 +179,7 @@ public class RenderEngine {
     }
 
     /**
-     * Method to draw a sphere!
+     * Method to draw a sphere/ellipsoid!
      *
      * @param player The player that performs the operation.
      * @param selection The selection the operation should be performed within.

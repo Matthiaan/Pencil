@@ -2,6 +2,7 @@ package com.pencil.engine.utils.service;
 
 import com.pencil.engine.Pencil;
 import com.pencil.engine.utils.player.PencilPlayer;
+import com.pencil.engine.utils.utilities.ToolUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -31,6 +32,7 @@ public class PlayerService {
             Pencil.getActionManager().register(pencilPlayer);
 
             pencilPlayer.setMode(PencilPlayer.SelectionMode.NA);
+            pencilPlayer.setToolType(ToolUtils.ToolType.REGULAR);
             players.put(player, pencilPlayer);
         }
     }

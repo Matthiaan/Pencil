@@ -35,6 +35,8 @@ public class ActionManager extends Manager {
             int i = ids.get(player).size();
 
             ids.get(player).put(i, action);
+        } else {
+            ids.get(player).put(0, action);
         }
     }
 

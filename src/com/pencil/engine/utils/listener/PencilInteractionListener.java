@@ -48,7 +48,7 @@ public class PencilInteractionListener implements Listener {
 
                             rulers.put(player, vector);
                         }
-                    } else {
+                    } else if (player.getToolType().equals(ToolUtils.ToolType.REGULAR)) {
                         //TODO: Optimize this mess
                         if (action == Action.LEFT_CLICK_BLOCK || action == Action.RIGHT_CLICK_BLOCK) {
                             Vector vector = new Vector(event.getClickedBlock().getLocation());
