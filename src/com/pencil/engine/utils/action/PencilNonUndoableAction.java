@@ -7,9 +7,8 @@ public class PencilNonUndoableAction implements PencilAction {
     private ActionType type;
     private int ID;
 
-    public PencilNonUndoableAction(ActionType type, int ID) {
+    public PencilNonUndoableAction(ActionType type) {
         this.type = type;
-        this.ID = ID;
     }
 
     @Override
@@ -23,6 +22,10 @@ public class PencilNonUndoableAction implements PencilAction {
     @Override
     public boolean isUndoable() {
         return false;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     @Override

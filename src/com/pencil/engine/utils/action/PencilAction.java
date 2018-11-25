@@ -16,6 +16,7 @@ public abstract interface PencilAction {
         OPERATION,
         SELECTION,
         INTERFACE,
+        INITIALIZED
     }
 
     /**
@@ -34,6 +35,13 @@ public abstract interface PencilAction {
      * @param player for which the action should be undone.
      */
     abstract void undo(Player player);
+
+    /**
+     * Sets the ID of the action.
+     *
+     * @param id the ID of the action.
+     */
+    abstract void setID(int id);
 
     /**
      * Get the id of the current action.

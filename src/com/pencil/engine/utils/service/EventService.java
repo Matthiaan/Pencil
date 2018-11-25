@@ -6,6 +6,7 @@ import com.pencil.engine.utils.listener.PencilHotbarListener;
 import com.pencil.engine.utils.listener.PencilInteractionListener;
 import com.pencil.engine.utils.listener.PencilInterfaceListener;
 import com.pencil.engine.utils.listener.PencilUtilityListener;
+import com.pencil.engine.utils.player.PencilPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -24,12 +25,16 @@ public class EventService implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(new PencilUtilityListener(), Pencil.getPlugin());
     }
 
-    public void queueEvent(Event event) {
-        Bukkit.getServer().getPluginManager().callEvent(event);
+    public void queueEvent(PencilEvent event) {
+        Bukkit.getServer().getPluginManager().callEvent((Event) event);
+
+        process(Pencil.getPlayerService().getPlayer(event.getPlayer()), event);
     }
 
-    public void process(Player player, PencilEvent event) {
-        Pencil.getActionManager().update(Pencil.getPlayerService().getPlayer(player), event.getAction());
+    private void process(PencilPlayer player, PencilEvent event) {
+        event.getAction().setID(Pencil.getActionManager().getNextID(player));
+
+        Pencil.getActionManager().update(player, event.getAction());
     }
 
 }

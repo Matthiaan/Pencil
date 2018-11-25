@@ -4,11 +4,9 @@ import com.pencil.engine.Pencil;
 import com.pencil.engine.routines.engines.InterfaceEngine;
 import com.pencil.engine.utils.MaterialSet;
 import com.pencil.engine.utils.action.PencilAction;
+import com.pencil.engine.utils.action.PencilNonUndoableAction;
 import com.pencil.engine.utils.action.PencilShapeAction;
 import com.pencil.engine.utils.action.PencilVectorAction;
-import com.pencil.engine.utils.events.PencilHotbarEvent;
-import com.pencil.engine.utils.events.PencilShapeEvent;
-import com.pencil.engine.utils.events.PencilVectorSelectionEvent;
 import com.pencil.engine.utils.player.PencilHistory;
 import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
@@ -59,6 +57,7 @@ public class InterfaceUtils {
         gui.setItem(22, ItemUtils.getExitItem());
         gui.setItem(10, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Position Selection"));
         gui.setItem(11, ItemUtils.getItem(Material.MAGMA_CREAM, 1, ChatColor.AQUA + "Shape Types"));
+        gui.setItem(12, ItemUtils.getSkullItem(1, "MHF_ArrowUp", ChatColor.AQUA + "Selection Options"));
 
         return gui;
     }
@@ -535,7 +534,7 @@ public class InterfaceUtils {
         gui.setItem(22, ItemUtils.getExitItem());
 
         if (history.size() == 0) {
-            gui.setItem(0, ItemUtils.getItem(Material.PAPER, 1, ChatColor.AQUA + "No Actions to display!"));
+            gui.setItem(0, ItemUtils.getItem(Material.PAPER, 1, ChatColor.AQUA + "No actions to display!"));
 
             return gui;
         }
@@ -582,13 +581,21 @@ public class InterfaceUtils {
         Inventory gui = InterfaceEngine.createInventory(ChatColor.GREEN + player.getPlayer().getDisplayName() + StringUtils.getSuffix(player.getPlayer().getDisplayName()) + " History - Action " + id,  27);
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
+        String undo = "";
+
+        if (action.isUndoable()) {
+            undo = "Yes";
+        } else {
+            undo = "No";
+        }
+
         gui.setItem(18, ItemUtils.getBackItem());
         gui.setItem(26, ItemUtils.getExitItem());
         gui.setItem(12, ItemUtils.getUndoItem());
         gui.setItem(14, ItemUtils.getRedoItem());
         gui.setItem(13, ItemUtils.getItem(Material.PAPER, id, ChatColor.AQUA + "Action Type -> " + action.getActionType().toString().toUpperCase(),
                 ChatColor.WHITE + "Action ID -> " +  id + "",
-                ChatColor.WHITE + "Is Undoable -> " + id + ""));
+                ChatColor.WHITE + "Is Undoable -> " + undo + ""));
 
         return gui;
     }

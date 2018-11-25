@@ -21,6 +21,7 @@ public class PencilMaterialRequestEvent extends Event implements PencilEvent {
         this.event = event;
     }
 
+    @Override
     public Player getPlayer() {
         return player;
     }
@@ -35,7 +36,7 @@ public class PencilMaterialRequestEvent extends Event implements PencilEvent {
 
     @Override
     public PencilAction getAction() {
-        return new PencilNonUndoableAction(PencilAction.ActionType.INTERFACE, Pencil.getActionManager().getNextID(Pencil.getPlayerService().getPlayer(player)));
+        return new PencilNonUndoableAction(PencilAction.ActionType.INTERFACE);
     }
 
     @Override

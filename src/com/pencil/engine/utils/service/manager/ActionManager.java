@@ -1,7 +1,7 @@
 package com.pencil.engine.utils.service.manager;
 
-import com.pencil.engine.Pencil;
 import com.pencil.engine.utils.action.PencilAction;
+import com.pencil.engine.utils.action.PencilNonUndoableAction;
 import com.pencil.engine.utils.player.PencilPlayer;
 
 import java.util.HashMap;
@@ -25,6 +25,7 @@ public class ActionManager extends Manager {
 
     public void register(PencilPlayer player) {
         ids.put(player, new HashMap<>());
+        ids.get(player).put(getNextID(player), new PencilNonUndoableAction(PencilAction.ActionType.INITIALIZED));
     }
 
     //TODO: Check for Action Overwrites!
@@ -32,11 +33,11 @@ public class ActionManager extends Manager {
         player.getHistory().addAction(action);
 
         if (ids.get(player).containsKey(0)) {
+            System.out.println(action.getID());
+
             int i = ids.get(player).size();
 
             ids.get(player).put(i, action);
-        } else {
-            ids.get(player).put(0, action);
         }
     }
 

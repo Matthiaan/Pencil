@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class CommandService implements CommandExecutor, TabExecutor {
@@ -58,7 +59,13 @@ public class CommandService implements CommandExecutor, TabExecutor {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("pencil")) {
-            return new ArrayList<>(Arrays.asList("log", "menu", "undo"));
+            return new ArrayList<>(Arrays.asList("log", "menu"));
+        }
+
+        if (args[0].startsWith("l")) {
+            return new ArrayList<>(Collections.singleton("log"));
+        } else if (args[0].startsWith("m")) {
+            return new ArrayList<>(Collections.singleton("menu"));
         }
 
         return null;

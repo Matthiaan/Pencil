@@ -796,7 +796,7 @@ public class Vector implements Comparable<Vector>, Cloneable {
 
     @Override
     public String toString() {
-        return "(" + ChatColor.RED + x + ChatColor.WHITE + ", " + ChatColor.GREEN + y + ChatColor.WHITE + ", " + ChatColor.BLUE + z + ChatColor.WHITE + ")";
+        return ChatColor.DARK_GRAY + "[" + ChatColor.RED + x + ChatColor.WHITE + ", " + ChatColor.GREEN + y + ChatColor.WHITE + ", " + ChatColor.BLUE + z + ChatColor.DARK_GRAY +  "]";
     }
 
     /**

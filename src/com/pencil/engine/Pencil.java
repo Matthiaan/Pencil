@@ -38,6 +38,7 @@ public class Pencil extends JavaPlugin {
         if (hasPlugin("WorldEdit") || hasPlugin("VoxelSniper")) {
             System.out.println("[Pencil] Pencil can't work properly when World Edit or Voxel Sniper is installed!");
             System.out.println("[Pencil] Please remove these plugins in order for Pencil to work!");
+            System.out.println("[Pencil] Shutting down Pencil...");
 
             onDisable();
         }

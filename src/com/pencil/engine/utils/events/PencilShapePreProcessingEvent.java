@@ -19,6 +19,7 @@ public class PencilShapePreProcessingEvent extends Event implements PencilEvent 
         this.request = request;
     }
 
+    @Override
     public Player getPlayer() {
         return player;
     }
@@ -29,7 +30,7 @@ public class PencilShapePreProcessingEvent extends Event implements PencilEvent 
 
     @Override
     public PencilAction getAction() {
-        return new PencilShapeAction(request, Pencil.getActionManager().getNextID(Pencil.getPlayerService().getPlayer(player)));
+        return new PencilShapeAction(request);
     }
 
     @Override

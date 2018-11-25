@@ -140,9 +140,7 @@ public class PencilPlayer {
         }
 
         public void isApplicableMaterial(Material material, boolean inform) {
-            if (material != Material.AIR) {
-                setMaterial(material);
-            }
+            setMaterial(material);
 
             if (inform) {
                 owner.closeInventory();

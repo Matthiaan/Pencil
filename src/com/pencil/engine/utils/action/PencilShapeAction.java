@@ -8,9 +8,8 @@ public class PencilShapeAction implements PencilAction {
     private PencilPlayer.ShapeRequest request;
     private int ID;
 
-    public PencilShapeAction(PencilPlayer.ShapeRequest request, int ID) {
+    public PencilShapeAction(PencilPlayer.ShapeRequest request) {
         this.request = request;
-        this.ID = ID;
     }
 
     public PencilPlayer.ShapeRequest getRequest() {
@@ -25,6 +24,10 @@ public class PencilShapeAction implements PencilAction {
     @Override
     public void undo(Player player) {
         //TODO: Create Undo method
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     @Override

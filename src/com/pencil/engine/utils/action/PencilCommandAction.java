@@ -8,9 +8,8 @@ public class PencilCommandAction implements PencilAction {
     private PencilCommand command;
     private int ID;
 
-    public PencilCommandAction(PencilCommand command, int ID) {
+    public PencilCommandAction(PencilCommand command) {
         this.command = command;
-        this.ID = ID;
     }
 
     @Override
@@ -30,6 +29,10 @@ public class PencilCommandAction implements PencilAction {
     @Override
     public void undo(Player player) {
 
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     @Override
