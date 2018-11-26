@@ -3,6 +3,7 @@ package com.pencil.engine.utils.player;
 import com.pencil.engine.Pencil;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
+import com.pencil.engine.routines.engines.RenderEngine;
 import com.pencil.engine.utils.events.PencilShapeEvent;
 import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
 import com.pencil.engine.utils.service.MessageService;
@@ -151,7 +152,13 @@ public class PencilPlayer {
                     setSelection(Pencil.getSelectionManager().get(Pencil.getPlayerService().getPlayer(player)));
                 }
 
-                Pencil.getEventService().queueEvent(new PencilShapePreProcessingEvent(owner, this));
+                try {
+                    Pencil.getEventService().queueEvent(new PencilShapePreProcessingEvent(player.getPlayer(), this,
+                            ShapeUtils.getOldMaterials(player.getPlayer().getWorld(), RenderEngine.getPreRenderedFootage(this))));
+                } catch (NullPointerException ex) {
+                    player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_HISTORY_AVAILABLE.getMessage(),
+                            MessageService.MessageType.WARNING, false));
+                }
             }
         }
     }

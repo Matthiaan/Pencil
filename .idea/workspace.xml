@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ea5d90a-792e-4fed-ba0d-a751959ab869" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Pencil.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/PSuite.xml" afterPath="" />
+    <list default="true" id="0ea5d90a-792e-4fed-ba0d-a751959ab869" name="Default" comment="Commit #26&#10;&#10;Version 0.0.2.6&#10;&#10;Includes:&#10;-Pencil 0.0.2.4&#10;-Pencil 0.0.2.5&#10;&#10;Added: &#10;-Recoded the position selection process&#10;-Added a functioning history GUI&#10;&#10;Bug Fixes:&#10;-Fixed setting a selection to AIR being COBWEB&#10;-Fixed double Position Selections issue&#10;-Fixed shape generation&#10;-Fixed duplicate action popups&#10;-Fixed generations not showing up&#10;-Fixed action menu click not working&#10;-Fixed mixed action ID &#10;-Fixed World Edit not being detected&#10;-Fixed actions not displaying correctly&#10;&#10;TODO:&#10;-Add option to set in which direction you want to create your Shape &#10;    -&gt; This would involve adding a phase to Shape Generation, let's leave         that for now!&#10;-Add cylinder, prism generation to ShapeUtils&#10;-Test pyramid generation">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilHistoryAction.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilHistoryEvent.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Pencil.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Pencil.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/M.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/M.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/geometry/vector/Vector.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/geometry/vector/Vector.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilAction.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilAction.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilCommandAction.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilCommandAction.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilNonUndoableAction.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilNonUndoableAction.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilRedoAction.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilShapeAction.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilShapeAction.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilUndoAction.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilVectorAction.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilVectorAction.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilEvent.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilEvent.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilHotbarEvent.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilMaterialRequestEvent.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilMaterialRequestEvent.java" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapeEvent.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapeEvent.java" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapePreProcessingEvent.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapePreProcessingEvent.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilVectorSelectionEvent.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilVectorSelectionEvent.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInteractionListener.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInteractionListener.java" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilHistory.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilHistory.java" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/CommandService.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/CommandService.java" />
-      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventService.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventService.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/ActionManager.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/ActionManager.java" />
       <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ShapeUtils.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ShapeUtils.java" />
+      <change beforePath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ToolUtils.java" afterPath="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ToolUtils.java" />
       <change beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -40,37 +36,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="PencilInterfaceListener.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RenderEngine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="696">
+              <caret line="63" column="120" lean-forward="false" selection-start-line="63" selection-start-column="120" selection-end-line="63" selection-end-column="120" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PencilInterfaceListener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="894" column="0" lean-forward="true" selection-start-line="894" selection-start-column="0" selection-end-line="894" selection-end-column="0" />
+            <state relative-caret-position="259">
+              <caret line="35" column="33" lean-forward="true" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
               <folding>
-                <element signature="method#onPencilDialog#0;class#PencilInterfaceListener#0" expanded="false" />
                 <element signature="method#onPencilShape#0;class#PencilInterfaceListener#0" expanded="false" />
                 <element signature="method#onPencilScale#0;class#PencilInterfaceListener#0" expanded="false" />
                 <element signature="method#onPencilMaterial#0;class#PencilInterfaceListener#0" expanded="false" />
+                <element signature="method#onPencilHistory#0;class#PencilInterfaceListener#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EventService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="36" column="20" lean-forward="true" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pencil.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="47">
-              <caret line="119" column="52" lean-forward="true" selection-start-line="119" selection-start-column="52" selection-end-line="119" selection-end-column="52" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -104,9 +90,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/TabService.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/ShapeProcessingException.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/utils/Voxel.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/TestService.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/Metrics.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/Test.java" />
@@ -119,42 +102,45 @@
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/TimeUtils.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/DrawEngine.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/geometry/spline/SplineFactory.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ToolUtils.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/StringUtils.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilHistory.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilActualActionEvent.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/command/MenuCommand.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/command/PencilCommand.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/PlayerService.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/Settings.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ShapeUtils.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/Pencil.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/CommandService.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/geometry/vector/Vector.java" />
-        <option value="$PROJECT_DIR$/src/plugin.yml" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilCommandAction.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilNonUndoableAction.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilRedoAction.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilShapeAction.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilVectorAction.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilMaterialRequestEvent.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilVectorSelectionEvent.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilHotbarEvent.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapePreProcessingEvent.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapeEvent.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilEvent.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilAction.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/ActionManager.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInteractionListener.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilHotbarListener.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java" />
-        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java" />
         <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/EventService.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/ActionManager.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapePreProcessingEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapeEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilUndoAction.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilAction.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilHistory.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilMaterialRequestEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilHistoryEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilShapeAction.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilVectorAction.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilHistoryAction.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ShapeUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ToolUtils.java" />
+        <option value="$PROJECT_DIR$/src/plugin.yml" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java" />
+        <option value="$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java" />
       </list>
     </option>
   </component>
@@ -212,6 +198,21 @@
               <item name="PSuite" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="geometry" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="geometry" type="462c0819:PsiDirectoryNode" />
+              <item name="selection" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
               <item name="engines" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -220,6 +221,22 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="action" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="events" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PSuite" type="b2602c69:ProjectViewProjectNode" />
@@ -416,7 +433,7 @@
       <workItem from="1542824909806" duration="2874000" />
       <workItem from="1542910382543" duration="1320000" />
       <workItem from="1542993617066" duration="4117000" />
-      <workItem from="1543068563628" duration="16806000" />
+      <workItem from="1543068563628" duration="26559000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1540671502142</created>
@@ -614,11 +631,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543080488413</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Commit #26&#10;&#10;Version 0.0.2.6&#10;&#10;Includes:&#10;-Pencil 0.0.2.4&#10;-Pencil 0.0.2.5&#10;&#10;Added: &#10;-Recoded the position selection process&#10;-Added a functioning history GUI&#10;&#10;Bug Fixes:&#10;-Fixed setting a selection to AIR being COBWEB&#10;-Fixed double Position Selections issue&#10;-Fixed shape generation&#10;-Fixed duplicate action popups&#10;-Fixed generations not showing up&#10;-Fixed action menu click not working&#10;-Fixed mixed action ID &#10;-Fixed World Edit not being detected&#10;-Fixed actions not displaying correctly&#10;&#10;TODO:&#10;-Add option to set in which direction you want to create your Shape &#10;    -&gt; This would involve adding a phase to Shape Generation, let's leave         that for now!&#10;-Add cylinder, prism generation to ShapeUtils&#10;-Test pyramid generation">
+      <created>1543179116546</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1543179116546</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199159000" />
+    <option name="totallyTimeSpent" value="208912000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -661,7 +685,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit #1 &#10;&#10;Reworked ItemUtils class&#10;Reworked the Interface Engine (it's now less complex, still need to optimize)!" />
     <MESSAGE value="Commit #2&#10;&#10;Added Actions&#10;Added PencilPlayer&#10;Added Metrics&#10;Added Settings" />
     <MESSAGE value="Commit #3&#10;&#10;Implemented a way to retrieve player history &#10;(This involves the previously added actions and history)" />
     <MESSAGE value="Commit #4&#10;&#10;Added a basic Vector selection system." />
@@ -686,37 +709,24 @@
     <MESSAGE value="Commit #23&#10;&#10;Version 0.0.2.1&#10;&#10;Various Fixes" />
     <MESSAGE value="Commit #24&#10;&#10;Version 0.0.2.3&#10;&#10;Added:&#10;-Action IDs (Needed for Undo/Redo actions!)&#10;-History GUI&#10;-Undo Action" />
     <MESSAGE value="Commit #25&#10;&#10;Version 0.0.2.4&#10;&#10;Fixed:&#10;-You now have the general wand on get.&#10;-Recoded the way spheres and ellipsoids where calculated.&#10;-Added a way to calculate a cylinder.&#10;&#10;TODO:&#10;-Add cylinder generation to ShapeUtils&#10;-Again, recode the way you can select points!&#10;-Test all different shapes&#10;-Test the history panel!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #25&#10;&#10;Version 0.0.2.4&#10;&#10;Fixed:&#10;-You now have the general wand on get.&#10;-Recoded the way spheres and ellipsoids where calculated.&#10;-Added a way to calculate a cylinder.&#10;&#10;TODO:&#10;-Add cylinder generation to ShapeUtils&#10;-Again, recode the way you can select points!&#10;-Test all different shapes&#10;-Test the history panel!" />
+    <MESSAGE value="Commit #26&#10;&#10;Version 0.0.2.6&#10;&#10;Includes:&#10;-Pencil 0.0.2.4&#10;-Pencil 0.0.2.5&#10;&#10;Added: &#10;-Recoded the position selection process&#10;-Added a functioning history GUI&#10;&#10;Bug Fixes:&#10;-Fixed setting a selection to AIR being COBWEB&#10;-Fixed double Position Selections issue&#10;-Fixed shape generation&#10;-Fixed duplicate action popups&#10;-Fixed generations not showing up&#10;-Fixed action menu click not working&#10;-Fixed mixed action ID &#10;-Fixed World Edit not being detected&#10;-Fixed actions not displaying correctly&#10;&#10;TODO:&#10;-Add option to set in which direction you want to create your Shape &#10;    -&gt; This would involve adding a phase to Shape Generation, let's leave         that for now!&#10;-Add cylinder, prism generation to ShapeUtils&#10;-Test pyramid generation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #26&#10;&#10;Version 0.0.2.6&#10;&#10;Includes:&#10;-Pencil 0.0.2.4&#10;-Pencil 0.0.2.5&#10;&#10;Added: &#10;-Recoded the position selection process&#10;-Added a functioning history GUI&#10;&#10;Bug Fixes:&#10;-Fixed setting a selection to AIR being COBWEB&#10;-Fixed double Position Selections issue&#10;-Fixed shape generation&#10;-Fixed duplicate action popups&#10;-Fixed generations not showing up&#10;-Fixed action menu click not working&#10;-Fixed mixed action ID &#10;-Fixed World Edit not being detected&#10;-Fixed actions not displaying correctly&#10;&#10;TODO:&#10;-Add option to set in which direction you want to create your Shape &#10;    -&gt; This would involve adding a phase to Shape Generation, let's leave         that for now!&#10;-Add cylinder, prism generation to ShapeUtils&#10;-Test pyramid generation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ShapeUtils.java</url>
-          <line>10</line>
+          <line>13</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/geometry/selection/CuboidSelection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="104" column="35" lean-forward="false" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/geometry/selection/PolygonSelection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4301">
-          <caret line="187" column="36" lean-forward="false" selection-start-line="187" selection-start-column="36" selection-end-line="187" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/geometry/selection/VectorSelection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
@@ -744,30 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
           <caret line="26" column="20" lean-forward="false" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ToolUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/StringUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilHistory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="940">
-          <caret line="45" column="4" lean-forward="false" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -805,14 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilUndoAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="32" lean-forward="false" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/PencilCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
@@ -821,34 +799,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="112" column="71" lean-forward="false" selection-start-line="112" selection-start-column="71" selection-end-line="112" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/command/UndoCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="40" column="23" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="40" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ShapeUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="197" column="66" lean-forward="true" selection-start-line="197" selection-start-column="66" selection-end-line="197" selection-end-column="66" />
           <folding />
         </state>
       </provider>
@@ -877,74 +831,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilCommandAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilNonUndoableAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilRedoAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilShapeAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilVectorAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilMaterialRequestEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="38" column="76" lean-forward="false" selection-start-line="38" selection-start-column="76" selection-end-line="38" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilVectorSelectionEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapePreProcessingEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -957,34 +847,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="41" column="38" lean-forward="false" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapeEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/PlayerService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="31" column="38" lean-forward="false" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -1013,14 +879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInteractionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="83" column="128" lean-forward="false" selection-start-line="83" selection-start-column="128" selection-end-line="83" selection-end-column="128" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/ShapeProcessingException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -1029,55 +887,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java">
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="143" column="12" lean-forward="true" selection-start-line="143" selection-start-column="12" selection-end-line="143" selection-end-column="12" />
+        <state relative-caret-position="254">
+          <caret line="128" column="78" lean-forward="true" selection-start-line="128" selection-start-column="78" selection-end-line="128" selection-end-column="78" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="597" column="66" lean-forward="true" selection-start-line="597" selection-start-column="66" selection-end-line="597" selection-end-column="66" />
-          <folding>
-            <element signature="method#hasPlace#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#isPencilInventory#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createMenuInterface#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createWandMenu#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createToolsMenu#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createVectorInterface#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createScaleInterface#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createShapeTypeInterface#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createCuboidShapesInterface#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createSphericalShapesInterface#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createFilledShapeDialogInterface#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createResetDialogInterface#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createMaterialInterface#0;class#InterfaceUtils#0" expanded="false" />
-            <element signature="method#createPlayerHistory#0;class#InterfaceUtils#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1866">
-          <caret line="86" column="28" lean-forward="false" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="894" column="0" lean-forward="true" selection-start-line="894" selection-start-column="0" selection-end-line="894" selection-end-column="0" />
-          <folding>
-            <element signature="method#onPencilDialog#0;class#PencilInterfaceListener#0" expanded="false" />
-            <element signature="method#onPencilShape#0;class#PencilInterfaceListener#0" expanded="false" />
-            <element signature="method#onPencilScale#0;class#PencilInterfaceListener#0" expanded="false" />
-            <element signature="method#onPencilMaterial#0;class#PencilInterfaceListener#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1091,17 +905,228 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/manager/ActionManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="230">
+          <caret line="34" column="45" lean-forward="false" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/Pencil.java">
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/StringUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="119" column="52" lean-forward="true" selection-start-line="119" selection-start-column="52" selection-end-line="119" selection-end-column="52" />
+        <state relative-caret-position="184">
+          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/geometry/selection/CuboidSelection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapeEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="46" column="24" lean-forward="true" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilShapePreProcessingEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="42" column="49" lean-forward="false" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ItemUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="140" column="94" lean-forward="true" selection-start-line="140" selection-start-column="94" selection-end-line="140" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="15" lean-forward="false" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilHistory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/InterfaceUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="582" column="19" lean-forward="false" selection-start-line="582" selection-start-column="19" selection-end-line="582" selection-end-column="19" />
+          <folding>
+            <element signature="method#hasPlace#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#isPencilInventory#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createMenuInterface#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createWandMenu#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createToolsMenu#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createVectorInterface#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createScaleInterface#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createShapeTypeInterface#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createCuboidShapesInterface#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createSphericalShapesInterface#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createFilledShapeDialogInterface#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createMaterialInterface#0;class#InterfaceUtils#0" expanded="false" />
+            <element signature="method#createPlayerHistory#0;class#InterfaceUtils#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilCommandAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="687">
+          <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilMaterialRequestEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1081">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="47" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilVectorSelectionEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="32" column="46" lean-forward="true" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilVectorAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilNonUndoableAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="19" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilHistoryAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-463">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/action/PencilShapeAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="37" column="82" lean-forward="true" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/events/PencilHistoryEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-92">
+          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ShapeUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3061">
+          <caret line="338" column="36" lean-forward="false" selection-start-line="338" selection-start-column="36" selection-end-line="338" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/utilities/ToolUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="29" column="65" lean-forward="true" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/player/PencilPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1699">
+          <caret line="160" column="17" lean-forward="true" selection-start-line="160" selection-start-column="17" selection-end-line="160" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/service/MessageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="28" column="54" lean-forward="false" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilUtilityListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-69">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/routines/engines/RenderEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="696">
+          <caret line="63" column="120" lean-forward="false" selection-start-line="63" selection-start-column="120" selection-end-line="63" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInteractionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1909">
+          <caret line="83" column="128" lean-forward="false" selection-start-line="83" selection-start-column="128" selection-end-line="83" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pencil/engine/utils/listener/PencilInterfaceListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="35" column="33" lean-forward="true" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+          <folding>
+            <element signature="method#onPencilShape#0;class#PencilInterfaceListener#0" expanded="false" />
+            <element signature="method#onPencilScale#0;class#PencilInterfaceListener#0" expanded="false" />
+            <element signature="method#onPencilMaterial#0;class#PencilInterfaceListener#0" expanded="false" />
+            <element signature="method#onPencilHistory#0;class#PencilInterfaceListener#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

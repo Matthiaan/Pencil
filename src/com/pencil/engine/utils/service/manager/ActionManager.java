@@ -33,8 +33,6 @@ public class ActionManager extends Manager {
         player.getHistory().addAction(action);
 
         if (ids.get(player).containsKey(0)) {
-            System.out.println(action.getID());
-
             int i = ids.get(player).size();
 
             ids.get(player).put(i, action);

@@ -1,23 +1,20 @@
 package com.pencil.engine.utils.events;
 
 import com.pencil.engine.utils.action.PencilAction;
-import com.pencil.engine.utils.action.PencilNonUndoableAction;
-import org.bukkit.Material;
+import com.pencil.engine.utils.action.PencilHistoryAction;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class PencilMaterialRequestEvent extends Event implements PencilEvent {
+public class PencilHistoryEvent extends Event implements PencilEvent {
 
     private static final HandlerList handlers = new HandlerList();
+    private PencilAction action;
     private Player player;
-    private Material material;
-    private PencilEvent event;
 
-    public PencilMaterialRequestEvent(Player player, Material material, PencilEvent event) {
+    public PencilHistoryEvent(PencilAction action, Player player) {
+        this.action = action;
         this.player = player;
-        this.material = material;
-        this.event = event;
     }
 
     @Override
@@ -25,17 +22,13 @@ public class PencilMaterialRequestEvent extends Event implements PencilEvent {
         return player;
     }
 
-    public Material getMaterial() {
-        return material;
-    }
-
-    public PencilEvent getEvent() {
-        return event;
+    public PencilAction getActualAction() {
+        return action;
     }
 
     @Override
     public PencilAction getAction() {
-        return new PencilNonUndoableAction(PencilAction.ActionType.INTERFACE);
+        return new PencilHistoryAction(action, action.getID());
     }
 
     @Override

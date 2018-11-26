@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="Pencil">
-    <output-path>$USER_HOME$/Desktop/New Pencil/Builds/0.0.2.6</output-path>
+    <output-path>$USER_HOME$/Desktop/New Pencil/Builds/0.0.2.7</output-path>
     <root id="archive" name="Pencil.jar">
       <element id="module-output" name="PSuite" />
     </root>

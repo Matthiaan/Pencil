@@ -133,6 +133,14 @@ public class ItemUtils {
         return getSkullItem(1, "MHF_ArrowLeft", ChatColor.GREEN + "Redo");
     }
 
+    public static ItemStack getUndoPreviousItem() {
+        return getSkullItem(1, "MHF_ArrowRight", ChatColor.GREEN + "Undo the previous action");
+    }
+
+    public static ItemStack getRedoPreviousItem() {
+        return getSkullItem(1, "MHF_ArrowLeft", ChatColor.GREEN + "Redo the previous action");
+    }
+
     public static ItemStack getMenuItem() {
         return getItem(Material.COMPASS, 1, Pencil.getPrefix() + ChatColor.AQUA + "Menu");
     }

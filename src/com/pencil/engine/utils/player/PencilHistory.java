@@ -43,5 +43,7 @@ public class PencilHistory {
         return actions.size();
     }
 
+    //TODO: Implement Buffer system
+    public void recalculate(int index) { }
     
 }

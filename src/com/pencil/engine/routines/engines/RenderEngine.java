@@ -35,6 +35,42 @@ public class RenderEngine {
 
     private static HashMap<Player, ArrayList<Voxel>> voxels = new HashMap<>();
 
+    public static ArrayList<Vector> getPreRenderedFootage(PencilPlayer.ShapeRequest request) {
+        Selection selection = request.getSelection();
+
+        switch (request.getType()) {
+            case CUBE:
+            case CUBOID:
+                if (selection instanceof VectorSelection) {
+                    return ShapeUtils.getCuboid(new CuboidSelection(
+                                    ((VectorSelection) selection).getNativeMaximumVector(),
+                                    ((VectorSelection) selection).getNativeMaximumVector().add(request.getScale())),
+                            request.isFilled());
+                } else if (selection instanceof CuboidSelection) {
+                    return ShapeUtils.getCuboid((CuboidSelection) selection, request.isFilled());
+                }
+            case PYRAMID:
+                if (selection instanceof VectorSelection) {
+                    return ShapeUtils.getPyramid(new CuboidSelection(
+                            ((VectorSelection) selection).getNativeMaximumVector(),
+                            ((VectorSelection) selection).getNativeMaximumVector().add(request.getScale())),
+                            request.isFilled());
+                } else if (selection instanceof CuboidSelection) {
+                    return ShapeUtils.getPyramid((CuboidSelection) selection, request.isFilled());
+                }
+            case SPHERE:
+            case ELLIPSOID:
+                if (selection instanceof VectorSelection) {
+                    return ShapeUtils.getEllipsoid((VectorSelection) selection, request.getScale(), request.isFilled());
+                }
+            case PRISM:
+            case CYLINDER:
+                return null;
+        }
+
+        return null;
+    }
+
     public static boolean render(PencilShapePreProcessingEvent event) {
         Player player = event.getPlayer();
         PencilPlayer.ShapeRequest request = event.getRequest();
@@ -45,16 +81,12 @@ public class RenderEngine {
                 request.getScale(),
                 request.isFilled(),
                 request.getMaterial())) {
-            Bukkit.getServer().getPluginManager().callEvent(new PencilShapeEvent(player, request));
+            Bukkit.getServer().getPluginManager().callEvent(new PencilShapeEvent(player, request, event.getOld()));
 
             return true;
         } else {
             return false;
         }
-    }
-
-    public static boolean render(Player player, Selection selection, Material material) {
-        return render(player, selection, ShapeUtils.ShapeType.CUBOID, new Vector(0, 0, 0), true, material);
     }
 
     /**

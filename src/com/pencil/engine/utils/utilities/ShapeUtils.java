@@ -5,8 +5,11 @@ import com.pencil.engine.geometry.selection.*;
 import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.routines.engines.DrawEngine;
 import com.pencil.engine.routines.engines.utils.Voxel;
+import org.bukkit.Material;
+import org.bukkit.World;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ShapeUtils {
 
@@ -328,6 +331,16 @@ public class ShapeUtils {
         ArrayList<Vector> vertices = selection.getVertices();
 
         return vertices;
+    }
+
+    public static HashMap<Vector, Material> getOldMaterials(World world, ArrayList<Vector> vectors) {
+        HashMap<Vector, Material> materials = new HashMap<>();
+
+        for (Vector vector : vectors) {
+            materials.put(vector, world.getBlockAt(vector.toLocation(world)).getType());
+        }
+
+        return materials;
     }
 
 }

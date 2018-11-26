@@ -16,7 +16,8 @@ public abstract interface PencilAction {
         OPERATION,
         SELECTION,
         INTERFACE,
-        INITIALIZED
+        INITIALIZED,
+        HISTORY
     }
 
     /**

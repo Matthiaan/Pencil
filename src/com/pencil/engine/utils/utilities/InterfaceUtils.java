@@ -103,7 +103,7 @@ public class InterfaceUtils {
     }
 
     public static Inventory createShapeTypeInterface() {
-        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Shape Types", 27);
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Shape Generation", 27);
         InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
 
         gui.setItem(16, ItemUtils.getExitItem());
@@ -566,6 +566,19 @@ public class InterfaceUtils {
                 }
             }
         }
+
+        return gui;
+    }
+
+    public static Inventory createHistoryMenu() {
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "History Menu", 36);
+        InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
+
+        gui.setItem(35, ItemUtils.getExitItem());
+        gui.setItem(27, ItemUtils.getBackItem());
+        gui.setItem(10, ItemUtils.getItem(Material.CLOCK, 1, ChatColor.AQUA + "History Timeline"));
+        gui.setItem(11, ItemUtils.getUndoPreviousItem());
+        gui.setItem(12, ItemUtils.getRedoPreviousItem());
 
         return gui;
     }

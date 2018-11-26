@@ -1,6 +1,8 @@
 package com.pencil.engine.utils.action;
 
+import com.pencil.engine.Pencil;
 import com.pencil.engine.geometry.vector.Vector;
+import com.pencil.engine.utils.events.PencilHistoryEvent;
 import org.bukkit.entity.Player;
 
 public class PencilVectorAction implements PencilAction {
@@ -26,7 +28,13 @@ public class PencilVectorAction implements PencilAction {
     }
 
     @Override
-    public void undo(Player player) { }
+    public void undo(Player player) {
+        //TODO: Implement this
+
+        /*
+        Pencil.getEventService().queueEvent(new PencilHistoryEvent(this, player));
+        */
+    }
 
     public void setID(int ID) {
         this.ID = ID;
