@@ -1,11 +1,15 @@
 package com.pencil.engine.utils.listener;
 
 import com.pencil.engine.Pencil;
+import com.pencil.engine.geometry.math.SelectionMath;
 import com.pencil.engine.geometry.selection.CuboidSelection;
 import com.pencil.engine.geometry.vector.Vector;
+import com.pencil.engine.pipeline.request.FixedShapeRequest;
+import com.pencil.engine.pipeline.request.Request;
 import com.pencil.engine.utils.events.PencilHistoryEvent;
 import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
+import com.pencil.engine.utils.service.manager.SelectionManager;
 import com.pencil.engine.utils.utilities.*;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.utils.action.PencilAction;
@@ -61,6 +65,9 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 11) {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createShapeTypeInterface());
+                } else if (slot == 12) {
+                    player.closeInventory();
+                    player.openInventory(InterfaceUtils.createSelectionOptionsInterface());
                 } else if (slot == 22) {
                     player.closeInventory();
                 }
@@ -115,17 +122,43 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 16) {
                     player.closeInventory();
                 }
+            } else if (event.getClickedInventory().getName().contains("Selection Options")) {
+                if (slot == 10) {
+                    player.closeInventory();
+
+                    SelectionMath.copyToClipboard(pencilPlayer);
+                } else if (slot == 11) {
+                    player.closeInventory();
+
+                    SelectionMath.pasteFromClipboard(pencilPlayer);
+                } else if (slot == 12) {
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
+                            MessageService.MessageType.WARNING, true));
+                } else if (slot == 13) {
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
+                            MessageService.MessageType.WARNING, true));
+                } else if (slot == 14) {
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
+                            MessageService.MessageType.WARNING, true));
+                } else if (slot == 22) {
+                    player.closeInventory();
+                }
             }
 
             //TODO: Fix this mess of code!
             //TODO: Fix cursor reset!
             else if (event.getClickedInventory().getName().contains("Filled Shape")) {
+                FixedShapeRequest request = pencilPlayer.getCurrentShapeRequest();
+
                 if (slot == 12) {
-                    pencilPlayer.getCurrentRequest().setFilled(false);
+                    request.setFilled(false);
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getStone());
                 } else if (slot == 14) {
-                    pencilPlayer.getCurrentRequest().setFilled(true);
+                    request.setFilled(true);
                     player.closeInventory();
                     player.openInventory(Pencil.getMaterials().getStone());
                 } else if (slot == 31) {
@@ -143,6 +176,7 @@ public class PencilInterfaceListener implements Listener {
         if (InterfaceUtils.isPencilInventory(event.getClickedInventory())) {
             Player player = (Player) event.getWhoClicked();
             PencilPlayer pencilPlayer = Pencil.getPlayerService().getPlayer(player);
+            FixedShapeRequest request = pencilPlayer.getCurrentShapeRequest();
             int slot = event.getSlot();
 
             if (event.getClickedInventory().getName().contains("Shape Generation")) {
@@ -216,7 +250,7 @@ public class PencilInterfaceListener implements Listener {
                             Vector dMax = dVectors.get(1);
                             CuboidSelection selection = new CuboidSelection(dMin, dMax, player.getWorld());
 
-                            pencilPlayer.getCurrentRequest().setSelection(selection);
+                            request.setSelection(selection);
                             player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                             player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
                                     MessageService.MessageType.INFO, false));
@@ -257,7 +291,7 @@ public class PencilInterfaceListener implements Listener {
 
                             CuboidSelection mSelection = new CuboidSelection(dMin, new Vector(p, p, p), player.getWorld());
 
-                            pencilPlayer.getCurrentRequest().setSelection(mSelection);
+                            request.setSelection(mSelection);
                             player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                             player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
                                     MessageService.MessageType.WARNING, true));
@@ -350,7 +384,7 @@ public class PencilInterfaceListener implements Listener {
 
                             CuboidSelection dSelection = new CuboidSelection(dMin, dMax, player.getWorld());
 
-                            pencilPlayer.getCurrentRequest().setSelection(dSelection);
+                            request.setSelection(dSelection);
                             player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                             player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
                                     MessageService.MessageType.WARNING, true));
@@ -387,7 +421,7 @@ public class PencilInterfaceListener implements Listener {
                             CuboidSelection dSelection = new CuboidSelection(dMin, new Vector(p, p, p), player.getWorld());
 
                             //TODO: We should skip directly to the "filled-shape"-dialog
-                            pencilPlayer.getCurrentRequest().setSelection(dSelection);
+                            request.setSelection(dSelection);
                             player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
 
                             break;
@@ -409,6 +443,7 @@ public class PencilInterfaceListener implements Listener {
         if (InterfaceUtils.isPencilInventory(event.getClickedInventory())) {
             Player player = (Player) event.getWhoClicked();
             PencilPlayer pencilPlayer = Pencil.getPlayerService().getPlayer(player);
+            FixedShapeRequest request = pencilPlayer.getCurrentShapeRequest();
             int slot = event.getSlot();
 
             if (event.getClickedInventory().getName().contains("General Scale")) {
@@ -423,7 +458,7 @@ public class PencilInterfaceListener implements Listener {
                     event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    pencilPlayer.getCurrentRequest().setScale(new Vector(
+                    request.setScale(new Vector(
                             event.getInventory().getItem(22).getAmount(),
                             event.getInventory().getItem(22).getAmount(),
                             event.getInventory().getItem(22).getAmount()));
@@ -445,9 +480,9 @@ public class PencilInterfaceListener implements Listener {
                     event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
+                    String type = request.getType().toString().toLowerCase();
 
-                    pencilPlayer.getCurrentRequest().setScale(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0));
+                    request.setScale(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale Y",
                             ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Height of your " + type + ".")));
@@ -467,9 +502,9 @@ public class PencilInterfaceListener implements Listener {
                     event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
+                    String type = request.getType().toString().toLowerCase();
 
-                    if (pencilPlayer.getCurrentRequest().getScale() == null) {
+                    if (request.getScale() == null) {
                         player.closeInventory();
                         player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SOMETHING_WENT_WRONG.getMessage(),
                                 MessageService.MessageType.ERROR, true));
@@ -477,7 +512,7 @@ public class PencilInterfaceListener implements Listener {
                         return;
                     }
 
-                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(0, event.getInventory().getItem(22).getAmount(), 0)));
+                    request.setScale(request.getScale().add(new Vector(0, event.getInventory().getItem(22).getAmount(), 0)));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createScaleInterface("Shape Scale Z",
                             ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Length of your " + type + ".")));
@@ -497,7 +532,7 @@ public class PencilInterfaceListener implements Listener {
                     event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    if (pencilPlayer.getCurrentRequest().getScale() == null) {
+                    if (request.getScale() == null) {
                         player.closeInventory();
                         player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SOMETHING_WENT_WRONG.getMessage(),
                                 MessageService.MessageType.ERROR, true));
@@ -505,7 +540,7 @@ public class PencilInterfaceListener implements Listener {
                         return;
                     }
 
-                    pencilPlayer.getCurrentRequest().getScale().add(pencilPlayer.getCurrentRequest().getScale().add(new Vector(0, 0, event.getInventory().getItem(22).getAmount())));
+                    request.getScale().add(request.getScale().add(new Vector(0, 0, event.getInventory().getItem(22).getAmount())));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                 } else if (slot == 37) {
@@ -524,7 +559,7 @@ public class PencilInterfaceListener implements Listener {
                     event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    pencilPlayer.getCurrentRequest().setScale(new Vector(event.getInventory().getItem(22).getAmount(),
+                    request.setScale(new Vector(event.getInventory().getItem(22).getAmount(),
                             event.getInventory().getItem(22).getAmount(),
                             event.getInventory().getItem(22).getAmount()));
                     player.closeInventory();
@@ -545,9 +580,9 @@ public class PencilInterfaceListener implements Listener {
                     event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
+                    String type = request.getType().toString().toLowerCase();
 
-                    pencilPlayer.getCurrentRequest().setScale(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0));
+                    request.setScale(new Vector(event.getInventory().getItem(22).getAmount(), 0, 0));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createScaleInterface("Radius Y",
                             ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Y Radius of the " + type + ".")));
@@ -567,9 +602,9 @@ public class PencilInterfaceListener implements Listener {
                     event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    String type = pencilPlayer.getCurrentRequest().getType().toString().toLowerCase();
+                    String type = request.getType().toString().toLowerCase();
 
-                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(0, event.getInventory().getItem(22).getAmount(), 0));
+                    request.setScale(request.getScale().add(0, event.getInventory().getItem(22).getAmount(), 0));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createScaleInterface("Radius Z",
                             ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Z Radius of the " + type + ".")));
@@ -589,7 +624,7 @@ public class PencilInterfaceListener implements Listener {
                     event.getClickedInventory().setItem(22, ItemUtils.changeMeta(item, item.getAmount() + 1, ChatColor.AQUA + ("Current Scale = " + (item.getAmount() + 1) + "")));
                     player.updateInventory();
                 } else if (slot == 43) {
-                    pencilPlayer.getCurrentRequest().setScale(pencilPlayer.getCurrentRequest().getScale().add(new Vector(0, 0, event.getInventory().getItem(22).getAmount())));
+                    request.setScale(request.getScale().add(new Vector(0, 0, event.getInventory().getItem(22).getAmount())));
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                 } else if (slot == 37) {
@@ -605,19 +640,18 @@ public class PencilInterfaceListener implements Listener {
         if (InterfaceUtils.isPencilInventory(event.getClickedInventory())) {
             Player player = (Player) event.getWhoClicked();
             PencilPlayer pencilPlayer = Pencil.getPlayerService().getPlayer(player);
+            FixedShapeRequest request = pencilPlayer.getCurrentShapeRequest();
             int slot = event.getSlot();
 
             if (event.getClickedInventory().getName().contains("Stone Types")) {
                 if (slot < 45 && !event.getClickedInventory().getItem(slot).getType().equals(Material.AIR)) {
-                    if (pencilPlayer.getCurrentRequest() == null) {
-                        ToolUtils.addCustomRequest(pencilPlayer,
-                                ShapeUtils.ShapeType.CUBOID,
-                                Pencil.getSelectionManager().get(pencilPlayer),
+                    if (request == null) {
+                        ToolUtils.addCustomCuboidRequest(pencilPlayer,
                                 new Vector(0, 0, 0),
                                 event.getInventory().getItem(slot).getType(),
-                                true);
+                                false);
                     } else {
-                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                        request.perform(event.getClickedInventory().getItem(slot).getType(), true, false);
                     }
 
                     player.closeInventory();
@@ -633,15 +667,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Natural Materials")) {
                 if (slot < 45 && !event.getClickedInventory().getItem(slot).getType().equals(Material.AIR)) {
-                    if (pencilPlayer.getCurrentRequest() == null) {
-                        ToolUtils.addCustomRequest(pencilPlayer,
-                                ShapeUtils.ShapeType.CUBOID,
-                                Pencil.getSelectionManager().get(pencilPlayer),
+                    if (request == null) {
+                        ToolUtils.addCustomCuboidRequest(pencilPlayer,
                                 new Vector(0, 0, 0),
                                 event.getInventory().getItem(slot).getType(),
-                                true);
+                                false);
                     } else {
-                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                        request.perform(event.getClickedInventory().getItem(slot).getType(), true, false);
                     }
 
                     player.closeInventory();
@@ -657,15 +689,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Woods")) {
                 if (slot < 45 && !event.getClickedInventory().getItem(slot).getType().equals(Material.AIR)) {
-                    if (pencilPlayer.getCurrentRequest() == null) {
-                        ToolUtils.addCustomRequest(pencilPlayer,
-                                ShapeUtils.ShapeType.CUBOID,
-                                Pencil.getSelectionManager().get(pencilPlayer),
+                    if (request == null) {
+                        ToolUtils.addCustomCuboidRequest(pencilPlayer,
                                 new Vector(0, 0, 0),
                                 event.getInventory().getItem(slot).getType(),
                                 true);
                     } else {
-                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                        request.perform(event.getClickedInventory().getItem(slot).getType(), true, false);
                     }
 
                     player.closeInventory();
@@ -681,15 +711,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Slabs & Stairs")) {
                 if (slot < 45 && !event.getClickedInventory().getItem(slot).getType().equals(Material.AIR)) {
-                    if (pencilPlayer.getCurrentRequest() == null) {
-                        ToolUtils.addCustomRequest(pencilPlayer,
-                                ShapeUtils.ShapeType.CUBOID,
-                                Pencil.getSelectionManager().get(pencilPlayer),
+                    if (request == null) {
+                        ToolUtils.addCustomCuboidRequest(pencilPlayer,
                                 new Vector(0, 0, 0),
                                 event.getInventory().getItem(slot).getType(),
-                                true);
+                                false);
                     } else {
-                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                        request.perform(event.getClickedInventory().getItem(slot).getType(), true, false);
                     }
 
                     player.closeInventory();
@@ -705,15 +733,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Colored Items 1")) {
                 if (slot < 45 && !event.getClickedInventory().getItem(slot).getType().equals(Material.AIR)) {
-                    if (pencilPlayer.getCurrentRequest() == null) {
-                        ToolUtils.addCustomRequest(pencilPlayer,
-                                ShapeUtils.ShapeType.CUBOID,
-                                Pencil.getSelectionManager().get(pencilPlayer),
+                    if (request == null) {
+                        ToolUtils.addCustomCuboidRequest(pencilPlayer,
                                 new Vector(0, 0, 0),
                                 event.getInventory().getItem(slot).getType(),
-                                true);
+                                false);
                     } else {
-                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                        request.perform(event.getClickedInventory().getItem(slot).getType(), true, false);
                     }
 
                     player.closeInventory();
@@ -729,15 +755,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Colored Items 2")) {
                 if (slot < 45 && !event.getClickedInventory().getItem(slot).getType().equals(Material.AIR)) {
-                    if (pencilPlayer.getCurrentRequest() == null) {
-                        ToolUtils.addCustomRequest(pencilPlayer,
-                                ShapeUtils.ShapeType.CUBOID,
-                                Pencil.getSelectionManager().get(pencilPlayer),
+                    if (request == null) {
+                        ToolUtils.addCustomCuboidRequest(pencilPlayer,
                                 new Vector(0, 0, 0),
                                 event.getInventory().getItem(slot).getType(),
-                                true);
+                                false);
                     } else {
-                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                        request.perform(event.getClickedInventory().getItem(slot).getType(), true, false);
                     }
 
                     player.closeInventory();
@@ -753,15 +777,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Colored Items 3")) {
                 if (slot < 45 && !event.getClickedInventory().getItem(slot).getType().equals(Material.AIR)) {
-                    if (pencilPlayer.getCurrentRequest() == null) {
-                        ToolUtils.addCustomRequest(pencilPlayer,
-                                ShapeUtils.ShapeType.CUBOID,
-                                Pencil.getSelectionManager().get(pencilPlayer),
+                    if (request == null) {
+                        ToolUtils.addCustomCuboidRequest(pencilPlayer,
                                 new Vector(0, 0, 0),
                                 event.getInventory().getItem(slot).getType(),
-                                true);
+                                false);
                     } else {
-                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                        request.perform(event.getClickedInventory().getItem(slot).getType(), true, false);
                     }
 
                     player.closeInventory();
@@ -777,15 +799,13 @@ public class PencilInterfaceListener implements Listener {
                 }
             } else if (event.getClickedInventory().getName().contains("Sea Materials")) {
                 if (slot < 45 && !event.getClickedInventory().getItem(slot).getType().equals(Material.AIR)) {
-                    if (pencilPlayer.getCurrentRequest() == null) {
-                        ToolUtils.addCustomRequest(pencilPlayer,
-                                ShapeUtils.ShapeType.CUBOID,
-                                Pencil.getSelectionManager().get(pencilPlayer),
+                    if (request == null) {
+                        ToolUtils.addCustomCuboidRequest(pencilPlayer,
                                 new Vector(0, 0, 0),
                                 event.getInventory().getItem(slot).getType(),
-                                true);
+                                false);
                     } else {
-                        pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                        request.perform(event.getClickedInventory().getItem(slot).getType(), true, false);
                     }
 
                     player.closeInventory();
@@ -802,26 +822,22 @@ public class PencilInterfaceListener implements Listener {
             } else if (event.getClickedInventory().getName().contains("Random Materials")) {
                 if (slot < 45 && !event.getClickedInventory().getItem(slot).getType().equals(Material.AIR)) {
                     if (slot == 10) {
-                        if (pencilPlayer.getCurrentRequest() == null) {
-                            ToolUtils.addCustomRequest(pencilPlayer,
-                                    ShapeUtils.ShapeType.CUBOID,
-                                    Pencil.getSelectionManager().get(pencilPlayer),
+                        if (request == null) {
+                            ToolUtils.addCustomCuboidRequest(pencilPlayer,
                                     new Vector(0, 0, 0),
                                     event.getInventory().getItem(slot).getType(),
                                     true);
                         } else {
-                            pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                            request.perform(event.getClickedInventory().getItem(slot).getType(), true, true);
                         }
                     } else {
-                        if (pencilPlayer.getCurrentRequest() == null) {
-                            ToolUtils.addCustomRequest(pencilPlayer,
-                                    ShapeUtils.ShapeType.CUBOID,
-                                    Pencil.getSelectionManager().get(pencilPlayer),
+                        if (request == null) {
+                            ToolUtils.addCustomCuboidRequest(pencilPlayer,
                                     new Vector(0, 0, 0),
                                     event.getInventory().getItem(slot).getType(),
-                                    true);
+                                    false);
                         } else {
-                            pencilPlayer.getCurrentRequest().isApplicableMaterial(event.getClickedInventory().getItem(slot).getType(), true);
+                            request.perform(event.getClickedInventory().getItem(slot).getType(), true, false);
                         }
                     }
 

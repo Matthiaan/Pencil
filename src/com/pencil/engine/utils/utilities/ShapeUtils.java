@@ -1,10 +1,7 @@
 package com.pencil.engine.utils.utilities;
 
-import com.mysql.fabric.xmlrpc.base.Array;
 import com.pencil.engine.geometry.selection.*;
 import com.pencil.engine.geometry.vector.Vector;
-import com.pencil.engine.routines.engines.DrawEngine;
-import com.pencil.engine.routines.engines.utils.Voxel;
 import org.bukkit.Material;
 import org.bukkit.World;
 
@@ -94,43 +91,6 @@ public class ShapeUtils {
         return vectors;
     }
 
-    public static ArrayList<Vector> getPyramid(CuboidSelection selection, boolean isFilled) {
-        if (isFilled) {
-            return getPyramidFilled(selection);
-        } else {
-            return getPyramidUnfilled(selection);
-        }
-    }
-
-    public static ArrayList<Vector> getPyramidFilled(CuboidSelection selection) {
-        Vector min = selection.getNativeMinimumVector();
-        Vector max = selection.getNativeMaximumVector();
-        Vector minCalc = new Vector(max.getX(), min.getY(), max.getZ());
-
-        ArrayList<Vector> vectors = new ArrayList<>();
-
-        //Pyramids are generated using CuboidSelections!
-        CuboidSelection preSelection = new CuboidSelection(min, minCalc);
-        ArrayList<CuboidSelection> selections = getPyramidSelections(preSelection);
-
-        vectors.addAll(preSelection.getVectors());
-
-        for (CuboidSelection cSelection : selections) {
-            vectors.addAll(cSelection.getVectors());
-        }
-
-        return vectors;
-    }
-
-    private static ArrayList<Vector> getPyramidUnfilled(CuboidSelection selection) {
-        //TODO: Make this, now just return a filled selection
-        return getPyramidFilled(selection);
-    }
-
-    public static ArrayList<Vector> getSphere(VectorSelection selection, int radius, boolean filled) {
-        return null;
-    }
-
     public static ArrayList<Vector> getEllipsoid(VectorSelection selection, Vector scale, boolean filled) {
         ArrayList<Vector> vectors = new ArrayList<>();
         Vector origin = selection.getNativeMinimumVector();
@@ -198,10 +158,13 @@ public class ShapeUtils {
         return vectors;
     }
 
-    public static ArrayList<Vector> calculateCylinder(Vector min, double radiusX, double radiusZ, double height, boolean filled) {
+    public static ArrayList<Vector> getCylinder(VectorSelection selection, Vector scale, boolean filled) {
         ArrayList<Vector> vectors = new ArrayList<>();
-        vectors.add(min);
+        Vector origin = selection.getNativeMinimumVector();
 
+        double radiusX = scale.getBlockX();
+        double height = scale.getBlockY();
+        double radiusZ = scale.getBlockZ();
 
         radiusX += 0.5;
         radiusZ += 0.5;
@@ -210,13 +173,13 @@ public class ShapeUtils {
             return null;
         } else if (height < 0) {
             height = -height;
-            min = min.subtract(0, height, 0);
+            origin = origin.subtract(0, height, 0);
         }
 
-        if (min.getBlockY() < 0) {
-            min = min.setY(0);
-        } else if (min.getBlockY() + height - 1 > 256) {
-            height = 256 - min.getBlockY() + 1;
+        if (origin.getBlockY() < 0) {
+            origin = origin.setY(0);
+        } else if (origin.getBlockY() + height - 1 > 256) {
+            height = 256 - origin.getBlockY() + 1;
         }
 
         final double invRadiusX = 1 / radiusX;
@@ -249,81 +212,19 @@ public class ShapeUtils {
                 }
 
                 for (int y = 0; y < height; ++y) {
-                    vectors.add(new Vector(min.add(x, y, z)));
-                    vectors.add(new Vector(min.add(-x, y, z)));
-                    vectors.add(new Vector(min.add(x, y, -z)));
-                    vectors.add(new Vector(min.add(-x, y, -z)));
+                    vectors.add(new Vector(origin.add(x, y, z)));
+                    vectors.add(new Vector(origin.add(-x, y, z)));
+                    vectors.add(new Vector(origin.add(x, y, -z)));
+                    vectors.add(new Vector(origin.add(-x, y, -z)));
                 }
             }
         }
 
         if (filled) {
-            vectors.add(min);
+            vectors.add(origin);
         }
 
         return vectors;
-    }
-
-    private static ArrayList<CuboidSelection> getPyramidSelections(CuboidSelection selection) {
-        Vector min = selection.getNativeMinimumVector();
-        Vector max = selection.getNativeMaximumVector();
-        Vector newMin = min;
-        Vector newMax = max;
-        ArrayList<CuboidSelection> selections = new ArrayList<>();
-
-        selections.add(selection);
-
-        int i = selection.getWidth();
-
-        //Expr ==> i = (i - 2)
-        while (i >= 1) {
-            if ((i == 1) || (i == 2)) {
-                //TODO: Fix this!
-
-                continue;
-            } else {
-                int x = max.getBlockX();
-                int z = max.getBlockZ();
-
-                newMin = new Vector(
-                     recalculatePyramidCoordinate(newMin.getBlockX(), x),
-                     0,
-                     recalculatePyramidCoordinate(newMin.getBlockZ(), z)
-                );
-
-                newMax = new Vector(
-                        reverse(recalculatePyramidCoordinate(newMax.getBlockX(), x)),
-                        0,
-                        reverse(recalculatePyramidCoordinate(newMax.getBlockZ(), z))
-                );
-
-                selections.add(new CuboidSelection(newMin, newMax));
-            }
-
-            i = i - 2;
-        }
-
-        return selections;
-    }
-
-    private static int recalculatePyramidCoordinate(int i, int p) {
-        if (i < 0) {
-            if (p < 0) {
-                return i - 1;
-            } else {
-                return i + 1;
-            }
-        } else {
-            if (p < 0) {
-                return i - 1;
-            } else {
-                return i + 1;
-            }
-        }
-    }
-
-    private static int reverse(int i) {
-        return -i;
     }
 
     //TODO: Find an algorithm
@@ -333,11 +234,23 @@ public class ShapeUtils {
         return vertices;
     }
 
-    public static HashMap<Vector, Material> getOldMaterials(World world, ArrayList<Vector> vectors) {
+    public static HashMap<Vector, Material> getMaterialsInRegion(World world, ArrayList<Vector> vectors) {
         HashMap<Vector, Material> materials = new HashMap<>();
 
         for (Vector vector : vectors) {
             materials.put(vector, world.getBlockAt(vector.toLocation(world)).getType());
+        }
+
+        return materials;
+    }
+
+    public static HashMap<Vector, Material> getMaterialsInOffsetRegion(World world, Vector vector, ArrayList<Vector> offsets) {
+        HashMap<Vector, Material> materials = new HashMap<>();
+
+        for (Vector offset : offsets) {
+            Vector finalVector = vector.add(offset);
+
+            materials.put(finalVector, world.getBlockAt(finalVector.toLocation(world)).getType());
         }
 
         return materials;

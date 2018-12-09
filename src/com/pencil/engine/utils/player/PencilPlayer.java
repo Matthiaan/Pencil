@@ -1,17 +1,17 @@
 package com.pencil.engine.utils.player;
 
-import com.pencil.engine.Pencil;
+import com.pencil.engine.geometry.Clipboard;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.geometry.vector.Vector;
-import com.pencil.engine.routines.engines.RenderEngine;
-import com.pencil.engine.utils.events.PencilShapeEvent;
-import com.pencil.engine.utils.events.PencilShapePreProcessingEvent;
+import com.pencil.engine.pipeline.request.FixedOperationRequest;
+import com.pencil.engine.pipeline.request.FixedShapeRequest;
 import com.pencil.engine.utils.service.MessageService;
 import com.pencil.engine.utils.utilities.ShapeUtils;
 import com.pencil.engine.utils.utilities.ToolUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+
+import java.util.HashMap;
 
 public class PencilPlayer {
 
@@ -23,7 +23,11 @@ public class PencilPlayer {
     private PencilHistory history;
     private SelectionMode mode;
 
-    private ShapeRequest shapeRequest;
+    private Clipboard clipboard;
+
+    private FixedShapeRequest shapeRequest;
+    private FixedOperationRequest operationRequest;
+
     private Selection selection;
     private ToolUtils.ToolType toolType;
 
@@ -32,6 +36,8 @@ public class PencilPlayer {
 
         history = new PencilHistory(player.getUniqueId());
         mode = SelectionMode.NA;
+
+        clipboard = new Clipboard();
     }
 
     public Player getPlayer() {
@@ -50,13 +56,40 @@ public class PencilPlayer {
         this.mode = mode;
     }
 
+    public void updateClipboard(HashMap<Vector, Material> clipped) {
+        clipboard.setClipped(clipped);
+    }
+
+    public Clipboard getClipboard() {
+        return clipboard;
+    }
+
     public void setShapeRequest(ShapeUtils.ShapeType type) {
-        shapeRequest = new ShapeRequest(player);
+        shapeRequest = null;
+        shapeRequest = new FixedShapeRequest(player);
         shapeRequest.setType(type);
     }
 
-    public ShapeRequest getCurrentRequest() {
+    public void setOperationRequest(Vector vector) {
+        operationRequest = null;
+        operationRequest = new FixedOperationRequest(player);
+        operationRequest.setPastePoint(vector);
+    }
+
+    public FixedShapeRequest getCurrentShapeRequest() {
         return shapeRequest;
+    }
+
+    public FixedOperationRequest getOperationRequest() {
+        return operationRequest;
+    }
+
+    public void resetShapeRequest() {
+        shapeRequest = null;
+    }
+
+    public void resetOperationRequest() {
+        operationRequest = null;
     }
 
     public void setSelection(Selection selection) {
@@ -78,88 +111,5 @@ public class PencilPlayer {
 
     public void setToolType(ToolUtils.ToolType toolType) {
         this.toolType = toolType;
-    }
-
-    public class ShapeRequest {
-
-        private Player owner;
-        private Selection selection;
-        private ShapeUtils.ShapeType type;
-        private Vector scale;
-        private Material material;
-
-        private boolean filled;
-
-        public ShapeRequest(Player owner) {
-            this.owner = owner;
-            this.selection = null;
-            this.type = null;
-            this.scale = null;
-            this.material = null;
-
-            filled = true;
-        }
-
-        public Selection getSelection() {
-            return selection;
-        }
-
-        public void setSelection(Selection selection) {
-            this.selection = selection;
-        }
-
-        public ShapeUtils.ShapeType getType() {
-            return type;
-        }
-
-        public void setType(ShapeUtils.ShapeType type) {
-            this.type = type;
-        }
-
-        public Vector getScale() {
-            return scale;
-        }
-
-        public void setScale(Vector scale) {
-            this.scale = scale;
-        }
-
-        public Material getMaterial() {
-            return material;
-        }
-
-        public void setMaterial(Material material) {
-            this.material = material;
-        }
-
-        public boolean isFilled() {
-            return filled;
-        }
-
-        public void setFilled(boolean filled) {
-            this.filled = filled;
-        }
-
-        public void isApplicableMaterial(Material material, boolean inform) {
-            setMaterial(material);
-
-            if (inform) {
-                owner.closeInventory();
-                owner.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SHAPE_CREATION.getMessage(),
-                        MessageService.MessageType.INFO, false));
-
-                if (Pencil.getSelectionManager().hasSelection(Pencil.getPlayerService().getPlayer(player))) {
-                    setSelection(Pencil.getSelectionManager().get(Pencil.getPlayerService().getPlayer(player)));
-                }
-
-                try {
-                    Pencil.getEventService().queueEvent(new PencilShapePreProcessingEvent(player.getPlayer(), this,
-                            ShapeUtils.getOldMaterials(player.getPlayer().getWorld(), RenderEngine.getPreRenderedFootage(this))));
-                } catch (NullPointerException ex) {
-                    player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_HISTORY_AVAILABLE.getMessage(),
-                            MessageService.MessageType.WARNING, false));
-                }
-            }
-        }
     }
 }

@@ -2,6 +2,8 @@ package com.pencil.engine.utils.action;
 
 import com.pencil.engine.Pencil;
 import com.pencil.engine.geometry.vector.Vector;
+import com.pencil.engine.pipeline.request.FixedShapeRequest;
+import com.pencil.engine.pipeline.request.Request;
 import com.pencil.engine.utils.events.PencilHistoryEvent;
 import com.pencil.engine.utils.player.PencilPlayer;
 import org.bukkit.Material;
@@ -9,18 +11,18 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
-public class PencilShapeAction implements PencilAction {
+public class PencilRequestAction implements PencilAction {
 
-    private PencilPlayer.ShapeRequest request;
+    private Request request;
     private HashMap<Vector, Material> old;
     private int ID;
 
-    public PencilShapeAction(PencilPlayer.ShapeRequest request, HashMap<Vector, Material> old) {
+    public PencilRequestAction(Request request, HashMap<Vector, Material> old) {
         this.request = request;
         this.old = old;
     }
 
-    public PencilPlayer.ShapeRequest getRequest() {
+    public Request getRequest() {
         return request;
     }
 

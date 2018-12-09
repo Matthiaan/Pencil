@@ -854,6 +854,14 @@ public class Vector implements Comparable<Vector>, Cloneable {
         return new Location(world, x, y, z);
     }
 
+    public static Vector getOffset(Vector vector, Vector target) {
+        return new Vector(
+                Math.abs(vector.getX() - target.getX()),
+                Math.abs(vector.getY() - target.getY()),
+                Math.abs(vector.getZ() - target.getZ())
+        );
+    }
+
     /**
      * Put a single Vector into a list.
      * @see com.pencil.engine.geometry.selection.Selection

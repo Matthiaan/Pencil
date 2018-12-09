@@ -1,8 +1,8 @@
-package com.pencil.engine.routines.engines;
+package com.pencil.engine.pipeline.engines;
 
 import com.pencil.engine.Pencil;
 import com.pencil.engine.geometry.vector.Vector;
-import com.pencil.engine.routines.engines.utils.Voxel;
+import com.pencil.engine.pipeline.engines.utils.Voxel;
 import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -36,7 +36,7 @@ public class DrawEngine {
 
                     world.getBlockAt(vector.toLocation(world)).setType(voxel.getMaterial());
                 }
-            }.runTaskLater(Pencil.getPlugin(), 1);
+            }.runTaskLater(Pencil.getPlugin(), 10);
 
             a++;
         }

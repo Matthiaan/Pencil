@@ -1,11 +1,11 @@
 package com.pencil.engine.utils.utilities;
 
 import com.pencil.engine.Pencil;
-import com.pencil.engine.routines.engines.InterfaceEngine;
+import com.pencil.engine.pipeline.engines.InterfaceEngine;
+import com.pencil.engine.pipeline.request.FixedShapeRequest;
 import com.pencil.engine.utils.MaterialSet;
 import com.pencil.engine.utils.action.PencilAction;
-import com.pencil.engine.utils.action.PencilNonUndoableAction;
-import com.pencil.engine.utils.action.PencilShapeAction;
+import com.pencil.engine.utils.action.PencilRequestAction;
 import com.pencil.engine.utils.action.PencilVectorAction;
 import com.pencil.engine.utils.player.PencilHistory;
 import com.pencil.engine.utils.player.PencilPlayer;
@@ -58,6 +58,20 @@ public class InterfaceUtils {
         gui.setItem(10, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Position Selection"));
         gui.setItem(11, ItemUtils.getItem(Material.MAGMA_CREAM, 1, ChatColor.AQUA + "Shape Types"));
         gui.setItem(12, ItemUtils.getSkullItem(1, "MHF_ArrowUp", ChatColor.AQUA + "Selection Options"));
+
+        return gui;
+    }
+
+    public static Inventory createSelectionOptionsInterface() {
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Selection Options", 27);
+        InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
+
+        gui.setItem(22, ItemUtils.getExitItem());
+        gui.setItem(10, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Copy Selection"));
+        gui.setItem(11, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Paste Selection"));
+        gui.setItem(12, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Rotate Selection"));
+        gui.setItem(13, ItemUtils.getSkullItem(1, "flashlight", ChatColor.AQUA + "Flip Selection"));
+        gui.setItem(14, ItemUtils.getItem(Material.PAPER, 1, ChatColor.AQUA + "Blueprint Selection"));
 
         return gui;
     }
@@ -146,7 +160,7 @@ public class InterfaceUtils {
         gui.setItem(31, ItemUtils.getExitItem());
         gui.setItem(12, ItemUtils.getNoItem());
         gui.setItem(14, ItemUtils.getYesItem());
-        gui.setItem(13, ItemUtils.getItem(Material.PAPER, 1, ChatColor.AQUA + "Would you like your shape to be filled?"));
+        gui.setItem(13, ItemUtils.getSkullItem(1, "MHF_Question", ChatColor.AQUA + "Would you like reset your shape creation?"));
 
         return gui;
     }
@@ -158,7 +172,7 @@ public class InterfaceUtils {
         gui.setItem(31, ItemUtils.getExitItem());
         gui.setItem(12, ItemUtils.getNoItem());
         gui.setItem(14, ItemUtils.getYesItem());
-        gui.setItem(13, ItemUtils.getItem(Material.PAPER, 1, ChatColor.AQUA + "Would you like reset your shape creation?",
+        gui.setItem(13, ItemUtils.getSkullItem(1, "MHF_Exclamation", ChatColor.AQUA + "Would you like reset your shape creation?",
                 ChatColor.WHITE + "This gets rid of any selection, scale, material, etc... selected!"));
 
         return gui;
@@ -550,9 +564,11 @@ public class InterfaceUtils {
             if (action.isUndoable()) {
                 switch (action.getActionType()) {
                     case OPERATION:
-                        if (action instanceof PencilShapeAction) {
+                        if (action instanceof PencilRequestAction) {
+                            FixedShapeRequest request = (FixedShapeRequest) ((PencilRequestAction) action).getRequest();
+
                             gui.setItem(i, ItemUtils.getSkullItem(1, "flashlight",
-                                    ChatColor.AQUA + "Operation: Generation -> " + ((PencilShapeAction) action).getRequest().getType().toString()));
+                                    ChatColor.AQUA + "Operation: Generation -> " + request.getType().toString()));
                         }
 
                     case SELECTION:
