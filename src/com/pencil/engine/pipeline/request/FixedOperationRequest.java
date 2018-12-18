@@ -53,14 +53,14 @@ public class FixedOperationRequest implements Request {
         if (inform) {
             owner.closeInventory();
             owner.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_REQUEST_PRE_PROCESSING.getMessage(),
-                    MessageService.MessageType.INFO, false));
+                    MessageService.MessageType.INFO));
 
             try {
                 Pencil.getEventService().queueEvent(new PencilRequestPreProcessingEvent(owner.getPlayer(), this,
                         ShapeUtils.getMaterialsInOffsetRegion(owner.getPlayer().getWorld(), pastePoint, RenderEngine.getPreRenderedFootage(this))));
             } catch (NullPointerException ex) {
                 owner.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_HISTORY_AVAILABLE.getMessage(),
-                        MessageService.MessageType.WARNING, false));
+                        MessageService.MessageType.WARNING));
             }
         }
     }

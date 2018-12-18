@@ -145,9 +145,9 @@ public class RenderEngine {
             }
         } catch (RequestProcessingException ex) {
             player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_REQUEST_PROCESSING_EXCEPTION.getMessage(),
-                    MessageService.MessageType.ERROR, true));
+                    MessageService.MessageType.ERROR));
             player.sendMessage(MessageService.formatMessage(ex.getMessage(),
-                    MessageService.MessageType.ERROR, false));
+                    MessageService.MessageType.ERROR));
         }
 
         return false;

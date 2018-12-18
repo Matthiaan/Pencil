@@ -95,7 +95,7 @@ public class PencilPlayer {
     public void setSelection(Selection selection) {
         if (selection == null) {
             player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SELECTION_EMPTY.getMessage(),
-                    MessageService.MessageType.WARNING, false));
+                    MessageService.MessageType.WARNING));
         }
 
         this.selection = selection;

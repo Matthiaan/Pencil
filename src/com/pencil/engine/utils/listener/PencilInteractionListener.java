@@ -42,7 +42,7 @@ public class PencilInteractionListener implements Listener {
                             rulers.remove(player);
                         } else {
                             player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_RULER_FIRST_POSITION.getMessage(),
-                                    MessageService.MessageType.INFO, false));
+                                    MessageService.MessageType.INFO));
 
                             rulers.put(player, vector);
                         }
@@ -55,29 +55,29 @@ public class PencilInteractionListener implements Listener {
                                 if (mode == PencilPlayer.SelectionMode.VECTOR) {
                                     Pencil.getSelectionManager().update(player, new VectorSelection(vector));
                                     player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_POSITION_SET.getMessage(),
-                                            MessageService.MessageType.INFO, false));
+                                            MessageService.MessageType.INFO));
                                     player.getPlayer().sendMessage(MessageService.formatMessage("Position set at " + vector.toString(),
-                                            MessageService.MessageType.INFO, false));
+                                            MessageService.MessageType.INFO));
                                 } else if (mode == PencilPlayer.SelectionMode.DOUBLE) {
                                     if (vectors.containsKey(player)) {
                                         Pencil.getSelectionManager().update(player, new CuboidSelection(vectors.get(player), vector, player.getPlayer().getWorld()));
 
                                         vectors.remove(player);
                                         player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_SECOND_POSITION_SET.getMessage(),
-                                                MessageService.MessageType.INFO, false));
+                                                MessageService.MessageType.INFO));
                                         player.getPlayer().sendMessage(MessageService.formatMessage("Position set at " + vector.toString(),
-                                                MessageService.MessageType.INFO, false));
+                                                MessageService.MessageType.INFO));
                                     } else {
                                         vectors.put(player, vector);
                                         player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_FIRST_POSITION_SET.getMessage(),
-                                                MessageService.MessageType.INFO, false));
+                                                MessageService.MessageType.INFO));
                                         player.getPlayer().sendMessage(MessageService.formatMessage("Position set at " + vector.toString(),
-                                                MessageService.MessageType.INFO, false));
+                                                MessageService.MessageType.INFO));
                                     }
                                 } else {
                                     //IT's Multi
                                     player.getPlayer().sendMessage(MessageService.formatMessage( "This feature will be available in a future update!",
-                                            MessageService.MessageType.WARNING, false));
+                                            MessageService.MessageType.WARNING));
                                     player.getPlayer().openInventory(InterfaceUtils.createVectorInterface());
                                 }
 

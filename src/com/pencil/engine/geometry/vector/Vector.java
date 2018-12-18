@@ -799,6 +799,10 @@ public class Vector implements Comparable<Vector>, Cloneable {
         return ChatColor.DARK_GRAY + "[" + ChatColor.RED + x + ChatColor.WHITE + ", " + ChatColor.GREEN + y + ChatColor.WHITE + ", " + ChatColor.BLUE + z + ChatColor.DARK_GRAY +  "]";
     }
 
+    public String toConsoleString() {
+        return "[" + x + ", " + y + ", " + z + "]";
+    }
+
     /**
      * Gets the minimum components of two vectors.
      *
@@ -854,11 +858,11 @@ public class Vector implements Comparable<Vector>, Cloneable {
         return new Location(world, x, y, z);
     }
 
-    public static Vector getOffset(Vector vector, Vector target) {
+    public static Vector getOffset(Vector offset, Vector origin) {
         return new Vector(
-                Math.abs(vector.getX() - target.getX()),
-                Math.abs(vector.getY() - target.getY()),
-                Math.abs(vector.getZ() - target.getZ())
+                Math.abs(offset.getX() - origin.getX()),
+                Math.abs(offset.getY() - origin.getY()),
+                Math.abs(offset.getZ() - origin.getZ())
         );
     }
 

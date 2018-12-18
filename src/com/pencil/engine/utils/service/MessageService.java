@@ -32,6 +32,9 @@ public class MessageService {
         ACTION_SOMETHING_WENT_WRONG("Seems like something went wrong!"),
         ACTION_RULER_FIRST_POSITION("Measure starting position set!"),
 
+        CLIPBOARD_EMPTY("Your clipboard is empty!"),
+        CLIPBOARD_ROTATED("Your clipboard has been rotated!"),
+
         NO_PERMISSION("Seems like you don't have the permission to execute this command!"),
         NO_RIGHT_SELECTION("You don't have the right selection for this operation!"),
         NO_COMMAND("Pencil didn't recognise that command!"),
@@ -56,7 +59,7 @@ public class MessageService {
         UTILS_POSITION_SET("Position has been added!"),
 
         SELECTION_COPIED("Your selection has been copied to your clipboard!"),
-        SELECTION_PASTED("Your selection has been pasted!")
+        SELECTION_PASTED("Your selection has been pasted!"),
         ;
 
         private String message;
@@ -70,16 +73,12 @@ public class MessageService {
         }
     }
 
-    public static String formatMessage(String message, MessageType type, boolean interaction) {
+    public static String formatMessage(String message, MessageType type) {
         if (type == null) {
             type = MessageType.INFO;
         }
 
-        if (interaction) {
-            return Pencil.getPrefix() + type.color + "Oops! " + message + ChatColor.RESET;
-        } else {
-            return Pencil.getPrefix() + type.color + message + ChatColor.RESET;
-        }
+        return Pencil.getPrefix() + type.color + message + ChatColor.RESET;
     }
 
 }

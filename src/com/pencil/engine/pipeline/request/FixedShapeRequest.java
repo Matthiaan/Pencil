@@ -84,7 +84,7 @@ public class FixedShapeRequest implements Request {
         if (inform) {
             owner.closeInventory();
             owner.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_REQUEST_PRE_PROCESSING.getMessage(),
-                    MessageService.MessageType.INFO, false));
+                    MessageService.MessageType.INFO));
 
             if (Pencil.getSelectionManager().hasSelection(Pencil.getPlayerService().getPlayer(owner))) {
                 setSelection(Pencil.getSelectionManager().get(Pencil.getPlayerService().getPlayer(owner)));
@@ -95,7 +95,7 @@ public class FixedShapeRequest implements Request {
                         ShapeUtils.getMaterialsInRegion(owner.getPlayer().getWorld(), RenderEngine.getPreRenderedFootage(this))));
             } catch (NullPointerException ex) {
                 owner.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_HISTORY_AVAILABLE.getMessage(),
-                        MessageService.MessageType.WARNING, false));
+                        MessageService.MessageType.WARNING));
             }
         }
     }

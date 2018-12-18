@@ -23,7 +23,7 @@ public class InterfaceUtils {
             return true;
         } else {
             player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_INVENTORY_FULL.getMessage(),
-                    MessageService.MessageType.ERROR, true));
+                    MessageService.MessageType.ERROR));
 
             return false;
         }
@@ -112,6 +112,19 @@ public class InterfaceUtils {
         gui.setItem(22, item);
         gui.setItem(21, ItemUtils.getSkullItem(1, "MHF_ArrowDown", ChatColor.AQUA + "- 1"));
         gui.setItem(23, ItemUtils.getSkullItem(1, "MHF_ArrowUp", ChatColor.AQUA + "+ 1"));
+
+        return gui;
+    }
+
+    public static Inventory createRotationInterface() {
+        Inventory gui = InterfaceEngine.createInventory(Pencil.getPrefix() + ChatColor.GREEN + "Angle Options", 27);
+        InterfaceEngine.fillInventory(gui, ItemUtils.getFillItem());
+
+        gui.setItem(16, ItemUtils.getExitItem());
+
+        gui.setItem(10, ItemUtils.getItem(Material.GREEN_STAINED_GLASS_PANE, 1, ChatColor.AQUA + "90°"));
+        gui.setItem(11, ItemUtils.getItem(Material.ORANGE_STAINED_GLASS_PANE, 1, ChatColor.AQUA + "180°"));
+        gui.setItem(12, ItemUtils.getItem(Material.RED_STAINED_GLASS_PANE, 1, ChatColor.AQUA + "Custom Angle"));
 
         return gui;
     }

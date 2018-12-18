@@ -5,11 +5,9 @@ import com.pencil.engine.geometry.math.SelectionMath;
 import com.pencil.engine.geometry.selection.CuboidSelection;
 import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.pipeline.request.FixedShapeRequest;
-import com.pencil.engine.pipeline.request.Request;
 import com.pencil.engine.utils.events.PencilHistoryEvent;
 import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
-import com.pencil.engine.utils.service.manager.SelectionManager;
 import com.pencil.engine.utils.utilities.*;
 import com.pencil.engine.geometry.selection.Selection;
 import com.pencil.engine.utils.action.PencilAction;
@@ -44,7 +42,7 @@ public class PencilInterfaceListener implements Listener {
                         pencilPlayer.setToolType(ToolUtils.ToolType.REGULAR);
 
                         MessageService.formatMessage(MessageService.PreFormattedMessage.GUI_ADDED_WAND_PENCIL.getMessage(),
-                                MessageService.MessageType.INFO, false);
+                                MessageService.MessageType.INFO);
                     }
                 } else if (slot == 11) {
                     player.closeInventory();
@@ -77,31 +75,31 @@ public class PencilInterfaceListener implements Listener {
 
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage("Whenever selecting more than 1 position, the previous stored position will be overwritten!",
-                            MessageService.MessageType.INFO, false));
+                            MessageService.MessageType.INFO));
                 } else if (slot == 11) {
                     pencilPlayer.setMode(PencilPlayer.SelectionMode.DOUBLE);
 
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage("Whenever selecting more than 2 positions, the previous stored positions will be overwritten!",
-                            MessageService.MessageType.INFO, false));
+                            MessageService.MessageType.INFO));
                 } else if (slot == 12) {
                     pencilPlayer.setMode(PencilPlayer.SelectionMode.MULTI);
 
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage("Pencil will keep storing positions until these have been reset!",
-                            MessageService.MessageType.INFO, false));
+                            MessageService.MessageType.INFO));
                 } else if (slot == 14) {
                     Pencil.getSelectionManager().remove(pencilPlayer);
 
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage("Your stored positions have been reset!",
-                            MessageService.MessageType.INFO, false));
+                            MessageService.MessageType.INFO));
                 } else if (slot == 15) {
                     pencilPlayer.setMode(PencilPlayer.SelectionMode.NA);
 
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage("Your Selection Mode has been reset!",
-                            MessageService.MessageType.INFO, false));
+                            MessageService.MessageType.INFO));
                 } else if (slot == 16) {
                     player.closeInventory();
                 }
@@ -111,14 +109,14 @@ public class PencilInterfaceListener implements Listener {
 
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.GUI_REGULAR_TOOL.getMessage(),
-                            MessageService.MessageType.INFO, false));
+                            MessageService.MessageType.INFO));
                 } else if (slot == 11) {
                     pencilPlayer.setToolType(ToolUtils.ToolType.RULER);
 
                     player.closeInventory();
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.GUI_RULER_TOOL.getMessage(),
-                            MessageService.MessageType.INFO, false));
+                            MessageService.MessageType.INFO));
                 } else if (slot == 16) {
                     player.closeInventory();
                 }
@@ -133,17 +131,32 @@ public class PencilInterfaceListener implements Listener {
                     SelectionMath.pasteFromClipboard(pencilPlayer);
                 } else if (slot == 12) {
                     player.closeInventory();
-                    player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
-                            MessageService.MessageType.WARNING, true));
+                    player.openInventory(InterfaceUtils.createRotationInterface());
                 } else if (slot == 13) {
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
-                            MessageService.MessageType.WARNING, true));
+                            MessageService.MessageType.WARNING));
                 } else if (slot == 14) {
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
-                            MessageService.MessageType.WARNING, true));
+                            MessageService.MessageType.WARNING));
                 } else if (slot == 22) {
+                    player.closeInventory();
+                }
+            } else if (event.getClickedInventory().getName().contains("Angle Selection")) {
+                if (slot == 10) {
+                    player.closeInventory();
+
+                    SelectionMath.rotateClipboard(pencilPlayer, 90);
+                } else if (slot == 11) {
+                    player.closeInventory();
+
+                    SelectionMath.rotateClipboard(pencilPlayer, 180);
+                } else if (slot == 12) {
+                    player.closeInventory();
+                    player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
+                            MessageService.MessageType.WARNING));
+                } else if (slot == 16) {
                     player.closeInventory();
                 }
             }
@@ -218,12 +231,12 @@ public class PencilInterfaceListener implements Listener {
                             break;
                         case DOUBLE:
                             player.sendMessage(MessageService.formatMessage("You can't create a cube when you have 2 positions stored!",
-                                    MessageService.MessageType.ERROR, true));
+                                    MessageService.MessageType.ERROR));
 
                             break;
                         case MULTI:
                             player.sendMessage(MessageService.formatMessage("You can't create a cube when you have 2 positions stored!",
-                                    MessageService.MessageType.ERROR, true));
+                                    MessageService.MessageType.ERROR));
 
                             break;
                     }
@@ -253,12 +266,12 @@ public class PencilInterfaceListener implements Listener {
                             request.setSelection(selection);
                             player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                             player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
-                                    MessageService.MessageType.INFO, false));
+                                    MessageService.MessageType.INFO));
 
                             break;
                         case MULTI:
                             player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                     }
@@ -294,12 +307,12 @@ public class PencilInterfaceListener implements Listener {
                             request.setSelection(mSelection);
                             player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                             player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                         case MULTI:
                             player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                     }
@@ -310,17 +323,17 @@ public class PencilInterfaceListener implements Listener {
                     switch (type) {
                         case SINGLE:
                             player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                         case DOUBLE:
                             player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                         case MULTI:
                             player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                     }
@@ -351,12 +364,12 @@ public class PencilInterfaceListener implements Listener {
                             break;
                         case DOUBLE:
                             player.sendMessage(MessageService.formatMessage("This feature will be available in a next update!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                         case MULTI:
                             player.sendMessage(MessageService.formatMessage("This feature will be available in a next update!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                     }
@@ -387,12 +400,12 @@ public class PencilInterfaceListener implements Listener {
                             request.setSelection(dSelection);
                             player.openInventory(InterfaceUtils.createFilledShapeDialogInterface());
                             player.sendMessage(MessageService.formatMessage("This feature might not be working correctly yet!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                         case MULTI:
                             player.sendMessage(MessageService.formatMessage("This feature will be available in a next update!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                     }
@@ -427,7 +440,7 @@ public class PencilInterfaceListener implements Listener {
                             break;
                         case MULTI:
                             player.sendMessage(MessageService.formatMessage("This feature will be available in a next update!",
-                                    MessageService.MessageType.WARNING, true));
+                                    MessageService.MessageType.WARNING));
 
                             break;
                     }
@@ -507,7 +520,7 @@ public class PencilInterfaceListener implements Listener {
                     if (request.getScale() == null) {
                         player.closeInventory();
                         player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SOMETHING_WENT_WRONG.getMessage(),
-                                MessageService.MessageType.ERROR, true));
+                                MessageService.MessageType.ERROR));
 
                         return;
                     }
@@ -535,7 +548,7 @@ public class PencilInterfaceListener implements Listener {
                     if (request.getScale() == null) {
                         player.closeInventory();
                         player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_SOMETHING_WENT_WRONG.getMessage(),
-                                MessageService.MessageType.ERROR, true));
+                                MessageService.MessageType.ERROR));
 
                         return;
                     }
@@ -892,17 +905,17 @@ public class PencilInterfaceListener implements Listener {
                         }
                     } else {
                         player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_UNDO_OPTION.getMessage(),
-                                MessageService.MessageType.WARNING, false));
+                                MessageService.MessageType.WARNING));
                     }
                 } else if (slot == 12) {
                     PencilAction action = pencilPlayer.getHistory().getLatestAction();
 
                     if (action != null) {
                         player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_UNDO_OPTION.getMessage(),
-                                MessageService.MessageType.WARNING, false));
+                                MessageService.MessageType.WARNING));
                     } else {
                         player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
-                                MessageService.MessageType.WARNING, false));
+                                MessageService.MessageType.WARNING));
                     }
                 } else if (slot == 27) {
                     player.closeInventory();
@@ -939,12 +952,12 @@ public class PencilInterfaceListener implements Listener {
 
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_UNDONE.getMessage(),
-                            MessageService.MessageType.INFO, false));
+                            MessageService.MessageType.INFO));
                 } else if (slot == 14) {
                     //TODO: Create Redo!
                     player.closeInventory();
                     player.sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
-                            MessageService.MessageType.WARNING, true));
+                            MessageService.MessageType.WARNING));
                 } else if (slot == 18) {
                     player.closeInventory();
                     player.openInventory(InterfaceUtils.createPlayerHistory(pencilPlayer));

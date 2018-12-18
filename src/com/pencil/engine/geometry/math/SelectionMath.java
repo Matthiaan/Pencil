@@ -19,15 +19,19 @@ public class SelectionMath {
 
         Vector point = selection.getVectors().get(0);
 
+        System.out.println("Origin: " + point.toConsoleString());
+
         for (Vector vector : selection.getVectors()) {
             Vector offset = Vector.getOffset(point, vector);
+            System.out.println("Offset: " + offset.toConsoleString());
+            System.out.println("Material: " + player.getPlayer().getWorld().getBlockAt(vector.add(offset).toLocation(player.getPlayer().getWorld())).getType().toString());
 
-            offsets.put(offset, player.getPlayer().getWorld().getBlockAt(offset.toLocation(player.getPlayer().getWorld())).getType());
+            offsets.put(offset, player.getPlayer().getWorld().getBlockAt(vector.add(offset).toLocation(player.getPlayer().getWorld())).getType());
         }
 
         player.updateClipboard(offsets);
         player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.SELECTION_COPIED.getMessage(),
-                MessageService.MessageType.INFO, false));
+                MessageService.MessageType.INFO));
     }
 
     public static void pasteFromClipboard(PencilPlayer player) {
@@ -36,9 +40,9 @@ public class SelectionMath {
 
         if (!(selection instanceof VectorSelection)) {
             player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_RIGHT_SELECTION.getMessage(),
-                    MessageService.MessageType.WARNING, false));
+                    MessageService.MessageType.WARNING));
             player.getPlayer().sendMessage(MessageService.formatMessage("To paste a selection, only one position must be selected!",
-                    MessageService.MessageType.INFO, false));
+                    MessageService.MessageType.INFO));
 
             return;
         }
@@ -55,7 +59,98 @@ public class SelectionMath {
 
         player.resetOperationRequest();
         player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.SELECTION_PASTED.getMessage(),
-                MessageService.MessageType.INFO, false));
+                MessageService.MessageType.INFO));
+    }
+
+    //TODO: Optimize this method drastically!
+    public static void rotateClipboard(PencilPlayer player, double angle) {
+        Clipboard clipboard = player.getClipboard();
+
+        if (clipboard.getClipped() == null) {
+            player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.CLIPBOARD_EMPTY.getMessage(),
+                    MessageService.MessageType.WARNING));
+
+            return;
+        }
+
+        HashMap<Vector, Material> offsets = clipboard.getClipped();
+        HashMap<Vector, Material> rotatedOffsets = new HashMap<>();
+
+        if (angle == 180) {
+            for (Vector vector : offsets.keySet()) {
+                rotatedOffsets.put(new Vector(-vector.getBlockX(), -vector.getBlockY(), -vector.getBlockZ()), offsets.get(vector));
+            }
+
+            player.getClipboard().setClipped(rotatedOffsets);
+        } else if (angle == 90) {
+            for (Vector vector : offsets.keySet()) {
+                if (vector.getBlockX() == 0) {
+                    if (vector.getBlockZ() != 0) {
+                        rotatedOffsets.put(new Vector(
+                                vector.getBlockZ(),
+                                vector.getBlockY(),
+                                0
+                        ), offsets.get(vector));
+                    } else {
+                        rotatedOffsets.put(new Vector(
+                                vector.getBlockX(),
+                                vector.getBlockY(),
+                                vector.getBlockZ()
+                        ), offsets.get(vector));
+                    }
+                } else if (vector.getBlockZ() == 0) {
+                    if (vector.getBlockX() != 0) {
+                        rotatedOffsets.put(new Vector(
+                                vector.getBlockZ(),
+                                vector.getBlockY(),
+                                0
+                        ), offsets.get(vector));
+                    } else {
+                        rotatedOffsets.put(new Vector(
+                                vector.getBlockX(),
+                                vector.getBlockY(),
+                                vector.getBlockZ()
+                        ), offsets.get(vector));
+                    }
+                }
+
+                if (vector.getBlockX() > 0) {
+                    if (vector.getBlockZ() > 0) {
+                        rotatedOffsets.put(new Vector(
+                                vector.getBlockX(),
+                                vector.getBlockY(),
+                                -vector.getBlockZ()
+                        ), offsets.get(vector));
+                    } else if (vector.getBlockZ() < 0) {
+                        rotatedOffsets.put(new Vector(
+                                -vector.getBlockX(),
+                                vector.getBlockY(),
+                                vector.getBlockZ()
+                        ), offsets.get(vector));
+                    }
+                } else if (vector.getBlockX() < 0) {
+                    if (vector.getBlockZ() > 0) {
+                        rotatedOffsets.put(new Vector(
+                                -vector.getBlockX(),
+                                vector.getBlockY(),
+                                vector.getBlockZ()
+                        ), offsets.get(vector));
+                    } else if (vector.getBlockZ() < 0) {
+                        rotatedOffsets.put(new Vector(
+                                vector.getBlockX(),
+                                vector.getBlockY(),
+                                -vector.getBlockZ()
+                        ), offsets.get(vector));
+                    }
+                }
+            }
+
+            player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.SELECTION_PASTED.getMessage(),
+                    MessageService.MessageType.INFO));
+        } else {
+            player.getPlayer().sendMessage(MessageService.formatMessage("This feature will be available in a future update!",
+                    MessageService.MessageType.WARNING));
+        }
     }
 
 }

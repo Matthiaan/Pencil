@@ -12,10 +12,10 @@ public class MenuCommand extends PencilCommand {
         if (!(player.getInventory().firstEmpty() == -1)) {
             player.getInventory().addItem(ItemUtils.getMenuItem());
             player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.GUI_ADDED_MENU_PENCIL.getMessage(),
-                    MessageService.MessageType.INFO, false));
+                    MessageService.MessageType.INFO));
         } else {
             player.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.UTILS_INVENTORY_FULL.getMessage(),
-                    MessageService.MessageType.ERROR, true));
+                    MessageService.MessageType.ERROR));
         }
 
         //TODO: Make permissions!

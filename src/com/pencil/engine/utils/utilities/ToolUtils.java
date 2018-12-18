@@ -20,9 +20,9 @@ public class ToolUtils {
         double distance = min.distance(max);
 
         player.getPlayer().sendMessage(MessageService.formatMessage("Distance calculated between " + min.toString() + " and " + max.toString() + ".",
-                MessageService.MessageType.INFO, false));
+                MessageService.MessageType.INFO));
         player.getPlayer().sendMessage(MessageService.formatMessage("Distance = " + (int) distance + " blocks.",
-                MessageService.MessageType.INFO, false));
+                MessageService.MessageType.INFO));
     }
 
     public static void addCustomCuboidRequest(PencilPlayer player, Vector scale, Material material, boolean isAir) {
@@ -43,7 +43,7 @@ public class ToolUtils {
             Pencil.getEventService().queueEvent(new PencilRequestPreProcessingEvent(player.getPlayer(), player.getCurrentShapeRequest(), map));
         } catch (NullPointerException ex) {
             player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_HISTORY_AVAILABLE.getMessage(),
-                    MessageService.MessageType.WARNING, false));
+                    MessageService.MessageType.WARNING));
         }
     }
 

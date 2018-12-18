@@ -27,7 +27,7 @@ public class CommandService implements CommandExecutor, TabExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
             sender.sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_PLAYER.getMessage(),
-                    MessageService.MessageType.ERROR, true));
+                    MessageService.MessageType.ERROR));
 
             return false;
         }
@@ -37,9 +37,9 @@ public class CommandService implements CommandExecutor, TabExecutor {
         if (cmd.getName().equalsIgnoreCase("pencil")) {
             if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
                 player.sendMessage(MessageService.formatMessage(logCommand.getName() +" " + logCommand.getArgs() + " -> " + logCommand.getDescription(),
-                        MessageService.MessageType.LIST, false));
+                        MessageService.MessageType.LIST));
                 player.sendMessage(MessageService.formatMessage(menuCommand.getName() +" " + menuCommand.getArgs() + " -> " + menuCommand.getDescription(),
-                        MessageService.MessageType.LIST, false));
+                        MessageService.MessageType.LIST));
 
                 return true;
             } else if (args[0].equalsIgnoreCase("log")) {
