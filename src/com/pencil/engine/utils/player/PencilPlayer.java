@@ -73,7 +73,7 @@ public class PencilPlayer {
     public void setOperationRequest(Vector vector) {
         operationRequest = null;
         operationRequest = new FixedOperationRequest(player);
-        operationRequest.setPastePoint(vector);
+        operationRequest.setPoint(vector);
     }
 
     public FixedShapeRequest getCurrentShapeRequest() {

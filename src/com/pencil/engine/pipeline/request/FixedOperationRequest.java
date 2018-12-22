@@ -14,12 +14,12 @@ import java.util.HashMap;
 public class FixedOperationRequest implements Request {
 
     private enum OperationType {
-        SELECION_PASTE,
+        SELECTION_PASTE,
     }
 
     private Player owner;
     private HashMap<Vector, Material> offsets;
-    private Vector pastePoint;
+    private Vector point;
 
     public FixedOperationRequest(Player owner) {
         this.owner = owner;
@@ -33,6 +33,8 @@ public class FixedOperationRequest implements Request {
         this.owner = owner;
     }
 
+
+
     public HashMap<Vector, Material> getOffsets() {
         return offsets;
     }
@@ -41,12 +43,12 @@ public class FixedOperationRequest implements Request {
         this.offsets = offsets;
     }
 
-    public Vector getPastePoint() {
-        return pastePoint;
+    public Vector getPoint() {
+        return point;
     }
 
-    public void setPastePoint(Vector pastePoint) {
-        this.pastePoint = pastePoint;
+    public void setPoint(Vector pastePoint) {
+        this.point = pastePoint;
     }
 
     public void perform(boolean inform) {
@@ -57,7 +59,7 @@ public class FixedOperationRequest implements Request {
 
             try {
                 Pencil.getEventService().queueEvent(new PencilRequestPreProcessingEvent(owner.getPlayer(), this,
-                        ShapeUtils.getMaterialsInOffsetRegion(owner.getPlayer().getWorld(), pastePoint, RenderEngine.getPreRenderedFootage(this))));
+                        ShapeUtils.getMaterialsInOffsetRegion(owner.getPlayer().getWorld(), point, RenderEngine.getPreRenderedFootage(this))));
             } catch (NullPointerException ex) {
                 owner.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_HISTORY_AVAILABLE.getMessage(),
                         MessageService.MessageType.WARNING));

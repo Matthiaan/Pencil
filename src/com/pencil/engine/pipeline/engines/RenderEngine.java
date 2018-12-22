@@ -39,7 +39,7 @@ public class RenderEngine {
     private static HashMap<Player, ArrayList<Voxel>> voxels = new HashMap<>();
 
     public static ArrayList<Vector> getPreRenderedFootage(FixedOperationRequest request) {
-        Vector vector = request.getPastePoint();
+        Vector vector = request.getPoint();
         Set<Vector> offsets = request.getOffsets().keySet();
 
         ArrayList<Vector> vectors = new ArrayList<>();
@@ -110,7 +110,7 @@ public class RenderEngine {
         } else if (request instanceof FixedOperationRequest) {
             FixedOperationRequest fixedOperationRequest = (FixedOperationRequest) request;
 
-            if (render(player, fixedOperationRequest.getPastePoint(), fixedOperationRequest.getOffsets())) {
+            if (render(player, fixedOperationRequest.getPoint(), fixedOperationRequest.getOffsets())) {
                 Bukkit.getServer().getPluginManager().callEvent(new PencilRequestEvent(player, fixedOperationRequest, event.getOldMaterials()));
             }
         }
@@ -157,6 +157,8 @@ public class RenderEngine {
         for (Vector offset : offsets.keySet()) {
             drawVoxel(player, player.getWorld(), vector.add(offset), offsets.get(offset));
         }
+
+        pushQueue(player);
 
         return true;
     }

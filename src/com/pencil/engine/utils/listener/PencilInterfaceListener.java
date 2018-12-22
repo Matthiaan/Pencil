@@ -143,7 +143,7 @@ public class PencilInterfaceListener implements Listener {
                 } else if (slot == 22) {
                     player.closeInventory();
                 }
-            } else if (event.getClickedInventory().getName().contains("Angle Selection")) {
+            } else if (event.getClickedInventory().getName().contains("Angle Options")) {
                 if (slot == 10) {
                     player.closeInventory();
 

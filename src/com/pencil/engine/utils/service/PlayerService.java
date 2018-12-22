@@ -22,6 +22,12 @@ public class PlayerService {
         }
     }
 
+    public void exit() {
+        for (Player player : players.keySet()) {
+            removePlayer(player);
+        }
+    }
+
     public void flush() {
         players.clear();
     }

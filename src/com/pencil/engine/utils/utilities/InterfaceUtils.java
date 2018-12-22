@@ -2,7 +2,9 @@ package com.pencil.engine.utils.utilities;
 
 import com.pencil.engine.Pencil;
 import com.pencil.engine.pipeline.engines.InterfaceEngine;
+import com.pencil.engine.pipeline.request.FixedOperationRequest;
 import com.pencil.engine.pipeline.request.FixedShapeRequest;
+import com.pencil.engine.pipeline.request.Request;
 import com.pencil.engine.utils.MaterialSet;
 import com.pencil.engine.utils.action.PencilAction;
 import com.pencil.engine.utils.action.PencilRequestAction;
@@ -578,10 +580,19 @@ public class InterfaceUtils {
                 switch (action.getActionType()) {
                     case OPERATION:
                         if (action instanceof PencilRequestAction) {
-                            FixedShapeRequest request = (FixedShapeRequest) ((PencilRequestAction) action).getRequest();
+                            Request request = ((PencilRequestAction) action).getRequest();
 
-                            gui.setItem(i, ItemUtils.getSkullItem(1, "flashlight",
-                                    ChatColor.AQUA + "Operation: Generation -> " + request.getType().toString()));
+                            if (request instanceof FixedShapeRequest) {
+                                FixedShapeRequest shapeRequest = (FixedShapeRequest) request;
+
+                                gui.setItem(i, ItemUtils.getSkullItem(1, "flashlight",
+                                        ChatColor.AQUA + "Operation: Generation -> " + shapeRequest.getType().toString()));
+                            } else if (request instanceof FixedOperationRequest) {
+                                FixedOperationRequest operationRequest = (FixedOperationRequest) request;
+
+                                gui.setItem(i, ItemUtils.getSkullItem(1, "flashlight",
+                                        ChatColor.AQUA + "Operation: Generation -> Copy/Paste Operation"));
+                            }
                         }
 
                     case SELECTION:

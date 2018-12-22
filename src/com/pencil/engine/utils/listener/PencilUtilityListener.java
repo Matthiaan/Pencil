@@ -33,6 +33,8 @@ public class PencilUtilityListener implements Listener {
     public void onRequestEvent(PencilRequestEvent event) {
         event.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.ACTION_REQUEST_PROCESSED.getMessage(),
                 MessageService.MessageType.INFO));
+
+        System.out.println("Processed!");
     }
 
     //TODO: For Shape Generation -> Put action in AFTER completed render, otherwise we might end up with errors

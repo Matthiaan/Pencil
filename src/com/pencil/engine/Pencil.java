@@ -8,6 +8,7 @@ import com.pencil.engine.utils.service.manager.VectorManager;
 import com.pencil.engine.utils.utilities.InterfaceUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -87,6 +88,8 @@ public class Pencil extends JavaPlugin {
         Settings.getAnalytics().set("analytics.selection-type.poly",
                 Settings.getAnalytics().<Integer>get("analytics.selection-type.poly" + metricsService.getPolyType()));
         */
+
+        playerService.exit();
     }
 
     public static Plugin getPlugin() {

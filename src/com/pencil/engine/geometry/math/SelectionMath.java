@@ -8,25 +8,23 @@ import com.pencil.engine.geometry.vector.Vector;
 import com.pencil.engine.utils.player.PencilPlayer;
 import com.pencil.engine.utils.service.MessageService;
 import org.bukkit.Material;
+import org.bukkit.World;
 
 import java.util.HashMap;
 
 public class SelectionMath {
 
     public static void copyToClipboard(PencilPlayer player) {
+        World world = player.getPlayer().getWorld();
         Selection selection = Pencil.getSelectionManager().get(player);
         HashMap<Vector, Material> offsets = new HashMap<>();
 
-        Vector point = selection.getVectors().get(0);
-
-        System.out.println("Origin: " + point.toConsoleString());
+        Vector point = selection.getNativeMinimumVector();
 
         for (Vector vector : selection.getVectors()) {
             Vector offset = Vector.getOffset(point, vector);
-            System.out.println("Offset: " + offset.toConsoleString());
-            System.out.println("Material: " + player.getPlayer().getWorld().getBlockAt(vector.add(offset).toLocation(player.getPlayer().getWorld())).getType().toString());
 
-            offsets.put(offset, player.getPlayer().getWorld().getBlockAt(vector.add(offset).toLocation(player.getPlayer().getWorld())).getType());
+            offsets.put(offset, world.getBlockAt(vector.toLocation(world)).getType());
         }
 
         player.updateClipboard(offsets);
@@ -41,7 +39,7 @@ public class SelectionMath {
         if (!(selection instanceof VectorSelection)) {
             player.getPlayer().sendMessage(MessageService.formatMessage(MessageService.PreFormattedMessage.NO_RIGHT_SELECTION.getMessage(),
                     MessageService.MessageType.WARNING));
-            player.getPlayer().sendMessage(MessageService.formatMessage("To paste a selection, only one position must be selected!",
+            player.getPlayer().sendMessage(MessageService.formatMessage("To paste a selection, only a single position must be selected!",
                     MessageService.MessageType.INFO));
 
             return;
